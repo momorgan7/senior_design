@@ -1,0 +1,10 @@
+== README
+
+This is the redesign of the Gigapan Education site using ruby on rails.
+
+* Planned Deployment server
+ apache 2.2
+ mysql 2
+ ruby 2.2.0
+
+
