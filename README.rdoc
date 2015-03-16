@@ -6,6 +6,3 @@ This is the redesign of the Gigapan Education site using ruby on rails.
  apache 2.2
  mysql 2
  ruby 2.2.0
-
-
-e
