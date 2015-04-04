@@ -3,13 +3,13 @@ Rails.application.routes.draw do
 
   root 'header_pages#home'
 
-  get 'header_pages/about'
+  get 'about' => 'header_pages#about'
 
-  get 'header_pages/contact'
+  get 'admin' => 'header_pages#admin'
 
-  get 'header_pages/help'
+  get 'contact' => 'header_pages#contact'
 
-  get 'header_pages/admin'
+  get 'help' => 'header_pages#help'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
