@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :users
+
   root 'header_pages#home'
 
   get 'header_pages/about'
