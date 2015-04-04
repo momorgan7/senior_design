@@ -7,6 +7,13 @@
 # Ignore bundler config.
 /.bundle
 
+#Ignore all .c9 specific files<br>
+/.c9/
+
+# Ignore Spring files.
+/spring/*.pid
+
+>>>>>>> 7b27ceb7ecd2996a4932bacdd3652101f0e7c11c
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
