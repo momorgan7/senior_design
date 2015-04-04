@@ -11,4 +11,7 @@ class HeaderPagesController < ApplicationController
   def help
   end
 
+  def admin
+  end
 end
+
