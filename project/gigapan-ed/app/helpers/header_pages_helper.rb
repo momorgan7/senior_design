@@ -1,0 +1,2 @@
+module HeaderPagesHelper
+end
