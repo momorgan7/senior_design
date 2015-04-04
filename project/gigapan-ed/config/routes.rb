@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   get 'about' => 'header_pages#about'
 
-  get 'admin' => 'header_pages#admin'
-
   get 'contact' => 'header_pages#contact'
 
   get 'help' => 'header_pages#help'

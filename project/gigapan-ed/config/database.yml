@@ -13,7 +13,7 @@ development:
   adapter: mysql2
   encoding: utf8
   database: c9
-  username: momorgan7
+  username: <%=ENV['C9_USER']%>
   host: <%=ENV['IP']%>
 
 # Warning: The database defined as "test" will be erased and
