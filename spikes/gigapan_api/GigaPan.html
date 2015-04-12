@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://education.gigapan.org/pano/217 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta charset="utf-8">
+      <title>GigaPan School Dialogues</title>
+      <link rel="stylesheet" href="GigaPan_files/screen.css" type="text/css" media="screen, projection">
+      <link rel="stylesheet" href="GigaPan_files/main.css" type="text/css" media="screen, projection">
+      <link rel="stylesheet" href="GigaPan_files/print.css" type="text/css" media="print">
+      <link rel="stylesheet" href="GigaPan_files/sdviewer.css" type="text/css">
+      <!--[if IE]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+      
+<link rel="stylesheet" href="GigaPan_files/borderize.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="GigaPan_files/snapshot_tool.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="GigaPan_files/dialog.css" type="text/css" media="screen, projection">
+<style>
+#panorama_viewport { background: #aaf; }
+#panorama_viewport div { background: #88f; }
+.comment-form textarea { height: 20px; }
+.comment-form textarea.expanded { height: 50px; }
+
+html * .textual-seadragon-control { padding: 5px; background: white; }
+.textual-seadragon-control a { color: #167f85; }
+.start-conversation-popup { background-color: #eee; }
+
+.snapshot_highlight_box {
+   border: 1px solid white;
+   font-size:0;   /* So stupid IE 6 renders it with the correct dimensions */
+   background-image: url("/media/images/clear.gif"); /* Fixes IE's inability to capture mouse events on clear divs -- props to http://www.webmasterworld.com/forum91/2131.htm */
+}
+</style>
+
+
+      <script type="text/javascript" src="GigaPan_files/jquery-1.4.4.min.js"></script><style type="text/css"></style>
+      <script type="text/javascript" src="GigaPan_files/jquery.a-tools-1.5.2.min.js"></script>
+      <script type="text/javascript">var MEDIA_URL = '/media/';</script>
+      <script type="text/javascript" src="GigaPan_files/base.js"></script>
+      
+
+   <script type="text/javascript" src="GigaPan_files/seadragon-min.js"></script>
+   <script type="text/javascript" src="GigaPan_files/GigapanTileSource.js"></script>
+   <script type="text/javascript" src="GigaPan_files/SlideshowControl.js"></script>
+   <script type="text/javascript" src="GigaPan_files/DateUtils.js"></script>
+   <script type="text/javascript">
+
+      var viewer = null;
+
+      $(document).ready(function () {
+         // max number of concurrent image downloads
+         Seadragon.Config.imageLoaderLimit = 6;
+
+         // turn off auto-hiding of controls (because if they're fading
+         // when you show the controls, then they fade as well)
+         Seadragon.Config.autoHideControls = false;
+
+         // use local images
+         Seadragon.Config.imagePath="/media/images/seadragon/";
+
+         // initialize the viewer
+         viewer = new Seadragon.Viewer("pano_slide");
+      });
+
+      function loadGigapan(gigapan)
+         {
+         // try to parse the date so we can display a pretty version of it
+         var dateTaken = DateUtils.parseDate(gigapan['uploaded']);
+
+         // set the various gigapan details
+         $("#gigapan_name").html(gigapan['name']);
+         $("#gigapan_description").html(gigapan['description']);
+         if (dateTaken)
+            {
+            $("#gigapan_date_taken").html(DateUtils.createSimpleDateString(dateTaken));
+            }
+         else
+            {
+            // if we failed to parse the date, then just use the raw value
+            $("#gigapan_date_taken").html(gigapan['uploaded']);
+            }
+
+         // create the tile source
+         var gigapanSource = new GigapanTileSource(gigapan.id, gigapan.tile_host, gigapan.width, gigapan.height, gigapan.auth_key);
+
+         // clear the viewer
+         viewer.close();
+
+         // tell the viewer to open the tile source
+         viewer.openTileSource(gigapanSource);
+         }
+
+   </script>
+
+
+   <script type="text/javascript" src="GigaPan_files/stick.js"></script>
+   <script type="text/javascript" src="GigaPan_files/borderize.js"></script>
+   <script type="text/javascript" src="GigaPan_files/SeadragonUtils.js"></script>
+   <script type="text/javascript" src="GigaPan_files/SnapshotTool.js"></script>
+   <script type="text/javascript">
+
+$(function () {
+  $("#sticky_box").borderize().stick(-5);
+});
+
+var gigapan = {"description": "<p></p>", "auth_key": "d53c1d2632e48e704e43f880731a6049", "height": 19504.0, "tile_host": "tile35.gigapan.org", "width": 42769.0, "levels": 9, "location": null, "id": 35426, "name": "McCutcheon Run looking for bugs"};
+
+var snapshots = {"321": {"y": 6631, "x": 18360, "height": 6147, "id": 321, "width": 8190}, "322": {"y": 975, "x": 9682, "height": 17553, "id": 322, "width": 23404}, "323": {"y": 949, "x": 9994, "height": 17085, "id": 323, "width": 22780}, "324": {"y": 6746, "x": 31265, "height": 4388, "id": 324, "width": 5851}, "326": {"y": 3806, "x": 13457, "height": 11890, "id": 326, "width": 15853}, "327": {"y": 8315, "x": 21573, "height": 3941, "id": 327, "width": 5255}, "328": {"y": 7929, "x": 15634, "height": 9264, "id": 328, "width": 12352}, "330": {"y": 9102, "x": 20738, "height": 1218, "id": 330, "width": 1625}, "331": {"y": 654, "x": 13529, "height": 11782, "id": 331, "width": 15710}, "332": {"y": 5195, "x": 3946, "height": 10158, "id": 332, "width": 13544}, "334": {"y": 5195, "x": 17114, "height": 10158, "id": 334, "width": 13544}, "335": {"y": 2837, "x": 12164, "height": 13829, "id": 335, "width": 18439}, "338": {"y": 7927, "x": 18951, "height": 3649, "id": 338, "width": 4865}, "312": {"y": 3701, "x": 21498, "height": 6141, "id": 312, "width": 8189}, "319": {"y": 9091, "x": 19372, "height": 8489, "id": 319, "width": 11319}};
+
+$(function () { loadGigapan(gigapan); });
+
+function rect_from_snapshot_id(id)
+{
+   var gigapan_width = gigapan.width;
+   var snapshot = snapshots[id];
+   return new Seadragon.Rect(snapshot.x / gigapan_width, snapshot.y / gigapan_width, snapshot.width / gigapan_width, snapshot.height / gigapan_width);
+}
+
+function view_snapshot(n)
+{
+   var rect = rect_from_snapshot_id(n);
+
+   // put some padding around where we are aiming the viewport
+   var border = new Seadragon.Point(rect.width / 10, rect.height / 10);
+   var aim_rect = new Seadragon.Rect(rect.x - border.x, rect.y - border.y, rect.width + 2 * border.x, rect.height + 2 * border.y);
+
+   viewer.viewport.fitBounds(aim_rect);
+   if (snapshot_tool.isVisible())
+      snapshot_tool.setToolBoundsInGigapanCoords(rect);
+}
+
+var highlighters = new Array();
+var isShowAllSnapshotsEnabled = false;
+
+function highlight_snapshot(id)
+   {
+   if (!isShowAllSnapshotsEnabled)
+      {
+      // see if we need to create the highlight for this snapshot
+      if (!highlighters[id])
+         {
+         highlighters[id] = $('<div class="snapshot_highlight_box"></div>')[0];
+         }
+
+      viewer.drawer.addOverlay(highlighters[id], rect_from_snapshot_id(id));
+      viewer.drawer.update(); // update everything before showing the box
+      $(highlighters[id]).show();
+      }
+   }
+
+function unhighlight_snapshot(id)
+   {
+   if (highlighters[id] && !isShowAllSnapshotsEnabled)
+      {
+      $(highlighters[id]).hide();
+      viewer.drawer.removeOverlay(highlighters[id]);
+      }
+   }
+
+function hideAllSnapshotRectangles()
+   {
+   isShowAllSnapshotsEnabled = false;
+   $("#toggle_all_snapshots_button").text("Show all snapshots");
+
+   $.each(highlighters,
+          function(id)
+             {
+             unhighlight_snapshot(id);
+             });
+   }
+
+function showAllSnapshotRectangles()
+   {
+   $("#toggle_all_snapshots_button").text("Hide all snapshots");
+
+   $.each(snapshots,
+          function(id, snapshot)
+             {
+             highlight_snapshot(id)
+             });
+
+   isShowAllSnapshotsEnabled = true;
+   }
+
+function toggleAllSnapshotRectangles()
+   {
+   if (isShowAllSnapshotsEnabled)
+      {
+      hideAllSnapshotRectangles();
+      }
+   else
+      {
+      showAllSnapshotRectangles();
+      }
+   }
+
+
+
+
+
+$(function () {
+  function on_comment_box_change() {
+    var comment_box_expanded = !!$(this).hasClass("expanded");
+    var expanded_target_value = !!$(this).val();
+
+    if (comment_box_expanded != expanded_target_value) {
+      $(this).toggleClass("expanded", expanded_target_value);
+      if (expanded_target_value) {
+        $(this).closest("form").find("input:submit").removeAttr("disabled");
+      } else {
+        $(this).closest("form").find("input:submit").attr("disabled", "disabled");
+      }
+    }
+  }
+
+  $("#start-conversation-box, .continue-conversation-box").closest("form").find("input:submit").attr("disabled", "disabled");
+  $("#start-conversation-box, .continue-conversation-box").keyup(on_comment_box_change).blur(on_comment_box_change).change(on_comment_box_change).change();
+
+  function save_snapshot(form, coords, success_cb, error_cb) {
+    $.ajax({
+      url: '/pano/217/snapshot/create', // fixme (hardcoded url)
+      data: {x: coords.x, y: coords.y, width: coords.width, height: coords.height},
+      success: function (data, textStatus) {
+        if (!snapshots[data.id])
+          snapshots[data.id] = data;
+        if (success_cb)
+          success_cb(data.id);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        alert(xhr.status + ': ' + 'error creating snapshot');
+        if (error_cb)
+          error_cb(xhr, textStatus, errorThrown);
+        // re-enable submit button
+        $(form).find("input:submit").removeAttr("disabled");
+      },
+      type: 'POST',
+      dataType: 'json'
+    });
+  }
+
+  function post_comment(form, snapshot_id, parent_id) {
+    // this function will fail if snapshot_id is undefined (which is possible
+    // if we decide to allow comments w/o snapshots)
+
+    // note: currently we force all comments to have snapshots.  if a comment
+    // doesn't appear to have a snapshot, that is only because it has the same
+    // snapshot as the comment immediately above it in the thread.
+    // comment.html hides the snapshot in this case.
+
+    var textarea = $(form).find("textarea");
+    var post_url = '/pano/comment/' + snapshot_id; // fixme (hardcoded url)
+    if (parent_id)
+      post_url += '/' + parent_id;
+    $.ajax({
+      url: post_url,
+      data: {comment: textarea.val()},
+      success: function (data, textStatus) {
+        var new_comment = $("<div>" + data + "</div>");
+        if (parent_id)
+          new_comment.insertBefore($(form).parents(".continue-conversation"));
+        else
+          new_comment.prependTo(".comments");
+        new_comment.hide().slideDown("slow");
+        textarea.val("").change();
+        if (snapshot_tool.isVisible())
+          end_start_conversation();
+        // if it's a new conversation, scroll up to view the comment as it
+        // becomes visible
+        if (!parent_id && $(window).scrollTop() > $("#pano_position").offset().top)
+          $(window).scrollTop($("#pano_position").offset().top);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        alert(xhr.status + ': ' + 'error adding comment');
+        // re-enable submit button
+        $(form).find("input:submit").removeAttr("disabled");
+      },
+      type: 'POST',
+      dataType: 'html'
+    });
+  }
+
+  $("#start-conversation-form").submit(function () {
+    if (!snapshot_tool.isVisible()) {
+      throw "Snapshot tool must be visible when starting a conversation";
+    }
+
+    var form = this;
+    function do_post_comment(snapshot_id) {
+      post_comment(form, snapshot_id);
+    }
+
+    // disable the submit button while we're operating
+    $(form).find("input:submit").attr("disabled", "disabled");
+
+    save_snapshot(form, snapshot_tool.getToolBoundsInGigapanCoords(), do_post_comment);
+
+    // "cancel" the submit since we have already handled it
+    return false;
+  });
+
+  $(".continue-conversation-form").submit(function () {
+    var form = this;
+    var parent_id = $(form).find(".parent_id").val();
+
+    function do_post_reply(snapshot_id) {
+      post_comment(form, snapshot_id, parent_id);
+    }
+
+    // disable the submit button while we're operating
+    $(form).find("input:submit").attr("disabled", "disabled");
+
+    if (snapshot_tool.isVisible()) {
+      // this should never be executed under the current page design, but this
+      // code remains in case we want to make it possible to continue a
+      // conversation with a new snapshot
+      save_snapshot(form, snapshot_tool.getToolBoundsInGigapanCoords(), do_post_reply);
+    } else {
+      do_post_reply($(this).find(".parent_snapshot_id").val());
+    }
+
+    // "cancel" the submit since we have already handled it
+    return false;
+  });
+});
+
+
+// make it clear how to exit fullscreen mode
+$(function () {
+  var elt = $('<div class="textual-seadragon-control"><a href="javascript:viewer.setFullPage(false);">Exit fullscreen mode</a></div>')[0];
+  viewer.addControl(elt, Seadragon.ControlAnchor.TOP_RIGHT);
+  function on_resize() { $(elt).toggle(!!viewer.isFullPage()); }
+  viewer.addEventListener("resize", on_resize);
+  on_resize();
+
+  
+
+});
+
+var snapshot_tool = null;
+
+$(function () {
+  snapshot_tool = new org.gigapan.snapshot.SnapshotTool(viewer, 4/3);
+  snapshot_tool.setGigapanDimensions(gigapan.width, gigapan.height);
+});
+
+$(function () {
+  $("#start-conversation-control").each(function (i) {
+    viewer.addControl(this, Seadragon.ControlAnchor.BOTTOM_LEFT);
+  }).show();
+});
+
+function begin_start_conversation() {
+  if (snapshot_tool.isVisible())
+    return;
+  snapshot_tool.setVisible(true);
+  $(".start-conversation-popup").slideDown();
+  $("#start-conversation-control").slideUp();
+
+  $("#start-conversation-box").focus();
+
+  // disable all continue conversation form elements
+  $(".continue-conversation-form input, .continue-conversation-form textarea").attr("disabled", "disabled");
+}
+
+function end_start_conversation() {
+  if (!snapshot_tool.isVisible())
+    return;
+  snapshot_tool.setVisible(false);
+  $(".start-conversation-popup").slideUp();
+  $("#start-conversation-control").slideDown();
+
+  // re-enable continue conversation form elements as appropriate
+  $(".continue-conversation-form textarea").removeAttr("disabled");
+  $(".continue-conversation-form").each(function (i) {
+    // re-enable each "continue conversation" submit button if the
+    // corresponding textarea contains text
+    if ($(this).find("textarea").val())
+      $(this).find("input:submit").removeAttr("disabled");
+  });
+}
+
+   </script>
+
+
+
+
+
+
+  </head>
+  <body>
+      <div class="container">
+        
+
+<div class="span-10 last" id="pano_position">
+   <div id="sticky_box">
+      <div id="pano_slide"></div>
+
+      <div class="textual-seadragon-control" id="start-conversation-control" style="display: none">
+         <a href="javascript:begin_start_conversation();">Start a conversation...</a>
+      </div>
+      <div class="start-conversation-popup" style="display: none">
+         <div><a href="javascript:end_start_conversation();">cancel</a></div>
+         <form id="start-conversation-form" class="comment-form">
+            <div style="padding: 10px;">
+               <div class="span-4 comment teacher-comment" style="position: static; float: none; margin-left: auto; margin-right: auto;">
+                  <div class="span-1">&nbsp;</div>
+                  <div class="span-3 last">
+                     <div class="profile_photo">
+
+                        <a href="/users/cphillips/"><img src="/media/images/users/2015/03/3d8e96cfa96bb012.png.32x32.jpg" alt=""/></a>
+
+                     </div>
+                     <div>
+                        <div>
+                           <span class="commenter-name"><a href="/users/cphillips/">Clara Phillips</a>&nbsp;<img src="/media/images/flags/br.png" alt="Brazil" title="Brazil" width="16" height="11"/></span>
+                           <span class="says">says:</span>
+                        </div>
+                        <div>
+                           <textarea id="start-conversation-box" style="width: 264px;"></textarea>
+                        </div>
+                        <div><input type="submit" value="Post comment"/></div>
+                     </div>
+                  </div>
+                  <div style="clear: both"></div>
+               </div>
+            </div>
+         </form>
+      </div>
+
+   </div>
+</div>
+<a href="javascript:toggleAllSnapshotRectangles();" id="toggle_all_snapshots_button">Show all snapshots</a>
+
+
+</div>
+</body></html>

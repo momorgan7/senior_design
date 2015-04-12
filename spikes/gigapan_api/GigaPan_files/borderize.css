@@ -1,0 +1,15 @@
+table.borderize, table.borderize tr, table.borderize td { margin: 0; padding: 0; }
+
+table.borderize { border-collapse: collapse; table-layout: fixed; direction: ltr; }
+
+.borderize_nw, .borderize_n, .borderize_ne, .borderize_w, .borderize_e, .borderize_sw, .borderize_s, .borderize_se { background-image: url(../images/borderize.png); }
+
+.borderize_nw, .borderize_ne, .borderize_w, .borderize_e, .borderize_sw, .borderize_se { width: 5px; }
+.borderize_nw, .borderize_n, .borderize_ne, .borderize_sw, .borderize_s, .borderize_se { height: 5px; }
+
+.borderize_n, .borderize_s { background-position: 0px -20px; background-repeat: repeat-x; }
+.borderize_w, .borderize_e { background-repeat: repeat-y; }
+.borderize_nw { background-position: -5px -5px; }
+.borderize_ne { background-position: -5px 0px; }
+.borderize_sw { background-position: -5px -15px; }
+.borderize_se { background-position: -5px -10px; }

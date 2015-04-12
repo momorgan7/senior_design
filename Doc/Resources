@@ -1,0 +1,27 @@
+ROR Style Guide:
+https://github.com/bbatsov/ruby-style-guide
+
+Full site testing:
+http://docs.seleniumhq.org/
+
+Seadragon/OpenSeaDragon api:
+https://openseadragon.github.io/docs/
+https://msdn.microsoft.com/en-us/expression/gg413361
+
+css style guide:
+logo font: klavka -will be image
+font-family: arial/ sans serif
+colors:
+	dark blue: #245A82
+	med blue: #19A7B8
+	Lt blue: #ACF0F2
+	orange white: #F3FFE2
+	burnt orange: #BA6105
+	dark grey: #999
+favicon: globe
+similar layout
+footer separate/diff color than main section
+keep the boxiness (no rounded corners)
+bigger nav buttons
+
+ask if they want to keep textured background
