@@ -1,1 +1,5 @@
-Test code snipets to be used in project.
+admin_test
+Ruby on Rails project that tests out RailsAdmin gem
+
+gigapan_api
+test of using seadragon and javascript to display gigapans
