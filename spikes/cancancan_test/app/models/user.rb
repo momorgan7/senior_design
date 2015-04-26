@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   def has_role?(name)
     roles.pluck(:name).member?(name.to_s)
   end
+  def role_exists?
+    roles.presence
+  end
 end

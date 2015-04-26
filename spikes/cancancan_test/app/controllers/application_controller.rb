@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => exception.message
   end
   def authorize
-    redirect_to root_path unless can? :read, :all
+    redirect_to root_path unless current_user && current_user.role_exists?
   end
 end
