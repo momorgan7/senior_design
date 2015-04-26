@@ -1,0 +1,22 @@
+For databse.yml>
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: c9 (or whatever other one you make)
+  username: <%=ENV['C9_USER']%>
+  host: <%=ENV['IP']%>
+  
+  For gemfile make sure using mysql2 gem
+  
+   sudo service mysql start
+  
+  rails server -b $IP -p $PORT
+  
+   rails generate devise:install
+   rails g devise User
+   
+    rails g cancan:ability
+   
+   mysql-ctl cli
+   CREATE DATABASE name;
+   quit;
