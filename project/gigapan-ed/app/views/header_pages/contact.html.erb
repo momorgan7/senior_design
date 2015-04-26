@@ -1,9 +1,15 @@
 <div class="center jumbotron">
   <h1>Contact</h1>
 
+<% if current_user.has_role?(:admin)%>
   <h2>
+
     contact form
+
+    Welcome Admin
+
   </h2>
+<%end%>
 
 </div>
 
