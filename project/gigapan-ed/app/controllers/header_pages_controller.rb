@@ -11,8 +11,5 @@ class HeaderPagesController < ApplicationController
   def help
   end
 
-  def admin
-    authorize
-  end
 end
 

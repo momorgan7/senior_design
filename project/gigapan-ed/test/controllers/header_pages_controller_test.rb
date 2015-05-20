@@ -25,9 +25,4 @@ class HeaderPagesControllerTest < ActionController::TestCase
   end
 
 
-  test "should get admin" do
-    get :admin
-    assert_response :success
-  end
-
 end
