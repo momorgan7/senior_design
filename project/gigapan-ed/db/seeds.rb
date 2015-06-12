@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+admin = Role.create(name:"admin")
+# password and confirmation have to be 8 characters or longer or this will not create a user
+User.create(username:"batman",password:"password",password_confirmation:"password",email:"batman@gothamcity.net") 
+UserRole.create(user_id: User.first.id,role_id: Role.first.id)  
