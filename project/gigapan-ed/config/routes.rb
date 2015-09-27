@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users
   resources :users
 
@@ -6,9 +7,9 @@ Rails.application.routes.draw do
 
   get 'about' => 'header_pages#about'
 
-  get 'contact' => 'header_pages#contact'
-
   get 'help' => 'header_pages#help'
+  match '/contact',     to: 'contacts#new',             via: 'get'
+ resources "contacts", only: [:new, :create]
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
