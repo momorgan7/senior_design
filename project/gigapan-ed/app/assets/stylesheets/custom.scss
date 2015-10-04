@@ -43,6 +43,16 @@ body {
 
 .hidden { display: none; }
 
+#contact{width: 500px; 
+  padding-left: 50px;
+  input,  select {
+    border: 1px solid #bbb;
+    width: 100%;
+    margin-bottom: 15px;}
+  textarea{height: 125px;
+  width: 100%;}
+}
+
 /*flash*/
 
 .alert-error {

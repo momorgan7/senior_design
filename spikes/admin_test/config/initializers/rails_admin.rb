@@ -31,4 +31,11 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+  
+config.model "User" do
+    edit do
+      field :email
+    end
+  end
+  
 end

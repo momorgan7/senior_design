@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          
  has_many :user_roles, :dependent => :destroy
  has_many :roles, :through => :user_roles
+ 
+ RailsAdmin.config {|c| c.label_methods << :username}
   
   #checks is a user is of a given role
   def has_role?(name)
@@ -40,3 +42,4 @@ class User < ActiveRecord::Base
   :presence => true,
   :uniqueness => { :case_sensitive => false} # etc.
 end
+

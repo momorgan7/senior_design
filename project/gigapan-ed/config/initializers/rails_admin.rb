@@ -19,7 +19,9 @@ RailsAdmin.config do |config|
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
-    new
+    new do
+      except "Role"
+    end
     export
     bulk_delete
     show
@@ -30,5 +32,47 @@ RailsAdmin.config do |config|
     ## With an audit adapter, you can add:
     # history_index
     # history_show
+    
   end
+  config.model "User" do
+    edit do
+      field :username
+      field :email
+      field :password
+      field :password_confirmation
+      field :roles
+    end
+    show do
+      field :username
+      field :email
+      field :sign_in_count
+      field :last_sign_in_at
+      field :roles
+    end
+    list do
+      field :username
+      field :email
+      field :sign_in_count
+      field :last_sign_in_at
+      field :roles
+    end
+  end
+  
+  config.model "Role" do
+    edit do
+      field :users
+    end
+    show do
+      field :name
+      field :users
+    end
+    list do
+      field :name
+      field :users
+    end
+  end
+  
+  
+  config.excluded_models << "UserRole"
+  
 end

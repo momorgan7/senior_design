@@ -24,7 +24,7 @@ port: 587,
 authentication: :plain,
 enable_starttls_auto: true,
 user_name: "@gmail.com",
-password: "password",
+password: " ",
 :openssl_verify_mode  => 'none'
 }
 
