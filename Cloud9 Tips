@@ -20,3 +20,8 @@ development:
    mysql-ctl cli
    CREATE DATABASE name;
    quit;
+   
+   
+   git add -A :/
+   git commit -m "msg"
+   git push

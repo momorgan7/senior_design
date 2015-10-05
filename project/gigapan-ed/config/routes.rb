@@ -2,6 +2,14 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
+  devise_scope :user do
+    authenticated :user do
+      root :to => 'header_pages#home', as: :authenticated_root
+    end
+    unauthenticated :user do
+      root :to => 'header_pages#home', as: :unauthenticated_root
+    end
+  end
 
   root 'header_pages#home'
 
