@@ -3,6 +3,8 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
+    
+    # What permissions do we want teacher and student to have?
     if user.id  
       if user.has_role?(:admin)
         can :access, :rails_admin
@@ -12,6 +14,9 @@ class Ability
         can :read, :all
       end
     end
+    
+    
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
