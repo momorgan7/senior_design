@@ -1,6 +1,9 @@
-<h1>Editing User</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <%= form_for @user,  multiple: true do |f| %>
+  <div class="field">
+    <%= f.text_area :name, placeholder: "name" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+  <span class="picture">
+    <%= f.file_field :picture %>
+  </span>
+<% end %>
