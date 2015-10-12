@@ -1,1 +1,9 @@
-<p>this is where i will edit profile.</p>
+  <%= form_for @user,  multiple: true do |f| %>
+  <div class="field">
+    <%= f.text_area :username, placeholder: "name" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+  <span class="picture">
+    <%= f.file_field :avatar %>
+  </span>
+<% end %>
