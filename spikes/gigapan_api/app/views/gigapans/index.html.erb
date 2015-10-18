@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Gigapans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Project</th>
+      <th>Gig</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @gigapans.each do |gigapan| %>
+      <tr>
+        <td><%= gigapan.name %></td>
+        <td><%= gigapan.project %></td>
+        <td><%= gigapan.gig_id %></td>
+        <td><%= gigapan.description %></td>
+        <td><%= link_to 'Show', gigapan %></td>
+        <td><%= link_to 'Edit', edit_gigapan_path(gigapan) %></td>
+        <td><%= link_to 'Destroy', gigapan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gigapan', new_gigapan_path %>

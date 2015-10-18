@@ -41,6 +41,7 @@ RailsAdmin.config do |config|
       field :password
       field :password_confirmation
       field :roles
+      field :avatar
     end
     show do
       field :username
@@ -48,6 +49,7 @@ RailsAdmin.config do |config|
       field :sign_in_count
       field :last_sign_in_at
       field :roles
+      field :avatar
     end
     list do
       field :username

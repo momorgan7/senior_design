@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @gigapan.name %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @gigapan.project %>
+</p>
+
+<p>
+  <strong>Gig:</strong>
+  <%= @gigapan.gig_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @gigapan.description %>
+</p>
+
+<%= javascript_tag do %>
+      var SNAPSHOT_TOOL_CONFIG = {
+         aspectRatio : 3 / 2,       // set this to null or undefined if you don't want to constrain the aspect ratio (default is null)
+         useMask : true             // whether the mask should be applied (default is false)
+      };
+  var gigapan = {
+         "id" : 175125,
+         "authKey" : null,
+         "width" : 46459,
+         "height" : 23803
+      };
+
+      var viewer = null;
+
+      $(document).ready(function() {
+
+         // configure Seadragon
+         Seadragon.Config.imageLoaderLimit = 6;             // max number of concurrent image downloads
+         Seadragon.Config.autoHideControls = false;         // don't show Seadragon's controls
+         Seadragon.Config.imagePath = "/assets/img/";
+
+         // create and initialize the viewer
+         viewer = new Seadragon.Viewer("gigapan_viewer");
+         viewer.setDashboardEnabled(false);
+
+         // disable click to zoom
+         viewer.tracker.clickHandler = null;
+
+         // create the snapshot tool
+         var snapshotTool = new org.gigapan.snapshot.SnapshotTool(viewer, SNAPSHOT_TOOL_CONFIG);
+         snapshotTool.setGigapanDimensions(gigapan.width, gigapan.height);
+         snapshotTool.setVisible(false);
+
+         $("#snapshotToolButton").click(function() {
+            if (snapshotTool.isVisible()) {
+
+               // get the snapshot tool coordinates, and show the user
+               var gigapanCoordsRect = snapshotTool.getToolBoundsInGigapanCoords();
+               var seadragonCoordsRect = snapshotTool.getToolBoundsInSeadragonCoords();
+               alert("Gigapan Coordinates:" +
+                     "\n\n" +
+                     gigapanCoordsRect.toString() +
+                     "\n\n" +
+                     "Seadragon Coordinates" +
+                     "\n\n" +
+                     seadragonCoordsRect.toString());
+
+               // hide the snapshot tool, and change the button back
+               snapshotTool.setVisible(false);
+               $("#snapshotToolButton").val("Show Snapshot Tool");
+            }
+            else {
+               // show the snapshot tool
+               snapshotTool.setVisible(true);
+               $("#snapshotToolButton").val("Take a Snapshot");
+            }
+         });
+
+         // load the gigapan
+         loadGigapan();
+      });
+
+      function loadGigapan() {
+         // clear the viewer
+         viewer.close();
+
+         window.setTimeout(function() {
+
+            // create the tile source
+            var tileSource = new org.gigapan.seadragon.GigapanTileSource(
+                  org.gigapan.GigapanUtils.createTileSourceUrlPrefixForGigapan(gigapan['id'], gigapan['authKey']),
+                  gigapan['width'],
+                  gigapan['height']
+            );
+
+            // tell the viewer to open the tile source
+            viewer.openTileSource(tileSource);
+         }, 1);
+      }
+<% end %>
+
+<div id="gigapan_viewer"></div>
+
+<input id="snapshotToolButton" type="button" value="Show Snapshot Tool">
+
+<%= link_to 'Edit', edit_gigapan_path(@gigapan) %> |
+<%= link_to 'Back', gigapans_path %>

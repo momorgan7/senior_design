@@ -1,0 +1,33 @@
+<%= form_for(@gigapan) do |f| %>
+  <% if @gigapan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gigapan.errors.count, "error") %> prohibited this gigapan from being saved:</h2>
+
+      <ul>
+      <% @gigapan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :project %><br>
+    <%= f.text_field :project %>
+  </div>
+  <div class="field">
+    <%= f.label :gig_id %><br>
+    <%= f.number_field :gig_id %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
