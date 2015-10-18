@@ -25,3 +25,21 @@ development:
    git add -A :/
    git commit -a -m "msg"
    git push
+   
+   in routes: 
+   resources :names
+   
+   or
+   resources :names do
+     resources :subnames
+   end
+   
+   generate models and controllers:
+   
+   rails g model name property:type property2:othertype
+   
+   rails g controller names action1 action2 (controllers are named with plurals)
+   
+   follow with:
+   
+   rake db:migrate
