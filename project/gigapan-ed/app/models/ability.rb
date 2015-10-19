@@ -9,11 +9,14 @@ class Ability
       if user.has_role?(:admin)
         can :access, :rails_admin
         can :dashboard
-        can :manage, :all 
+        can :manage, :all
+        can :import, [User]
       else 
         can :read, :all
       end
     end
+    
+    
     
     
     

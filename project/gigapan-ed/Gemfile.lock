@@ -127,7 +127,7 @@ GEM
     fog-sakuracloud (1.3.3)
       fog-core
       fog-json
-    fog-softlayer (0.4.7)
+    fog-softlayer (1.0.0)
       fog-core
       fog-json
     fog-storm_on_demand (0.1.1)
@@ -219,7 +219,7 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     pg (0.17.1)
-    pry (0.10.2)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -265,6 +265,12 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
+    rails_admin_import (1.2.0)
+      haml (~> 4.0)
+      rails (>= 3.2)
+      rails_admin (>= 0.6.6)
+      rchardet (~> 1.6)
+      simple_xlsx_reader (~> 1.0)
     rails_serve_static_assets (0.0.4)
     rails_stdout_logging (0.0.4)
     railties (4.2.0)
@@ -276,12 +282,14 @@ GEM
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    rchardet (1.6.1)
     rdoc (4.2.0)
       json (~> 1.4)
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     ruby-progressbar (1.7.5)
+    rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.4.19)
     sass-rails (5.0.1)
@@ -294,6 +302,9 @@ GEM
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
     shellany (0.0.1)
+    simple_xlsx_reader (1.0.2)
+      nokogiri
+      rubyzip
     slop (3.6.0)
     spring (1.1.3)
     sprockets (3.4.0)
@@ -345,6 +356,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor (= 0.0.2)
   rails_admin
+  rails_admin_import (~> 1.2)
   sass-rails (= 5.0.1)
   sdoc (= 0.4.0)
   spring (= 1.1.3)

@@ -41,6 +41,16 @@ class User < ActiveRecord::Base
     #requires a username on creation of a user
   validates :username,
   :presence => true,
-  :uniqueness => { :case_sensitive => false} # etc.
+  :uniqueness => { :case_sensitive => false}, # etc.
+  length: { maximum: 50 }
+  
+  validates :password,
+  :presence => true,
+  length: { minimum: 6 }
+  
+  validates :password_confirmation,
+  :presence => true,
+  length: { minimum: 6 }
+  
 end
 

@@ -26,7 +26,9 @@ RailsAdmin.config do |config|
     bulk_delete
     show
     edit
-    delete
+    delete do
+      except "Role"
+    end
     show_in_app
 
     ## With an audit adapter, you can add:
@@ -36,7 +38,7 @@ RailsAdmin.config do |config|
   end
   config.model "User" do
     edit do
-      field :username
+      field :username 
       field :email
       field :password
       field :password_confirmation
