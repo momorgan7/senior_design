@@ -5,15 +5,11 @@ one:
   content: MyText
   x_coord: 1.5
   y_coord: 1.5
-  references: 
-  references: 
-  references: 
+
 
 two:
   com_type: MyString
   content: MyText
   x_coord: 1.5
   y_coord: 1.5
-  references: 
-  references: 
-  references: 
+

@@ -5,9 +5,8 @@ class CreateComments < ActiveRecord::Migration
       t.text :content
       t.float :x_coord
       t.float :y_coord
-      t.user :references
-      t.project :references
-      t.gigapan :references
+      t.belongs_to :user 
+      t.belongs_to :project_gigapan 
 
       t.timestamps null: false
     end

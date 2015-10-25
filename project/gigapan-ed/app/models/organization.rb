@@ -1,2 +1,5 @@
 class Organization < ActiveRecord::Base
+    has_many :users
+    accepts_nested_attributes_for :users
+    #validates :users, :presence => true
 end

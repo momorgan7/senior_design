@@ -5,9 +5,11 @@ one:
   desc: MyText
   active: false
   visible: false
+  users: one, two
 
 two:
   name: MyString
   desc: MyText
   active: false
   visible: false
+  users: two

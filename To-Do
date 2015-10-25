@@ -1,0 +1,32 @@
+To-Do List:
+
+Now that the models exist, need to link to the pages when logged in.
+Set up header to include more links when logged in
+Set links to go to the following pages:
+  projects
+  dashboard
+  organizations
+  help
+Get a dummy list of organizations and fill a page with them, displaying them in an organized manner
+Get a list of projects by organization based on the organizations of the teacher who started the project
+Set up project creation for teacher and admin user-type
+Force users to add "organization" on creation.
+Allow a project creator or admin to add student user-types to specific projects
+Allow teacher or admin user-types to add student user-types.
+Allow project creators or admins to add gigapans to specific projects
+Allow project creators or admins to delete and edit gigapans from specific projects
+Force added project gigapans to have 1 initial comment
+Allow users to reply to specific comments with other comments and set up the display so it shows as nested.
+Allow users to create new base comments that have a link to a section of the gigapan included.
+Allow admins and teachers to delete and edit comments
+Display most active project that a specific user is involved in on that user's dashboard.
+Allow viewing of other users profiles.
+Allow viewing of other users projects only if user is a teacher or admin.
+Allow adding of other teachers to a project by project creators.
+Figure out how we're importing the data from the current app into the new one.
+figure out a solution to prune old data from the database after it has become no longer relavent
+figure out validation tests for all models
+Set-up email to use a pop-up contact form
+Add email, profile pics, organization, and profile links to each comment based on user.
+Figure out how we're handling the help page.
+

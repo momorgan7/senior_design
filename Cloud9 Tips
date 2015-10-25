@@ -43,3 +43,41 @@ development:
    follow with:
    
    rake db:migrate
+   
+This will push all your branches to the remote, and set-upstream tracking correctly for you:
+
+git push --all -u
+
+To reset from schema:
+rake db:reset
+To reset from migrations:
+rake db:drop db:create db:migrate db:seed
+
+migration command to chage a table:
+change_table(:tablename) do |t|
+
+
+Instead of attr_accessible use this:
+
+def modelname_params
+    params.require(:person).permit(:name, :age, pets_attributes: [:name, :category])
+  end
+  
+  
+  Organization.create({
+  :name => 'apple pie',
+  :city => 'just apple pie',
+  :users_attributes => [
+    { :name => 'apples' },
+    { :name => 'sugar' },
+    { :name => 'pie crust' }
+  ]
+})
+
+  Organization.create({:name => 'apple pie',:city => 'just apple pie',:users => [ User.first]})
+  
+  Add a new Org to an existing User:
+  User.first.update_attribute(:organization, Organization.first)
+  
+  Add a new user to an existing org:
+  Organization.first.users << User.new(username:"b",password:"password",password_confirmation:"password",email:"bruce@go.net") 

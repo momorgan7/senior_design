@@ -9,5 +9,9 @@ class CreateOrganizations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    change_table(:users) do |t|
+       t.belongs_to :organization, index:true
+    end
   end
 end

@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
+  resources :comments
+  resources :projects
+  resources :gigapans
+  resources :organizations
   devise_scope :user do
     authenticated :user do
       root :to => 'header_pages#home', as: :authenticated_root

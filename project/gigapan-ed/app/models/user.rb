@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
         mount_uploader :avatar, AvatarUploader 
  has_many :user_roles, :dependent => :destroy
  has_many :roles, :through => :user_roles
+ has_and_belongs_to_many :projects
+ has_many :project_gigapans, through: :projects
+ has_many :comments
+ belongs_to :organization
+
  
  RailsAdmin.config {|c| c.label_methods << :username}
   
@@ -51,6 +56,11 @@ class User < ActiveRecord::Base
   validates :password_confirmation,
   :presence => true,
   length: { minimum: 6 }
+  
+  
+  # def user_params
+  #   params.require(:username, :organization_id).permit(projects_attributes: [:id, :name])
+  # end
   
 end
 
