@@ -1,12 +1,12 @@
   <%= form_for @user,  multiple: true do |f| %>
   <div class="field">
-    <%= f.text_area :username, placeholder: "name" %>
+    <%= f.text_field :username, placeholder: "name" %>
   </div>
   <div class="field">
-    <%= f.text_area :email, placeholder: "email" %>
+    <%= f.email_field :email, placeholder: "email" %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
   <span class="picture">
     <%= f.file_field :avatar %>
   </span>
+  <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       root :to => 'header_pages#home', as: :unauthenticated_root
     end
   end
+  
 
   root 'header_pages#home'
 

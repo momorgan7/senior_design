@@ -4,7 +4,9 @@ RailsAdmin.config do |config|
   # See https://github.com/sferik/rails_admin/wiki/Actions
   config.actions do
     all
-    import
+    import do
+      except "Role"
+    end
   end
 
 end

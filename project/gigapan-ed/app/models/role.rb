@@ -8,4 +8,5 @@ class Role < ActiveRecord::Base
   :presence => true,
   :uniqueness => { :case_sensitive => false}, # etc.
   length: { maximum: 50 }
+  
 end

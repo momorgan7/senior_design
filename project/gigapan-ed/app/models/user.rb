@@ -41,16 +41,24 @@ class User < ActiveRecord::Base
     #requires a username on creation of a user
   validates :username,
   :presence => true,
-  :uniqueness => { :case_sensitive => false}, # etc.
+  :uniqueness => { :case_sensitive => false},
   length: { maximum: 50 }
   
   validates :password,
   :presence => true,
-  length: { minimum: 6 }
+  length: { minimum: 6 },
+  :if => :password
   
   validates :password_confirmation,
   :presence => true,
-  length: { minimum: 6 }
+  length: { minimum: 6 },
+  :if => :password_confirmation
+  
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: VALID_EMAIL_REGEX }
+                    
+                
   
 end
 
