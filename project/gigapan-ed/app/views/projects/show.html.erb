@@ -5,7 +5,7 @@
 <h1><%= @project.name %></h1>
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
-    <%= link_to 'Edit Project', edit_project_path(@project) %> <br>
+    <%= link_to 'Edit Project', edit_project_path(@project) %> <br> <br>
 <%end%>
 
 Teachers:<br>
@@ -17,8 +17,8 @@ Teachers:<br>
     <% end %>
 <% end %>
 
-<% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
-    <br><%= link_to  'Add teachers', '#' %><br>
+<% if current_user.has_role?(:admin)%>
+    <br><%= link_to  'Add teachers', '#' %><br> <br>
 <%end%>
 
 Students:<br>
@@ -31,5 +31,5 @@ Students:<br>
 <% end %>
 
 <% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
-    <br><%= link_to  'Add students', '#' %><br>
+    <br><%= link_to  'Add students', '#' %><br> <br>
 <%end%>

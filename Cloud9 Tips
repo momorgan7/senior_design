@@ -1,3 +1,10 @@
+All the rails commands you'll ever need to know:
+
+http://www.pragtob.info/rails-beginner-cheatsheet/
+
+
+
+
 For databse.yml>
 development:
   adapter: mysql2
