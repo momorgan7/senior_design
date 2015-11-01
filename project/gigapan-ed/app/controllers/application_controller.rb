@@ -6,10 +6,20 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to '/' , :alert => exception.message
   end
+  
 
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:username, :email, :password, :password_confirmation)
+    end
+  end
+  
+  protected
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to login_path
     end
   end
 end

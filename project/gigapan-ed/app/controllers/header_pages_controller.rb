@@ -1,4 +1,5 @@
 class HeaderPagesController < ApplicationController
+      before_filter :authenticate_user!, :except => [:home, :about, :help]
   def home
   end
 
@@ -7,6 +8,11 @@ class HeaderPagesController < ApplicationController
 
   def help
   end
+  
+  def dash
+  end
+  
+  
 
 end
 
