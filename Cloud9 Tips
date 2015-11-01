@@ -11,7 +11,7 @@ development:
    sudo service mysql start
   
   rails server -b $IP -p $PORT
-  
+
    rails generate devise:install
    rails g devise User
    

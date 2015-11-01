@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
  has_and_belongs_to_many :projects
  has_many :project_gigapans, through: :projects
  has_many :comments
- belongs_to :organization
-
+ belongs_to :organization#, inverse_of: :organization
+ 
  
  RailsAdmin.config {|c| c.label_methods << :username}
  RailsAdmin.config {|c| c.label_methods << :cont_area}
@@ -57,6 +57,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation,
   :presence => true,
   length: { minimum: 6 }
+  
+  validates :organization_id,
+  :presence => true
   
   
   # def user_params

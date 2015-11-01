@@ -45,6 +45,7 @@ RailsAdmin.config do |config|
       field :password
       field :password_confirmation
       field :roles
+      field :organization
       field :avatar
     end
     show do
@@ -56,6 +57,7 @@ RailsAdmin.config do |config|
       field :sign_in_count
       field :last_sign_in_at
       field :roles
+      field :organization
       field :avatar
     end
     list do
@@ -66,6 +68,7 @@ RailsAdmin.config do |config|
       field :cont_area
       field :sign_in_count
       field :last_sign_in_at
+      field :organization
       field :roles
     end
   end
@@ -83,7 +86,6 @@ RailsAdmin.config do |config|
       field :users
     end
   end
-  
   
   config.excluded_models << "UserRole"
   
