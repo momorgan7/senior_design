@@ -1,12 +1,6 @@
 To-Do List:
 
-Now that the models exist, need to link to the pages when logged in.
-Set up header to include more links when logged in
-Set links to go to the following pages:
-  projects
-  dashboard
-  organizations
-  help
+
 Get a dummy list of organizations and fill a page with them, displaying them in an organized manner
 Get a list of projects by organization based on the organizations of the teacher who started the project
 Set up project creation for teacher and admin user-type
@@ -29,4 +23,8 @@ figure out validation tests for all models
 Set-up email to use a pop-up contact form
 Add email, profile pics, organization, and profile links to each comment based on user.
 Figure out how we're handling the help page.
+
+
+disable open signup
+setup password edit on edit user page
 
