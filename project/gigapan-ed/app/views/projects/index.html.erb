@@ -3,7 +3,7 @@
 <h1>Project List</h1>
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_project_path %><br> <br>
 <%end%>
 
 <table>
@@ -15,13 +15,11 @@
 
   <tbody>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to  project.name, project %></td>
-        
+        <%= link_to  project.name, project %> <br>
         <% project.organizations.each do |org| %>
-            <%= org.name %>:<br>
+           <%= org.name %>:<br>
         <% end %>
-      </tr>
+       <br>
     <% end %>
   </tbody>
 </table>

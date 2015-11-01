@@ -9,7 +9,7 @@ admin = Role.create(name:"admin")
 teacher = Role.create(name:"teacher")
 student = Role.create(name:"student")
 # password and confirmation have to be 8 characters or longer or this will not create a user
-Organization.create(name:"Gigapan Administrators")
+Organization.create(name:"Gigapan Administrators",city:"Portage",state:"MI",country:"USA")
 User.create(username:"batman",password:"password",password_confirmation:"password",email:"batman@gothamcity.net", organization_id: "1") 
 UserRole.create(user_id: User.first.id,role_id: Role.first.id)  
 User.create(username:"robin",password:"password",password_confirmation:"password",email:"robin@gothamcity.net", organization_id: "1") 
