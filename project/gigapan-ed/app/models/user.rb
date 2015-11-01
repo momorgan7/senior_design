@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
  
  
  RailsAdmin.config {|c| c.label_methods << :username}
- RailsAdmin.config {|c| c.label_methods << :cont_area}
   
   #checks is a user is of a given role
   def has_role?(name)
@@ -56,7 +55,7 @@ class User < ActiveRecord::Base
   
   validates :password_confirmation,
   :presence => true,
-  length: { minimum: 6 }
+  length: { minimum: 6 }, allow_nil: true
   
   validates :organization_id,
   :presence => true

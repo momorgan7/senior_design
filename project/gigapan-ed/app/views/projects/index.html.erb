@@ -16,15 +16,11 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-<<<<<<< HEAD
-        <td><%= link_to 'Show', project %></td>
-=======
         <td><%= link_to  project.name, project %></td>
         
         <% project.organizations.each do |org| %>
             <%= org.name %>:<br>
         <% end %>
->>>>>>> 515f8fbd44341ed9b439d1dd8d84480275422c27
       </tr>
     <% end %>
   </tbody>
