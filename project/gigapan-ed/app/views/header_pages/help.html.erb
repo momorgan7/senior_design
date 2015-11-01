@@ -1,178 +1,187 @@
 <h1>Help</h1>
-<h2>GigaPan Education</h2>
-<ul>
-<li><%= link_to "FAQ", help_path(anchor: "faq") %></li>
-<li><%= link_to "Building a Project", help_path(anchor: "build") %></li>
+<div class="main">
+    <div id="helpnav">
+    <h2>GigaPan Education</h2>
+    <ul>
+    <li><%= link_to "FAQ", help_path(anchor: "faq") %></li>
+    <li><%= link_to "Building a Project", help_path(anchor: "build") %></li>
     <ul><li><%= link_to "Developing the project conceptually", help_path(anchor: "concept") %></li>
     <li><%= link_to "Creating a project on the Website", help_path(anchor: "create") %></li>
     </ul>
-<li><%= link_to "Pedagogical Guides", help_path(anchor: "peda") %></li></ul>
+    <li><%= link_to "Pedagogical Guides", help_path(anchor: "peda") %></li></ul>
 
-<h2>GigaPan</h2>
-<p>For help with the GigaPan robot or stitch software, please visit <a href="http://gigapan.com/cms/support-overview">GigaPan Support</a></p>
+    <h2>GigaPan</h2>
+    <p>For help with the GigaPan robot or stitch software, please visit 
+    <a href="http://gigapan.com/cms/support-overview">GigaPan Support</a></p>
+    </div>
+    <div class="helpsec">
+        <a id="faq"></a>
+        <h2>FAQ</h2>
+        <h3>How do I create a new account for a student or another teacher?</h3>
+        <p>Teachers can create accounts for students at their school.  To add a student account,  
+        click on "add student" on the left sidebar of your home page under "Options."  
+        Fill in the information requested, making sure to record the password.</p>
+        <p>Teacher accounts have additional privileges and must be created by the GigaPan 
+        dialogues team.  Please send teacher names to the GigaPan Dialogues staff 
+        (<a href="mailto:edhelp@gigapan.org">edhelp@gigapan.org</a>) and we will create 
+        the accounts and send access information back to you.</p>
 
-<a id="faq"></a>
-<h2>FAQ</h2>
-<h3>How do I create a new account for a student or another teacher?</h3>
-<p>Teachers can create accounts for students at their school.  To add a student account,  
-click on "add student" on the left sidebar of your home page under "Options."  
-Fill in the information requested, making sure to record the password.<br>
-Teacher accounts have additional privileges and must be created by the GigaPan 
-dialogues team.  Please send teacher names to the GigaPan Dialogues staff 
-(<a href="mailto:edhelp@gigapan.org">edhelp@gigapan.org</a>) and we will create 
-the accounts and send access information back to you.</p>
+        <h3>I've forgotten my password.  What do I do?</h3>
+        <p>If there is an email account associated with your profile, you can reset your 
+        password using the "Forgot your password?" link on the log in page.<br>
+        If you are a student, your teacher's email will be used to reset your password.<br> 
+        If neither of these options works for you, contact <a href="mailto:edhelp@gigapan.org">edhelp@gigapan.org</a></p>
 
-<h3>I've forgotten my password.  What do I do?</h3>
-<p>If there is an email account associated with your profile, you can reset your 
-password using the "Forgot your password?" link on the log in page.<br>
-If you are a student, your teacher's email will be used to reset your password.<br> 
-If neither of these options works for you, contact <a href="mailto:edhelp@gigapan.org">edhelp@gigapan.org</a></p>
+        <h3>How do I change my user profile?</h3>
+        <p>Your profile can be changed by using the "Edit your Profile" link on the left sidebar of your dashboard</p>
 
-<h3>How do I change my user profile?</h3>
-<p>Your profile can be changed by using the "Edit your Profile" link on the left sidebar of your dashboard</p>
+        <h3>How do I upload panorama to www.gigapan.com?</h3>
+        <p>When you have finished stitching the panorama, you will have the option to click 
+        the "upload" button.  The upload screen will ask for your username at www.gigapan.org.  
+        You can use the same username and password as on education.gigapan.org.  If someone 
+        else is uploading the pictures for you and you do not want to give them your password, 
+        they can use the general GigaPan Dialogues account (username dialogues / password dial99).</p>
 
-<h3>How do I upload panorama to www.gigapan.com?</h3>
-<p>When you have finished stitching the panorama, you will have the option to click 
-the "upload" button.  The upload screen will ask for your username at www.gigapan.org.  
-You can use the same username and password as on education.gigapan.org.  If someone 
-else is uploading the pictures for you and you do not want to give them your password, 
-they can use the general GigaPan Dialogues account (username dialogues / password dial99).</p>
+        <h3>How can I make a panorama private?</h3>
+        <p>The easiest way to make a panorama private is to check the "Private" box when 
+        you are uploading the panorama.  If the panorama has already been uploaded, you 
+        will need to edit the panorama on www.gigapan.org, following these steps:<br>
+        1. go to www.gigapan.org<br>
+        2. click the "login" link on the top right<br>
+        3. log in<br>
+        4. click the "My Home" link on the top right<br>
+        5. find the "Edit" link under the panorama you want to change<br>
+        6. click the "is private" box<br>
+        7. click the "Update" link<br>
+        If you do not see the panorama on your "My Home" page, it may be because the 
+        panorama was uploaded by someone else, or because you have more than one account.  
+        Only the owner of a panorama can edit it.  To find out who the owner of a panorama 
+        is, find the panorama on www.gigapan.org and look for a line that says "Author:" or 
+        "By:"  For example, the owner of this panorama is David Bergman. <br>
+        If a panorama is owned by "Dialogues," you can log on with the username "dialogues" 
+        and the password "dial99" and follow the above steps 4-7.
+        </p>
+    </div>
+    <div class="helpsec">
+        <a id="build"></a>
+        <h2>Building a Project</h2>
+        <p>This website is designed to support the use of GigaPan images as a tool for 
+        enriching classroom experiences and fostering dialogue in an educational setting.  
+        The first step in interacting with GigaPans on this site is to create a project with an 
+        overarching theme that GigaPan images will be used to illustrate.  A strong classroom 
+        project will include a primary question or statement to explore, curricular objectives, 
+        learning activities, and reflection and assessment strategies.  Projects in informal 
+        learning or community-based settings may choose not to incorporate all of these elements.</p>
 
-<h3>How can I make a panorama private?</h3>
-<p>The easiest way to make a panorama private is to check the "Private" box when 
-you are uploading the panorama.  If the panorama has already been uploaded, you 
-will need to edit the panorama on www.gigapan.org, following these steps:<br>
-1. go to www.gigapan.org<br>
-2. click the "login" link on the top right<br>
-3. log in<br>
-4. click the "My Home" link on the top right<br>
-5. find the "Edit" link under the panorama you want to change<br>
-6. click the "is private" box<br>
-7. click the "Update" link<br>
-If you do not see the panorama on your "My Home" page, it may be because the 
-panorama was uploaded by someone else, or because you have more than one account.  
-Only the owner of a panorama can edit it.  To find out who the owner of a panorama 
-is, find the panorama on www.gigapan.org and look for a line that says "Author:" or 
-"By:"  For example, the owner of this panorama is David Bergman. <br>
-If a panorama is owned by "Dialogues," you can log on with the username "dialogues" 
-and the password "dial99" and follow the above steps 4-7.
-</p>
-<a id="build"></a>
-<h2>Building a Project</h2>
-<p>This website is designed to support the use of GigaPan images as a tool for 
-enriching classroom experiences and fostering dialogue in an educational setting.  
-The first step in interacting with GigaPans on this site is to create a project with an 
-overarching theme that GigaPan images will be used to illustrate.  A strong classroom 
-project will include a primary question or statement to explore, curricular objectives, 
-learning activities, and reflection and assessment strategies.  Projects in informal 
-learning or community-based settings may choose not to incorporate all of these elements.</p>
+        <a id="concept"></a>
+        <h3>Developing the project conceptually</h3>
+        <p>The project description should be developed collaboratively between teachers 
+        partnering in the project. It is not expected that you will begin the project with 
+        a fully-formed description. Rather, you will revise and expand the project description 
+        with colleagues and learners, considering the five steps of 
+        a <a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">GigaPan Classroom Project as a Learning Experience</a>:</p>
+       
+        <b>Step 1. Why do we want to do this project? Presenting the purpose and main features of the project
+        As a first step, you should be able to introduce the overall learning purpose of the classroom project.</b>
+        <p>- Why is it so important for you and your students to develop this project?<br>
+        - What significance does the project have in relation to the student’s learning, emotional and social development?<br>
+        - How is the purpose of the project related to concept/s of cultural diversity and/or, learning to live together, and/or sustainable development?<br>
+        - How is the project related to the student’s life, to his/her local and global community?<br>
+        - How will the project engage dialogue with young ones in other cultures and for what purpose?<br>
+        - Who will participate and benefit from the development of the project?</p>
+        <p>To help you introduce the learning purpose of the classroom project, as part 
+        of the GigaPan School Dialogues: Diversity and Inclusion in the Community, we 
+        suggest that you link such purpose to key inter-disciplinary concepts, such as 
+        those on which the GigaPan project is based. For example: cultural diversity, education
+        for sustainable development, learning to live together, or community.</p>
+        
+        <b>Step 2. Preparing the launching pad: Connecting an interdisciplinary concept 
+        to an adventurous question or problem</b>
+        <p>The second step is to propose along 
+        with students a simple, exciting and motivating question or problem as the 
+        launching pad of the project. This should be done in connection to one of the 
+        interdisciplinary concepts introduced by the purpose of the project (step1). 
+        The question or problem should be conceived with relevance to the life of 
+        students and useful to be compared to the lives of other children around the 
+        world. Questions and concepts should be co-constructed with the student in a 
+        way that there is space to bring in students’ prior knowledge, emotions, 
+        senses and beliefs as an individual and as part of a community.<br>
+        The main project question can be agreed upon in discussion with the students as 
+        a result of a few triggering questions that encourage deductive and inductive 
+        reasoning in the students.</p>
+       
+        <b>Step 3. How far and where should we go? The curricular objectives and scope of the classroom project</b>
+        <p>In this step, you will explain how the classroom project is linked to your national 
+        and curricular learning objectives. This can be done by introducing the knowledge, 
+        skills, attitudes, values and behaviours that students will learn with the GigaPan 
+        project to indicate, most importantly, how these will help you develop the curricular 
+        objectives in your school. Following, more specifically, as an example, you can 
+        continue to detail how the purpose, selected concept and learning question of the 
+        classroom project is related to the learning objectives of your class.
+        It is also important to note in which subject/s the project will be situated and 
+        how it can have cross-curricular applications as several of the learning objectives 
+        of the GigaPan project have cross-curricular relevance. In this regard, the core 
+        project question can be used as a basis to explore interdisciplinary themes 
+        (across subjects) that refine the structure and scope of a classroom project, as 
+        well as the school dialogues that will take place through the project’s website. 
+        When choosing where to embed the project; coordinate and discuss with other 
+        teachers how to share cross-curricular objectives related to the project.</p>
+        <p>Overall, please take into account the following questions:<br>
+        - Where in your curriculum do you think you will be able to incorporate knowledge of and interaction (dialogues) with another culture? Why?<br>
+        - What knowledge, skills, attitudes, values and behaviours will be developed by your GigaPan project?<br>
+        - How are these related to national and local curricular objectives/standards?<br>
+        - How does the project contribute to your subject area and learning objectives?<br>
+        - How does the classroom project relate to other subjects and cross-curricular goals?</p>
+        <p>Examples of cross-curricular goals could include: social and emotional development; 
+        technological skills; communication skills; intercultural understanding and awareness; 
+        citizenship skills; environmental responsibility; social tolerance.<br>
+        The scope of the project specifies where in the curriculum and for how long the project 
+        will take place.  The school calendar and curricular context in which to embed the 
+        GigaPan classroom project will help determine the best moment and length for carrying 
+        out the project, including the dialogues with other schools.  It may be the case that 
+        a school will incorporate GigaPan in a unit early in the school year, but wait for the 
+        dialogue portion until a partner school has covered the material.  In other cases, 
+        a dialogue about material currently being covered by one school may serve as preparatory 
+        work at another school for a unit that is yet to occur.  Teachers may be able to coordinate 
+        with each other to cover similar material at the same time.  In any case, it is important 
+        to realize that school calendars and curricular contexts vary widely around the world and 
+        it is still possible to carry out an effective dialogue with careful and creative planning 
+        between teachers.  The important thing is to establish the scope and timing early in the project.</p>
+        
+        <b>Step 4. How are we going to get there? Learning activities based on active guided pedagogies</b>
+        <p>In order to achieve the curricular objectives of the project, it is important to consider 
+        the kind of interactive learning activities that you will implement in your class to accomplish them.  
+        Detailed descriptions of recommended instructional methods are given in the 
+        document <a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">A GigaPan Classroom Project as a Learning Experience</a> 
+        and examples in <a href="http://www.cs.cmu.edu/~laura/GYE/PracticalExamplesGETT.pdf">Practical Examples of GigaPan Use in the Classroom</a>
+        , including research, field trips, interactive group work, and role playing. </p>
 
-<a id="concept"></a><h3>Developing the project conceptually</h3>
-<p>The project description should be developed collaboratively between teachers 
-partnering in the project. It is not expected that you will begin the project with 
-a fully-formed description. Rather, you will revise and expand the project description 
-with colleagues and learners, considering the five steps of 
-a <a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">GigaPan Classroom Project as a Learning Experience</a>:</p>
-<b>Step 1. Why do we want to do this project? Presenting the purpose and main features of the project
-As a first step, you should be able to introduce the overall learning purpose of the classroom project.
-</b>
-<p>- Why is it so important for you and your students to develop this project?<br>
-- What significance does the project have in relation to the student’s learning, emotional and social development?<br>
-- How is the purpose of the project related to concept/s of cultural diversity and/or, learning to live together, and/or sustainable development?<br>
-- How is the project related to the student’s life, to his/her local and global community?<br>
-- How will the project engage dialogue with young ones in other cultures and for what purpose?<br>
-- Who will participate and benefit from the development of the project?
-</p>
-<p>To help you introduce the learning purpose of the classroom project, as part 
-of the GigaPan School Dialogues: Diversity and Inclusion in the Community, we 
-suggest that you link such purpose to key inter-disciplinary concepts, such as 
-those on which the GigaPan project is based. For example: cultural diversity, education
-for sustainable development, learning to live together, or community.</p>
-<b>Step 2. Preparing the launching pad: Connecting an interdisciplinary concept 
-to an adventurous question or problem</b>
-<p>The second step is to propose along 
-with students a simple, exciting and motivating question or problem as the 
-launching pad of the project. This should be done in connection to one of the 
-interdisciplinary concepts introduced by the purpose of the project (step1). 
-The question or problem should be conceived with relevance to the life of 
-students and useful to be compared to the lives of other children around the 
-world. Questions and concepts should be co-constructed with the student in a 
-way that there is space to bring in students’ prior knowledge, emotions, 
-senses and beliefs as an individual and as part of a community.<br>
-The main project question can be agreed upon in discussion with the students as 
-a result of a few triggering questions that encourage deductive and inductive 
-reasoning in the students.
-</p>
-<b>Step 3. How far and where should we go? The curricular objectives and scope of the classroom project</b>
-<p>
-In this step, you will explain how the classroom project is linked to your national 
-and curricular learning objectives. This can be done by introducing the knowledge, 
-skills, attitudes, values and behaviours that students will learn with the GigaPan 
-project to indicate, most importantly, how these will help you develop the curricular 
-objectives in your school. Following, more specifically, as an example, you can 
-continue to detail how the purpose, selected concept and learning question of the 
-classroom project is related to the learning objectives of your class.
-It is also important to note in which subject/s the project will be situated and 
-how it can have cross-curricular applications as several of the learning objectives 
-of the GigaPan project have cross-curricular relevance. In this regard, the core 
-project question can be used as a basis to explore interdisciplinary themes 
-(across subjects) that refine the structure and scope of a classroom project, as 
-well as the school dialogues that will take place through the project’s website. 
-When choosing where to embed the project; coordinate and discuss with other 
-teachers how to share cross-curricular objectives related to the project.
-</p>
-<p>Overall, please take into account the following questions:<br>
-- Where in your curriculum do you think you will be able to incorporate knowledge of and interaction (dialogues) with another culture? Why?<br>
-- What knowledge, skills, attitudes, values and behaviours will be developed by your GigaPan project?<br>
-- How are these related to national and local curricular objectives/standards?<br>
-- How does the project contribute to your subject area and learning objectives?<br>
-- How does the classroom project relate to other subjects and cross-curricular goals?
-</p>
-<p>Examples of cross-curricular goals could include: social and emotional development; 
-technological skills; communication skills; intercultural understanding and awareness; 
-citizenship skills; environmental responsibility; social tolerance.<br>
-The scope of the project specifies where in the curriculum and for how long the project 
-will take place.  The school calendar and curricular context in which to embed the 
-GigaPan classroom project will help determine the best moment and length for carrying 
-out the project, including the dialogues with other schools.  It may be the case that 
-a school will incorporate GigaPan in a unit early in the school year, but wait for the 
-dialogue portion until a partner school has covered the material.  In other cases, 
-a dialogue about material currently being covered by one school may serve as preparatory 
-work at another school for a unit that is yet to occur.  Teachers may be able to coordinate 
-with each other to cover similar material at the same time.  In any case, it is important 
-to realize that school calendars and curricular contexts vary widely around the world and 
-it is still possible to carry out an effective dialogue with careful and creative planning 
-between teachers.  The important thing is to establish the scope and timing early in the project.</p>
-<b>Step 4. How are we going to get there? Learning activities based on active guided pedagogies</b>
-<p>
-In order to achieve the curricular objectives of the project, it is important to consider 
-the kind of interactive learning activities that you will implement in your class to accomplish them.  
-Detailed descriptions of recommended instructional methods are given in the 
-document <a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">A GigaPan Classroom Project as a Learning Experience</a> 
-and examples in <a href="http://www.cs.cmu.edu/~laura/GYE/PracticalExamplesGETT.pdf">Practical Examples of GigaPan Use in the Classroom</a>
-, including research, field trips, interactive group work, and role playing. </p>
-<b>Step 5. How do we know that we have arrived at our destination?  Assessment of learning outcomes</b>
-<p>
-How do we know that we have arrived at the end of our educational experience with 
-the GigaPan classroom project? That is, have the students’ critical understanding, 
-sharing and constructive use of concepts of, for example - cultural diversity, learning 
-to live Together, sustainable development, and community - been enhanced through active 
-pedagogies with an overall impact on the development of the student’s knowledge, skills, 
-attitudes and behaviours regarding intercultural understanding and social tolerance? How is 
-the student applying new concepts, skills (e.g. critical thinking, teamwork and technological 
-skills) and attitudes to cooperate, engage and participate with his/her local and global 
-communities?  In order to ensure that the GigaPan project has truly had educational value 
-and has not been just a diversion, assessment strategies should be built into a strong 
-classroom project.  The most appropriate assessment strategies will depend on the 
-educational context, but some suggestions are given in 
-<a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">A GigaPan Classroom Project as a Learning Experience</a>.</p>
-<a id="create"></a>
-<h3>Creating the project on the website</h3>
-<p>From your dashboard, use the "Create a Project" link on the left sidebar. Fill out all fields</p>
-<a id="peda"></a>
-    <h2>Pedagogical Guides</h2>
-    <a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">Classroom Project Development Guide</a>
-    <a href="http://www.cs.cmu.edu/~laura/GYE/PracticalExamplesGETT.pdf">Practical Classroom Examples</a> 
+        <b>Step 5. How do we know that we have arrived at our destination?  Assessment of learning outcomes</b>
+        <p>How do we know that we have arrived at the end of our educational experience with 
+        the GigaPan classroom project? That is, have the students’ critical understanding, 
+        sharing and constructive use of concepts of, for example - cultural diversity, learning 
+        to live Together, sustainable development, and community - been enhanced through active 
+        pedagogies with an overall impact on the development of the student’s knowledge, skills, 
+        attitudes and behaviours regarding intercultural understanding and social tolerance? How is 
+        the student applying new concepts, skills (e.g. critical thinking, teamwork and technological 
+        skills) and attitudes to cooperate, engage and participate with his/her local and global 
+        communities?  In order to ensure that the GigaPan project has truly had educational value 
+        and has not been just a diversion, assessment strategies should be built into a strong 
+        classroom project.  The most appropriate assessment strategies will depend on the 
+        educational context, but some suggestions are given in 
+        <a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">A GigaPan Classroom Project as a Learning Experience</a>.</p>
+        
+        <a id="create"></a>
+        <h3>Creating the project on the website</h3>
+        <p>From your dashboard, use the "Create a Project" link on the left sidebar. Fill out all fields</p>
+    </div>
+    <div class="helpsec">
+        <a id="peda"></a>
+        <h2>Pedagogical Guides</h2>
+        <p><a href="http://www.cs.cmu.edu/~laura/GYE/GigaPanAClassroomProjectAsaLearningExperienceFinal.pdf">Classroom Project Development Guide</a></p>
+        <p><a href="http://www.cs.cmu.edu/~laura/GYE/PracticalExamplesGETT.pdf">Practical Classroom Examples</a> </p>
+    </div>
+</div>
 
 
 

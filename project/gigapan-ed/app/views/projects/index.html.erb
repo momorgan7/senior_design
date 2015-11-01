@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Projects</h1>
+<h1>Project List</h1>
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
 <%= link_to 'New Project', new_project_path %><br> <br>
@@ -15,9 +15,7 @@
 
   <tbody>
     <% @projects.each do |project| %>
-     
         <%= link_to  project.name, project %> <br>
-        
         <% project.organizations.each do |org| %>
            <%= org.name %>:<br>
         <% end %>

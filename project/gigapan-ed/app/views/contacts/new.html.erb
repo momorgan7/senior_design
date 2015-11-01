@@ -1,13 +1,13 @@
   <h1>Contact</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="main">
+
     <div id="contact">
     <%= form_for(@contact) do |f| %>
       <%= f.label :name %>
-      <%= f.text_field :name, :required =>true %>
+      <%= f.text_field :name, :required =>true, placeholder: "Your Name"%>
 
       <%= f.label :email %>
-      <%= f.email_field :email, :required => true %>
+      <%= f.email_field :email, :required => true, placeholder: "Your Email" %>
 
       <%= f.label :message %>
       <%= f.text_area :message, :required => true %>
@@ -19,5 +19,5 @@
       <%= f.submit "Send Message", class: "btn btn-primary" %>
     <% end %>
     </div>
-</div>
+
 </div>

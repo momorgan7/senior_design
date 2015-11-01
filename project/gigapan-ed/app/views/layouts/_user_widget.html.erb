@@ -1,10 +1,8 @@
 <div id="login">
   <% if user_signed_in? %>
   <p>Welcome <%= link_to current_user.username, current_user %>
-  <%= link_to 'logout', destroy_user_session_path, :method => :delete%></p>
-<% else %>
-  <p>
+  <%= link_to 'logout', logout_path%></p>
+ <% else %>
   <%= render 'devise/sessions/form' %>
-  </p>
 <% end %>
 </div>

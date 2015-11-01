@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
  
  
  RailsAdmin.config {|c| c.label_methods << :username}
- RailsAdmin.config {|c| c.label_methods << :content}
+ RailsAdmin.config {|c| c.label_methods << :cont_area}
   
   #checks is a user is of a given role
   def has_role?(name)

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :organizations
   devise_scope :user do
     get 'sign-in' => "devise/sessions#new", :as => :login
+    get 'log-out' => "devise/sessions#destroy", :as => :logout
     authenticated :user do
       root :to => 'header_pages#home', as: :authenticated_root
     end

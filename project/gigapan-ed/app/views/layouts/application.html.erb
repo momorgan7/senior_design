@@ -12,8 +12,8 @@
   <%= render 'layouts/header' %>
     
     <div class="container">
+     <%= render 'layouts/user_widget' unless url_for == new_user_session_path %>
       <p id="notice"><%= notice %></p>
-      <%= render 'layouts/user_widget' unless url_for == new_user_session_path %>
       <%= yield %>
     </div>
 <%= render 'layouts/footer' %>
