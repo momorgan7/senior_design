@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
  
  
  RailsAdmin.config {|c| c.label_methods << :username}
+ RailsAdmin.config {|c| c.label_methods << :content}
   
   #checks is a user is of a given role
   def has_role?(name)
@@ -29,15 +30,15 @@ class User < ActiveRecord::Base
     @login = login
   end
 
-#defines that login will accept a username or email for authentication
+#defines that login will accept a username for authentication
   def login
-    @login || self.username || self.email
+    @login || self.username
   end
   
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
       if login = conditions.delete(:login)
-        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+        where(conditions.to_h).where(["lower(username) = :value", { :value => login.downcase }]).first
       else
         where(conditions.to_h).first
       end
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
   
   validates :password,
   :presence => true,
-  length: { minimum: 6 }
+  length: { minimum: 6 }, allow_nil: true
   
   validates :password_confirmation,
   :presence => true,

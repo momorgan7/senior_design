@@ -39,6 +39,8 @@ RailsAdmin.config do |config|
   config.model "User" do
     edit do
       field :username 
+      field :first_name
+      field :last_name
       field :email
       field :password
       field :password_confirmation
@@ -48,7 +50,10 @@ RailsAdmin.config do |config|
     end
     show do
       field :username
+      field :first_name
+      field :last_name
       field :email
+      field :cont_area
       field :sign_in_count
       field :last_sign_in_at
       field :roles
@@ -57,7 +62,10 @@ RailsAdmin.config do |config|
     end
     list do
       field :username
+      field :first_name
+      field :last_name
       field :email
+      field :cont_area
       field :sign_in_count
       field :last_sign_in_at
       field :organization

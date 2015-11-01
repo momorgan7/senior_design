@@ -1,0 +1,28 @@
+<h1>Dashboard:</h1>
+<div id="profile">
+  <div id="sidebar">  <%= image_tag current_user.avatar.url.to_s if current_user.avatar? %>
+      <p><%= link_to 'Edit Profile', edit_user_path(current_user) %> </p>
+      <% if !current_user.has_role?(:student)%>
+      <p><%=link_to 'Create Project', new_project_path%></p>
+      <p><%=link_to 'Create New Student', new_user_path%></p>
+      <%end%>
+  </div>
+  <div id="main"> 
+      <% if current_user.has_role?(:student) %>
+      <h2> <%= current_user.first_name%> <%=current_user.last_name%> a student from place, location</h2>
+      <%else%>
+    <h2> <%= current_user.first_name%> <%=current_user.last_name%> from place, location</h2>
+    <% if current_user.cont_area? %>
+    <p>Content Area: <%= current_user.cont_area%></p>
+    <%end%>
+      <%end%>
+  
+      <div id="projects">
+        <p>Current Projects</p>
+        <p>I'm a big long list of projects</p>
+        <p>Archived Projects</p>
+        <p>I'm a big long list of projects</p>
+      </div>
+</div>
+
+</div>

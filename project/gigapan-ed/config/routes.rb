@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :gigapans
   resources :organizations
   devise_scope :user do
+    get 'sign-in' => "devise/sessions#new", :as => :login
     authenticated :user do
       root :to => 'header_pages#home', as: :authenticated_root
     end
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
   root 'header_pages#home'
 
   get 'about' => 'header_pages#about'
-
+  match '/dashboard', to: 'header_pages#dash', via: 'get'
   get 'help' => 'header_pages#help'
   match '/contact',     to: 'contacts#new',             via: 'get'
  resources "contacts", only: [:new, :create]
