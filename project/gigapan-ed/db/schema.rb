@@ -25,15 +25,12 @@ ActiveRecord::Schema.define(version: 20151024193445) do
   end
 
   create_table "gigapans", force: :cascade do |t|
-    t.string   "name",               limit: 255
-    t.string   "ext_id",             limit: 255
-    t.string   "authcode",           limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "project_gigapan_id", limit: 4
+    t.string   "name",       limit: 255
+    t.string   "ext_id",     limit: 255
+    t.string   "authcode",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
-
-  add_index "gigapans", ["project_gigapan_id"], name: "index_gigapans_on_project_gigapan_id", using: :btree
 
   create_table "organizations", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -47,12 +44,14 @@ ActiveRecord::Schema.define(version: 20151024193445) do
 
   create_table "project_gigapans", force: :cascade do |t|
     t.integer  "project_id", limit: 4
+    t.integer  "gigapan_id", limit: 4
     t.string   "name",       limit: 255
     t.text     "desc",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
+  add_index "project_gigapans", ["gigapan_id"], name: "index_project_gigapans_on_gigapan_id", using: :btree
   add_index "project_gigapans", ["project_id"], name: "index_project_gigapans_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|

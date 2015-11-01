@@ -2,6 +2,10 @@
 
 <h1>Listing Projects</h1>
 
+<% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+<%= link_to 'New Project', new_project_path %>
+<%end%>
+
 <table>
   <thead>
     <tr>
@@ -12,9 +16,11 @@
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to  project.name, project %></td>
+        
+        <% project.organizations.each do |org| %>
+            <%= org.name %>:<br>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +28,3 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>

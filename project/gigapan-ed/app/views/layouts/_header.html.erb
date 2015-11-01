@@ -3,6 +3,13 @@
          <%= link_to "GigaPan Education", root_path, id: "logo" %>
         <nav>
           <ul class="nav nav-pills navbar-right">
+            <% if current_user %>
+            <% if current_user.has_role?(:admin)%>
+            <li><%= link_to "Admin",   rails_admin_path %></li>
+            <% end %>
+            <li><%= link_to "Projects",   projects_path %></li>
+            <li><%= link_to "Schools and Teachers",   organizations_path %></li>
+            <% end %>
             <li><%= link_to "Contact",   contact_path %></li>
             <li><%= link_to "Help", help_path %></li>
           </ul>

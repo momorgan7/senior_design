@@ -1,4 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<h1><%= @project.name %></h1>
+
+<% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+    <%= link_to 'Edit Project', edit_project_path(@project) %> <br>
+<%end%>
+
+Teachers:<br>
+<% @project.users.each do |user| %>
+    <% if user.has_role?(:teacher) %>
+          <tr>
+            <td><%= link_to  user.username, user %></td>
+          </tr>
+    <% end %>
+<% end %>
+
+<% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+    <br><%= link_to  'Add teachers', '#' %><br>
+<%end%>
+
+Students:<br>
+<% @project.users.each do |user| %>
+    <% if user.has_role?(:student) %>
+          <tr>
+            <td><%= link_to  user.username, user %></td>
+          </tr>
+    <% end %>
+<% end %>
+
+<% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+    <br><%= link_to  'Add students', '#' %><br>
+<%end%>

@@ -10,7 +10,23 @@
       </ul>
     </div>
   <% end %>
-
+  
+  <div class="field">
+    <%= f.label :name %>:
+    <%= f.text_field :name, placeholder: "name" %>
+  </div>
+  <div class="field">
+    <%= f.label :desc %>:
+    <%= f.text_area :desc, placeholder: "description" %>
+  </div>
+  <%= f.label :active %>:
+  <div class="field">
+    <%= f.check_box :active %>
+  </div>
+  <%= f.label :visible %>:
+  <div class="field">
+    <%= f.check_box :visible %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
