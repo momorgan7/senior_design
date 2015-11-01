@@ -6,14 +6,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to '/' , :alert => exception.message
   end
-<<<<<<< HEAD
   def authorize
     redirect_to root_path unless current_user && current_user.role_exists?
   end
-=======
-  
-
->>>>>>> 580dbc9de620a02d68dadffe1cd9dcd39a99a505
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:username, :email, :password, :password_confirmation)
