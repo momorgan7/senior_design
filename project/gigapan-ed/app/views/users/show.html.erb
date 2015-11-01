@@ -1,7 +1,10 @@
 <h1>Profile: <%= @user.first_name%> <%=@user.last_name%></h1>
-<div id="profile">
-  <div id="sidebar">  <%= image_tag @user.avatar.url.to_s if @user.avatar? %></div>
-  <div id="main"> 
+<div class="main">
+  <div class="row">
+  <div class="col-md-3">  
+  <%= image_tag @user.avatar.url.to_s if @user.avatar? %></div>
+  <div class="col-md-9"> 
+  <div class="topbar">
   <% if @user.has_role?(:student) %>
   <h2> <%= @user.first_name%> <%=@user.last_name%> a student from place, location</h2>
   <%else%>
@@ -11,11 +14,12 @@
     <p>Content Area: <%= @user.cont_area%></p>
     <%end%>
   <%end%>
-  
-  <div id="projects">
-    <p>Current Projects</p>
+  </div>
+  <div class="projects">
+    <h2>Current Projects</h2>
     <p>I'm a big long list of projects</p>
   </div>
   </div>
-
+</div>
+</div>
 </div>
