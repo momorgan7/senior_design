@@ -28,6 +28,7 @@ RailsAdmin.config do |config|
     edit
     delete do
       except "Role"
+      except "Organization"
     end
     show_in_app
 
@@ -44,8 +45,8 @@ RailsAdmin.config do |config|
       field :email
       field :password
       field :password_confirmation
-      field :roles
       field :organization
+      field :roles
       field :avatar
     end
     show do
@@ -53,7 +54,9 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
-      field :cont_area
+      field :cont_area do
+        label "Content Area"
+      end
       field :sign_in_count
       field :last_sign_in_at
       field :roles
@@ -65,7 +68,9 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
-      field :cont_area
+      field :cont_area do
+        label "Content Area"
+      end
       field :sign_in_count
       field :last_sign_in_at
       field :organization
@@ -86,6 +91,36 @@ RailsAdmin.config do |config|
       field :users
     end
   end
+
+  config.model "Organization" do
+    edit do
+      field :name 
+      field :city
+      field :state
+      field :country
+      field :timezone
+    end
+    show do
+      field :name 
+      field :city
+      field :state
+      field :country
+      field :timezone
+      field :users
+    end
+    list do
+      field :name 
+      field :city
+      field :state
+      field :country
+      field :timezone
+      field :users
+    end
+    
+  end
+
   config.excluded_models << "UserRole"
+  
+  
   
 end

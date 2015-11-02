@@ -1,17 +1,17 @@
   <h1>Update Profile</h1>
   <%= form_for @user,  multiple: true do |f| %>
   <div class="field">
-    <%= f.text_area :first_name, placeholder: "First Name" %>
+    <%= f.text_field :first_name, placeholder: "First Name" %>
   </div>
   <div class="field">
-    <%= f.text_area :last_name, placeholder: "Last Name" %>
+    <%= f.text_field :last_name, placeholder: "Last Name" %>
   </div>
    <% if !current_user.has_role?(:student) %>
   <div class="field">
-    <%= f.text_area :email, placeholder: "Email" %>
+    <%= f.text_field :email, placeholder: "Email" %>
   </div>
   <div class="field">
-    <%= f.text_area :cont_area, placeholder: "Content Area" %>
+    <%= f.text_field :cont_area, placeholder: "Content Area" %>
   </div>
   <%end%>
     <span class="picture">

@@ -1,4 +1,4 @@
-<h1>Dashboard:</h1>
+<h1>Dashboard</h1>
 <div class="main">
   <div class="row">
   <div class="col-md-3">  
@@ -9,12 +9,14 @@
       <p><%=link_to 'Create New Student', new_user_path%></p>
       <%end%>
   </div>
-  <div class="col-md-9"> 
+  <div class="col-md-8"> 
     <div class="topbar">
       <% if current_user.has_role?(:student) %>
       <h2> <%= current_user.first_name%> <%=current_user.last_name%> a student from place, location</h2>
       <%else%>
-    <h2> <%= current_user.first_name%> <%=current_user.last_name%> from place, location</h2>
+    <h2> <%= current_user.first_name%> <%=current_user.last_name%> from 
+    <%=current_user.organization.name%>, <%=current_user.organization.city%>, 
+    <%=current_user.organization.state%>, <%=current_user.organization.country%></h2>
     <% if current_user.cont_area? %>
     <p>Content Area: <%= current_user.cont_area%></p>
     <%end%>
