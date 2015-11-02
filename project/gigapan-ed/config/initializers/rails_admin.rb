@@ -86,7 +86,6 @@ RailsAdmin.config do |config|
       field :users
     end
   end
-  
   config.excluded_models << "UserRole"
   
 end

@@ -88,3 +88,12 @@ def modelname_params
   
   Add a new user to an existing org:
   Organization.first.users << User.new(username:"b",password:"password",password_confirmation:"password",email:"bruce@go.net") 
+  
+  <% @posts.group_by(&:week).each do |week, posts| %>
+  <div id="week">
+    <h2>Week < %= week %></h2>
+    < %= render :partial => 'post', :collection => @posts %>
+  </div>
+<% end %>
+  
+  Model.all.group_by(&:attribute)

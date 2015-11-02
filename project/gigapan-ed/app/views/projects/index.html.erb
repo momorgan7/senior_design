@@ -15,9 +15,30 @@
 
   <tbody>
     <% @projects.each do |project| %>
-        <%= link_to  project.name, project %> <br>
-        <% project.organizations.each do |org| %>
-           <%= org.name %>:<br>
+        <b><u><%= link_to  project.name, project %></u></b> <br>
+        
+        <p><%= project.desc %></p>
+        
+        <% project.organizations.uniq.each do |org| %>
+        
+          <% user_array = [] %>
+          <% project.users.each do |user| %>
+            <% if user.has_role?(:admin) || user.has_role?(:teacher) %>
+              <% if user.organization_id == org.id %>
+                <% user_array << user %>
+              <% end %>
+            <% end %>
+          <% end %>
+          
+          <b><%= link_to org.name, org %></b>: 
+          <% user_array.each do |user| %>
+              <% if user == user_array.last %>
+                <%= link_to user.username, user %>
+              <% else %>
+                <%= link_to user.username, user %>, 
+              <% end %>
+          <% end %>
+          <br>
         <% end %>
        <br>
     <% end %>
