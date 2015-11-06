@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       super
     else
-      redirect_to login_path
+      redirect_to '/'
     end
   end
 end

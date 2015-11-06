@@ -14,7 +14,8 @@
   </thead>
 
   <tbody>
-    <% @projects.each do |project| %>
+    <% @projects.order(:name).each do |project| %>
+        <% if project.visible %>
         <b><u><%= link_to  project.name, project %></u></b> <br>
         
         <p><%= project.desc %></p>
@@ -41,6 +42,7 @@
           <br>
         <% end %>
        <br>
+       <% end %>
     <% end %>
   </tbody>
 </table>

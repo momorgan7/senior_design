@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+   devise_for :users , :path => 'auth',
+     controllers: {:registrations => "registrations"}
   resources :users
   resources :comments
   resources :projects
   resources :gigapans
   resources :organizations
+  # as :user do
+  #   get "/register", to: "registrations#new", as: "register"
+  # end
   devise_scope :user do
     get 'sign-in' => "devise/sessions#new", :as => :login
     get 'log-out' => "devise/sessions#destroy", :as => :logout
@@ -24,6 +28,9 @@ Rails.application.routes.draw do
   get 'help' => 'header_pages#help'
   match '/contact',     to: 'contacts#new',             via: 'get'
  resources "contacts", only: [:new, :create]
+ 
+  match '/add_students', to: 'projects#add_students', via:  'get'
+  match '/add_teachers', to: 'projects#add_teachers', via:  'get'
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

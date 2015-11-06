@@ -12,24 +12,24 @@ Teachers:<br>
 <% @project.users.each do |user| %>
     <% if user.has_role?(:teacher) %>
           <tr>
-            <td><%= link_to  user.username, user %></td>
+            <%= link_to  user.username, user %><br>
           </tr>
     <% end %>
 <% end %>
 
 <% if current_user.has_role?(:admin)%>
-    <br><%= link_to  'Add teachers', '#' %><br> <br>
+    <%= link_to  'Add teachers', add_teachers_path(project: @project)%><br> <br>
 <%end%>
 
 Students:<br>
 <% @project.users.each do |user| %>
     <% if user.has_role?(:student) %>
           <tr>
-            <td><%= link_to  user.username, user %></td>
+            <%= link_to  user.username, user %><br>
           </tr>
     <% end %>
 <% end %>
 
 <% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
-    <br><%= link_to  'Add students', '#' %><br> <br>
+   <%= link_to "Add students", add_students_path(project: @project)%><br> <br>
 <%end%>
