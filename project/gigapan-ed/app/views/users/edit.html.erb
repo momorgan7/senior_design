@@ -1,20 +1,25 @@
   <h1>Update Profile</h1>
   <%= form_for @user,  multiple: true do |f| %>
   <div class="field">
+    <%= f.label :first_name %>
     <%= f.text_field :first_name, placeholder: "First Name" %>
   </div>
   <div class="field">
+    <%= f.label :last_name %>
     <%= f.text_field :last_name, placeholder: "Last Name" %>
   </div>
    <% if !current_user.has_role?(:student) %>
   <div class="field">
+    <%= f.label :email %>
     <%= f.text_field :email, placeholder: "Email" %>
   </div>
   <div class="field">
+    <%= f.label :cont_area %>
     <%= f.text_field :cont_area, placeholder: "Content Area" %>
   </div>
   <%end%>
     <span class="picture">
+      <%= f.label :avatar %>
     <%= f.file_field :avatar %>
   </span>
   <%= f.submit "Post", class: "btn btn-primary" %>

@@ -16,7 +16,8 @@
             <b><%= link_to organization.name, organization %></b><br>
             <% organization.users.each do |user| %>
               <% if user.has_role?(:teacher) %>
-                <li><%= link_to User.find(user).username, user %></li>
+              <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                <li><%= link_to @name, user %></li>
               <% end %>
             <% end %>
           <% end %>

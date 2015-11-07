@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 <%= link_to 'Back', projects_path %>
 
@@ -6,30 +6,34 @@
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
     <%= link_to 'Edit Project', edit_project_path(@project) %> <br> <br>
-<%end%>
+<% end %>
 
 Teachers:<br>
 <% @project.users.each do |user| %>
     <% if user.has_role?(:teacher) %>
           <tr>
-            <%= link_to  user.username, user %><br>
+              <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                <li><%= link_to @name, user %></li>
           </tr>
     <% end %>
 <% end %>
-
-<% if current_user.has_role?(:admin)%>
-    <%= link_to  'Add teachers', add_teachers_path(project: @project)%><br> <br>
-<%end%>
+    <% if @project.active %>
+    <% if current_user.has_role?(:admin)%>
+        <%= link_to  'Add teachers', add_teachers_path(project: @project)%><br> <br>
+    <% end %>
+<% end %>
 
 Students:<br>
 <% @project.users.each do |user| %>
     <% if user.has_role?(:student) %>
           <tr>
-            <%= link_to  user.username, user %><br>
+            <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                <li><%= link_to @name, user %></li>
           </tr>
     <% end %>
 <% end %>
-
-<% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
-   <%= link_to "Add students", add_students_path(project: @project)%><br> <br>
-<%end%>
+<% if @project.active %>
+    <% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+       <%= link_to "Add students", add_students_path(project: @project)%><br> <br>
+    <% end %>
+<% end %>
