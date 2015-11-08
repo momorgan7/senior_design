@@ -45,11 +45,15 @@ RailsAdmin.config do |config|
       field :email
       field :password
       field :password_confirmation
+      field :cont_area do
+        label "Content Area"
+      end
       field :organization
       field :roles
       field :avatar
     end
     show do
+
       field :username
       field :first_name
       field :last_name
@@ -117,6 +121,18 @@ RailsAdmin.config do |config|
       field :users
     end
     
+  end
+  
+    config.model "Project" do
+
+    show do
+      field :organizations  do
+        formatted_value do
+          value.distinct_org
+        end
+      end
+    end
+
   end
   config.excluded_models << "UserRole"
   

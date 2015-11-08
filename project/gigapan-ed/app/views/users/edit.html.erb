@@ -17,5 +17,6 @@
     <span class="picture">
     <%= f.file_field :avatar %>
   </span>
+  <%= image_tag current_user.avatar.url.to_s if current_user.avatar? %>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>
