@@ -7,4 +7,5 @@ class Organization < ActiveRecord::Base
     :presence => true
     validates :country,
     :presence => true
+
 end

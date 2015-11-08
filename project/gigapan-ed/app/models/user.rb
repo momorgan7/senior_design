@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
          
         mount_uploader :avatar, AvatarUploader 
  has_many :user_roles, :dependent => :destroy
@@ -42,8 +42,16 @@ class User < ActiveRecord::Base
         where(conditions.to_h).first
       end
   end
-    
+  
+  #custom devise validations to replace validateable because of the issues with using multiple of the same email
+  validates_presence_of    :email, :on=>:create
+  validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
+  validates_presence_of    :password, :on=>:create
+  validates_confirmation_of    :password, :on=>:create
+  validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
+  
     #requires a username on creation of a user
+  validates_uniqueness_of    :username, :case_sensitive => false, :allow_blank => true, :if => :username_changed?
   validates :username,
   :presence => true,
   :uniqueness => { :case_sensitive => false}, # etc.
@@ -60,10 +68,6 @@ class User < ActiveRecord::Base
   validates :organization_id,
   :presence => true
   
-  
-  # def user_params
-  #   params.require(:username, :organization_id).permit(projects_attributes: [:id, :name])
-  # end
   
 end
 

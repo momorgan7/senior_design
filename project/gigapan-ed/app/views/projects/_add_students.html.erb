@@ -1,0 +1,28 @@
+STUDENTS
+
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :visible %>:
+  <div class="field">
+    <% @students = User.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
+    <%= f.collection_select :user_ids, @students, :id, :username, {}, :multiple => true %>
+    <% @teachers = User.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
+    <%= f.collection_select :user_ids, @teachers, :id, :username, {}, :multiple => true, :style => "display: none;" %>
+    
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

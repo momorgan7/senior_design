@@ -61,7 +61,19 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def add_students
+    @project = Project.find(params[:project])
+    @type = "students"
+    render 'edit'
+  end
+  
+  def add_teachers
+    @project = Project.find(params[:project])
+    @type = "teachers"
+    render 'edit'
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -71,6 +83,6 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
         params.require(:project).permit(:name, :desc, :active, :visible, 
-        :user_ids, :comment_ids, :project_gigapan_ids)
+        user_ids: [], comment_ids: [], project_gigapan_ids: [])
     end
 end

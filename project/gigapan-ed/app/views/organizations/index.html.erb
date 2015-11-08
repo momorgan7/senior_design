@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Organizations</h1>
+<h1>Schools and Teachers</h1>
 
 <table>
   <thead>
@@ -8,14 +8,19 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @organizations.group_by(&:country).sort.each do |country, organizations| %>
+      <div id="country">
+        <h2><%= country %></h2>
+          <% for organization in organizations %>
+            <b><%= link_to organization.name, organization %></b><br>
+            <% organization.users.each do |user| %>
+              <% if user.has_role?(:teacher) %>
+                <li><%= link_to User.find(user).username, user %></li>
+              <% end %>
+            <% end %>
+          <% end %>
+      </div>
     <% end %>
   </tbody>
 </table>

@@ -1,6 +1,13 @@
 <h1>Editing Project</h1>
-
+<% if @type == "students" %>
+<%= render 'add_students' %>
+<% elsif @type == "teachers" %>
+<%= render 'add_teachers' %>
+<% else %>
 <%= render 'form' %>
+<% end %>
+
+
 
 <%= link_to 'Show', @project %> |
 <%= link_to 'Back', projects_path %>

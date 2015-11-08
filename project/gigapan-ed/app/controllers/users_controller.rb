@@ -30,11 +30,15 @@ class UsersController < ApplicationController
 
  def create
     @user = User.new(user_params)
+    @user.update_attribute(:organization, current_user.organization)
+    @user.roles << Role.where(name: "student")
+    @user.email = current_user.email
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      flash[:success] = "Created a new student:"+@user.first_name+" "+@user.last_name
+      redirect_to dashboard_path
     else
-      render 'new'
+        render 'new'
+
     end
  end
  
@@ -43,6 +47,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:username, :email, :password,
-                                   :password_confirmation, :avatar)
+                                   :password_confirmation, :avatar, :first_name, :last_name, :cont_area, 
+                                   :organization_id, :role_ids)
     end
 end

@@ -95,7 +95,7 @@ RailsAdmin.config do |config|
       field :users
     end
   end
-  
+
   config.model "Organization" do
     edit do
       field :name 
