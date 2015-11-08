@@ -20,17 +20,14 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new do
-      except "Role"
-      except "Country"
+      except ["Role", "Country"]
     end
     export
     bulk_delete
     show
     edit
     delete do
-      except "Role"
-      except "Organization"
-      except "Country"
+      except ["Role", "Organization", "Country"]
     end
     show_in_app
 
