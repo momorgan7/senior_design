@@ -23,7 +23,9 @@ RailsAdmin.config do |config|
       except ["Role", "Country"]
     end
     export
-    bulk_delete
+    bulk_delete do
+      except ["Role", "Organization", "Country"]
+    end
     show
     edit
     delete do
