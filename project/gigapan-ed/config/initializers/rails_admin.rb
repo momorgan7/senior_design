@@ -75,8 +75,8 @@ RailsAdmin.config do |config|
       field :cont_area do
         label "Content Area"
       end
-      field :sign_in_count
       field :last_sign_in_at
+      field :sign_in_count
       field :organization
       field :roles
     end
@@ -97,8 +97,9 @@ RailsAdmin.config do |config|
   end
 
   config.model "Organization" do
-    edit do
-      field :name 
+    
+  edit do
+          field :name 
       field :city
       field :state
       field :country
@@ -123,17 +124,47 @@ RailsAdmin.config do |config|
     
   end
   
-    config.model "Project" do
+  config.model "Project" do
 
-    show do
-      field :organizations  do
-        formatted_value do
-          value.distinct_org
-        end
+   edit do
+      field :name 
+      field :desc do
+        label "Description"
       end
+      field :active
+      field :visible
+      field :users
+      field :project_gigapans
+      field :comments
+    end
+    show do
+      field :name
+      field :desc do
+        label "Description"
+      end
+      field :active
+      field :visible
+      field :created_at
+      field :updated_at
+      field :users
+      field :organizations  
+      field :project_gigapans
+      field :comments
+    end
+    list do
+       field :name 
+      field :active
+      field :visible
+      field :created_at
+      field :organizations
+      field :desc do
+        label "Description"
+      end
+      
+  
     end
 
-  end
+end
   config.excluded_models << "UserRole"
   
   
