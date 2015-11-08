@@ -8,7 +8,8 @@ class Project < ActiveRecord::Base
     length: { maximum: 50 }
     
     
-
-  
+def distinct_org 
+ organization.pluck('DISTINCT organization_id')
+end 
     
 end

@@ -2,11 +2,14 @@
 <div class="main">
   <div class="row">
   <div class="col-md-3">  
-  <%= image_tag @user.avatar.url.to_s if @user.avatar? %></div>
+    <%= if @user.avatar? 
+      image_tag @user.avatar.url.to_s
+      else image_tag 'default_avatar.jpg'
+      end%></div>
   <div class="col-md-7"> 
   <div class="topbar">
   <% if @user.has_role?(:student) %>
-  <h2> <%= @user.first_name%> <%=@user.last_name%> a student from <%=@user.organization.city%>, <%=@user.organization.state%> <%=@user.organization.country%></h2>
+  <h2> <%= @user.first_name%> <%=@user.last_name%> a student from <%=@user.organization.name%>, <%=@user.organization.city%>, <%=@user.organization.state%>, <%=@user.organization.country%></h2>
   <%else%>
     <h2> <%= @user.first_name%> <%=@user.last_name%> from <%=@user.organization.name%>, <%=@user.organization.city%>, <%=@user.organization.state%>, <%=@user.organization.country%></h2>
     <p><%= mail_to @user.email,  @user.email %></p>
@@ -14,10 +17,14 @@
     <p>Content Area: <%= @user.cont_area%></p>
     <%end%>
   <%end%>
-  
+   </div>
   <div id="projects">
     <h2>Current Projects</h2>
+<<<<<<< HEAD
+    <% if @user.projects.size == 0 %>
+=======
     <% if @user.projects.where("active = 1").size == 0 %>
+>>>>>>> 06e26229a0375cf6f976bbe707e21fc353ce7b6a
       No projects
     <% else%>
       <% @user.projects.each do |project| %>
@@ -28,7 +35,7 @@
       <% end %>
     <% end %>
   </div>
-  </div>
+ 
 </div>
 </div>
 </div>
