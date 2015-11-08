@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <%= link_to 'Back', organizations_path %>
 <h2><%= @organization.name %></h2>
-<%= @organization.city %>, <%= @organization.state %>, <%= @organization.country %><br>
+<%= @organization.city %>, <%= @organization.state %>, <%= @organization.country.name %><br>
 <br>
 <% @students = @organization.users.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
 <% @teachers = @organization.users.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>

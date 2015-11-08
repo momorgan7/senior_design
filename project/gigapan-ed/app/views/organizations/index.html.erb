@@ -11,7 +11,7 @@
   <tbody>
     <% @organizations.group_by(&:country).sort.each do |country, organizations| %>
       <div id="country">
-        <h2><%= country %></h2>
+        <h2><%= country.name %></h2>
           <% for organization in organizations %>
             <b><%= link_to organization.name, organization %></b><br>
             <% organization.users.each do |user| %>

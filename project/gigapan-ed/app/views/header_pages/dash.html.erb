@@ -19,7 +19,7 @@
       <%else%>
     <h2> <%= current_user.first_name%> <%=current_user.last_name%> from 
     <%= link_to current_user.organization.name, current_user.organization %>, <%=current_user.organization.city%>, 
-    <%=current_user.organization.state%>, <%=current_user.organization.country%></h2>
+    <%=current_user.organization.state%>, <%=current_user.organization.country.name%></h2>
     <% if current_user.cont_area? %>
     <p>Content Area: <%= current_user.cont_area%></p>
     <%end%>
