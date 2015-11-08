@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024193445) do
+ActiveRecord::Schema.define(version: 20151108200524) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "com_type",           limit: 255
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20151024193445) do
     t.integer  "project_gigapan_id", limit: 4
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "iso_code",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "gigapans", force: :cascade do |t|
@@ -36,11 +43,13 @@ ActiveRecord::Schema.define(version: 20151024193445) do
     t.string   "name",       limit: 255
     t.string   "city",       limit: 255
     t.string   "state",      limit: 255
-    t.string   "country",    limit: 255
     t.string   "timezone",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "country_id", limit: 4
   end
+
+  add_index "organizations", ["country_id"], name: "index_organizations_on_country_id", using: :btree
 
   create_table "project_gigapans", force: :cascade do |t|
     t.integer  "project_id", limit: 4
