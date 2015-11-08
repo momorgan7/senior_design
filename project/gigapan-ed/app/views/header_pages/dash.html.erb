@@ -18,7 +18,7 @@
       <h2> <%= current_user.first_name%> <%=current_user.last_name%> a student from place, location</h2>
       <%else%>
     <h2> <%= current_user.first_name%> <%=current_user.last_name%> from 
-    <%=current_user.organization.name%>, <%=current_user.organization.city%>, 
+    <%= link_to current_user.organization.name, current_user.organization %>, <%=current_user.organization.city%>, 
     <%=current_user.organization.state%>, <%=current_user.organization.country%></h2>
     <% if current_user.cont_area? %>
     <p>Content Area: <%= current_user.cont_area%></p>
@@ -26,10 +26,28 @@
       <%end%>
   </div>
       <div class="projects">
+        
         <h2>Current Projects</h2>
-        <p>I'm a big long list of projects</p>
-        <h2>Archived Projects</h2>
-        <p>I'm a big long list of projects</p>
+        <% if current_user.projects.where("active = 1").size == 0 %>
+          No projects
+        <% else%>
+          <% current_user.projects.each do |project| %>
+            <% if project.active && project.visible %>
+              <%= link_to  project.name, project %> <br>
+             <br>
+             <% end %>
+          <% end %>
+        <% end %>
+ 
+        <% if current_user.projects.where("active = 0").size != 0 %>
+          <h2>Archived Projects</h2>
+          <% current_user.projects.each do |project| %>
+            <% if !project.active || !project.visible %>
+              <%= link_to  project.name, project %> <br>
+             <br>
+             <% end %>
+          <% end %>
+        <% end %>
       </div>
       
   </div>

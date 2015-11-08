@@ -37,8 +37,8 @@ class UsersController < ApplicationController
       flash[:success] = "Created a new student:"+@user.first_name+" "+@user.last_name
       redirect_to dashboard_path
     else
+        flash[:errors] = "Failed to create:"+@user.first_name+" "+@user.last_name
         render 'new'
-
     end
  end
  

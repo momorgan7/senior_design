@@ -1,4 +1,31 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
+<h2><%= @organization.name %></h2>
+<%= @organization.city %>, <%= @organization.state %>, <%= @organization.country %><br>
+<br>
+<% @students = @organization.users.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
+<% @teachers = @organization.users.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
+<%= @students.count %> Students, 
+<%= @teachers.count %> Teachers<br>
+<br>
+<b>Teachers:</b>
+<% @teachers.order(:first_name).each do |teacher| %>
+<% @name = teacher.first_name.to_s() +" "+ teacher.last_name.to_s() %>
+<li><%= link_to @name, teacher %></li>
+<% end %>
+<br>
+<b>Students:</b>
+<% @students.order(:first_name).each do |student| %>
+<% @name = student.first_name.to_s() +" "+ student.last_name.to_s() %>
+<li><%= link_to @name, student %></li>
+<% end %>
+<br>
+<h3>Projects:</h3>
+<% @organization.projects.uniq.each do |project| %>
+    <% if project.visible %>
+    <h4><%= link_to project.name, project %></h4>
+    <p><%= project.desc %></p>
+    <% end %>
+<% end %>
+
+<!--<%= link_to 'Edit', edit_organization_path(@organization) %> |-->

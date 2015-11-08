@@ -57,6 +57,9 @@ class User < ActiveRecord::Base
   :uniqueness => { :case_sensitive => false}, # etc.
   length: { maximum: 50 }
   
+  validates :first_name,
+  :presence => true
+  
   validates :password,
   :presence => true,
   length: { minimum: 6 }, allow_nil: true

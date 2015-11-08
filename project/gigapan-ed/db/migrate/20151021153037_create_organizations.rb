@@ -4,7 +4,6 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :name
       t.string :city
       t.string :state
-      t.string :country
       t.string :timezone
 
       t.timestamps null: false

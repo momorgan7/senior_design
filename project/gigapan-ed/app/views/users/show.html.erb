@@ -20,12 +20,18 @@
    </div>
   <div id="projects">
     <h2>Current Projects</h2>
+<<<<<<< HEAD
     <% if @user.projects.size == 0 %>
+=======
+    <% if @user.projects.where("active = 1").size == 0 %>
+>>>>>>> 06e26229a0375cf6f976bbe707e21fc353ce7b6a
       No projects
     <% else%>
       <% @user.projects.each do |project| %>
+          <% if project.active && project.visible %>
           <%= link_to  project.name, project %> <br>
-         <br>
+           <br>
+          <% end %>
       <% end %>
     <% end %>
   </div>
