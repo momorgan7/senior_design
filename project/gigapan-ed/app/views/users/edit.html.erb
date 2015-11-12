@@ -1,4 +1,14 @@
   <h1>Update Profile</h1>
+  <div class="main">
+  <div class="row">
+  <div class="col-md-3"> 
+   <%= if current_user.avatar? 
+      image_tag current_user.avatar.url.to_s
+      else image_tag "default_avatar.jpg"
+      end%>
+  </div>
+    <div class="col-md-7">
+      <div class="usrform">
   <%= form_for @user,  multiple: true do |f| %>
   <div class="field">
     <%= f.label :first_name %>
@@ -14,17 +24,16 @@
     <%= f.text_field :email, placeholder: "Email" %>
   </div>
   <div class="field">
-    <%= f.label :cont_area %>
+    <%= f.label "Content Area" %>
     <%= f.text_field :cont_area, placeholder: "Content Area" %>
   </div>
   <%end%>
-    <span class="picture">
+    <div class="field">
       <%= f.label :avatar %>
     <%= f.file_field :avatar %>
-  </span>
-  <%= if current_user.avatar? 
-      image_tag current_user.avatar.url.to_s
-      else image_tag "default_avatar.jpg"
-      end%>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  </div>
+ <div class="button">
+  <%= f.submit "Edit", class: "btn btn-primary" %></div>
 <% end %>
+</div>
+</div>  

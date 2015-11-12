@@ -9,13 +9,13 @@ html {
   min-height: 100%;
 }
 body { padding-bottom: 200px; }
-
 .main{
-  width: 1024px;
+ 
   padding-left: 50px;
   padding-top: 30px;
  
 }
+
 
 #logo {
   float: left;
@@ -57,6 +57,46 @@ height: 200px;
 
 
 
+	.f16 .flag, .f32 .flag { width: 16px; clear: right; height: 16px;}
+	.f16 .flag { padding-right: 44px; }
+	
+	
+	.usrform {
+	  label {
+	    width: 170px;
+	  }
+	  input {
+	    width: 250px;
+	  }
+.button{
+  padding-top: 25px;
+}
+	  
+	}
+	
+		.prjform {
+	  label {
+	    width: 100px;
+	    vertical-align: middle;
+	  }
+	  input {
+	    width: 250px;
+
+	  }	    	  textarea {
+	    min-height: 100px;
+	    min-width: 250px;
+	    vertical-align: middle;
+	  }
+
+.button{
+  padding-top: 25px;
+}
+	  
+	}
+	
+	#dash{
+	  padding-top: 20px;
+	}
 
 
 

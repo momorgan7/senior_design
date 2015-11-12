@@ -1,18 +1,22 @@
+  <div class="main">
+  <div class="row">
+  <div class="col-md-7">
+     <div class="usrform">
 <%= form_for(@user) do |f| %>
   <%= devise_error_messages! %>
   
   <div class="field">
-    <%= f.label :username %><br />
+    <%= f.label :username %>
     <%= f.text_field :username %>
   </div>
   
   <div class="field">
-    <%= f.label :first_name %><br />
+    <%= f.label :first_name %>
     <%= f.text_field :first_name %>
   </div>
   
   <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name %>
     <%= f.text_field :last_name %>
   </div>
 
@@ -20,18 +24,22 @@
     <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
     <%= f.hidden_field :organization, :value => current_user.organization %>
     <%= f.hidden_field :email, :value => current_user.email %>
     <%= f.hidden_field :role_id, :value => '1' %>
-  <div class="actions">
-    <%= f.submit "Create" %>
+  <div class="button">
+    <%= f.submit "Create" , class: "btn btn-primary"%>
   </div>
 <% end %>
+</div>
+</div>
+</div>
+</div>

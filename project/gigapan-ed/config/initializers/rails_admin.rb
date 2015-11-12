@@ -27,7 +27,9 @@ RailsAdmin.config do |config|
       except ["Role", "Organization", "Country"]
     end
     show
-    edit
+    edit do
+      except ["Country"]
+    end
     delete do
       except ["Role", "Organization", "Country"]
     end
