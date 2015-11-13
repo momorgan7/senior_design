@@ -8,40 +8,51 @@
   <div class="row">
     <div class="col-md-5">
       <% @projects.order(:name).each do |project| %>
+      
+        <!--move to next project if not visible-->
         <% if project.visible %>
-        <% project.organizations.uniq.each do |org| %>
-        <% user_array = [] %>
-        <% project.users.each do |user| %>
-          <% if user.has_role?(:admin) || user.has_role?(:teacher) %>
-            <% if user.organization_id == org.id %>
-              <% user_array << user %>
-            <% end %>
-          <% end %>
-        <% end %>
-        <h3 ><%= link_to  project.name, project %></h3>
-        <div class="f16">
-          <img class="flag <%=org.country.iso_code.downcase%>"></img>
-        </div>
-
-        <p><%= project.desc %></p>
         
+          <!--Display project details-->
+          <h3 ><%= link_to  project.name, project %></h3>
+          <p><%= project.desc %></p>
+        
+          <% project.organizations.uniq.each do |org| %>
           
-  <%= link_to org.name, org %>:
-          <% user_array.each do |user| %>
-          <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+            <!--fill the array of teachers/admins-->
+            <% user_array = [] %>
+            <% project.users.each do |user| %>
+              <% if user.has_role?(:admin) || user.has_role?(:teacher) %>
+                <% if user.organization_id == org.id %>
+                  <% user_array << user %>
+                <% end %>
+              <% end %>
+            <% end %>
+            
+            <!--display flag and name-->
+            <div class="f16">
+              <img class="flag <%=org.country.iso_code.downcase%>"></img>
+            </div>
+            <%= link_to org.name, org %>:
+            
+            <!--display teachers for org-->
+            <% user_array.each do |user| %>
+              <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
               <% if user == user_array.last %>
                 <%= link_to @name, user %>
               <% else %>
-                <%= link_to @name, user %>, 
+                  <%= link_to @name, user %>, 
               <% end %>
+            <% end %>
+            
+            <!--break for next org-->
+            <br>
           <% end %>
-          <br>
+          <!--end of actions for a visible project-->
         <% end %>
-       <br>
-       <% end %>
-    <% end %>
+        <!--next project-->
+      <% end %>
+    </div>
   </div>
-  </div>
-  </div>
+</div>
 
 
