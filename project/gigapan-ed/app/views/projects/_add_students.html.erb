@@ -15,9 +15,9 @@
   
   <%= f.label :visible %>:
   <div class="field">
-    <% @students = User.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
+    <% @students = User.includes(:roles,:organization).where('roles.name = ? AND organizations.name = ?', 'student', current_user.organization.name).references(:roles,:organization) %>
     <%= f.collection_select :user_ids, @students, :id, :username, {}, :multiple => true %>
-    <% @teachers = User.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
+    <% @teachers = User.includes(:roles,:organization).where('roles.name = ? OR organizations.name != ?', 'teacher', current_user.organization.name).references(:roles,:organization) %>
     <%= f.collection_select :user_ids, @teachers, :id, :username, {}, :multiple => true, :style => "display: none;" %>
     
 

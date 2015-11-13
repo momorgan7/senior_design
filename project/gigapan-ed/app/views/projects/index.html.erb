@@ -28,20 +28,24 @@
               <% end %>
             <% end %>
             
-            <!--display flag and name-->
-            <div class="f16">
-              <img class="flag <%=org.country.iso_code.downcase%>"></img>
-            </div>
-            <%= link_to org.name, org %>:
-            
-            <!--display teachers for org-->
-            <% user_array.each do |user| %>
-              <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
-              <% if user == user_array.last %>
-                <%= link_to @name, user %>
-              <% else %>
-                  <%= link_to @name, user %>, 
+            <!--don't want to display orgs which don't have any teachers or admins on the project-->
+            <% if user_array.count != 0 %>
+              <!--display flag and name-->
+              <div class="f16">
+                <img class="flag <%=org.country.iso_code.downcase%>"></img>
+              </div>
+              <%= link_to org.name, org %>:
+              
+              <!--display teachers for org-->
+              <% user_array.each do |user| %>
+                <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                <% if user == user_array.last %>
+                  <%= link_to @name, user %>
+                <% else %>
+                    <%= link_to @name, user %>, 
+                <% end %>
               <% end %>
+              
             <% end %>
             
             <!--break for next org-->
