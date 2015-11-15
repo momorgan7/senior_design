@@ -167,8 +167,8 @@ RailsAdmin.config do |config|
       field :visible
       field :created_at
       field :updated_at
-      field :users
-      field :organizations  
+      field :users 
+      # field :organizations  
       field :project_gigapans
       field :comments
     end
@@ -177,7 +177,7 @@ RailsAdmin.config do |config|
       field :active
       field :visible
       field :created_at
-      field :organizations
+      # field :organizations
       field :desc do
         label "Description"
       end

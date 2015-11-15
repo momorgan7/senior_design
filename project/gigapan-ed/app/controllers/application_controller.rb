@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to root_path unless current_user && current_user.role_exists?
   end
+  
+  # might not need this anymore
   def configure_devise_params
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(:username, :email, :password, :password_confirmation)
