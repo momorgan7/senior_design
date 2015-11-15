@@ -46,8 +46,12 @@ RailsAdmin.config do |config|
       field :first_name
       field :last_name
       field :email
-      field :password
-      field :password_confirmation
+      field :password do
+        required false
+      end
+      field :password_confirmation do
+        required false
+      end
       field :cont_area do
         label "Content Area"
       end

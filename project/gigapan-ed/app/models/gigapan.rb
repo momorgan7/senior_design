@@ -5,7 +5,6 @@ class Gigapan < ActiveRecord::Base
     :presence => true
     validates :ext_id,
     :presence => true
-    validates :authcode,
-    :presence => true
+
     
 end
