@@ -30,18 +30,18 @@ class User < ActiveRecord::Base
   end
 
 #defines that login will accept a username for authentication
-  def login
-    @login || self.username
-  end
+  # def login
+  #   @login || self.username
+  # end
   
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions.to_h).where(["lower(username) = :value", { :value => login.downcase }]).first
-      else
-        where(conditions.to_h).first
-      end
-  end
+  # def self.find_for_database_authentication(warden_conditions)
+  #   conditions = warden_conditions.dup
+  #     if login = conditions.delete(:login)
+  #       where(conditions.to_hash).where(["lower(username) = :value", { :value => login.downcase }]).first
+  #     else
+  #       where(conditions.to_hash).first
+  #     end
+  # end
   
   #custom devise validations to replace validateable because of the issues with using multiple of the same email
   validates_presence_of    :email, :on=>:create
@@ -50,12 +50,16 @@ class User < ActiveRecord::Base
   validates_confirmation_of    :password, :on=>:create
   validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
   
-    #requires a username on creation of a user
+  
+  #requires a username on creation of a user
   validates_uniqueness_of    :username, :case_sensitive => false, :allow_blank => true, :if => :username_changed?
   validates :username,
   :presence => true,
   :uniqueness => { :case_sensitive => false}, # etc.
   length: { maximum: 50 }
+  
+  validates :roles,
+  :presence => true
   
   validates :first_name,
   :presence => true
