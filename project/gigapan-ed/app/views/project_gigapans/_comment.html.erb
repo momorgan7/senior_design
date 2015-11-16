@@ -1,0 +1,7 @@
+<h4><%= comment.user.username %></h4>
+<p><%= comment.content %></p>
+<% if comment.comments.count != 0 %>
+    <% comment.comments.each do |comment| %>
+        <%= render :partial => 'comment', :locals => {:comment => comment} %>
+    <% end %>       
+<% end %>

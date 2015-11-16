@@ -14,9 +14,8 @@
 ActiveRecord::Schema.define(version: 20151108200524) do
 
   create_table "comments", force: :cascade do |t|
-    t.boolean  "reply",              limit: 1
     t.text     "content",            limit: 65535
-    t.float    "reply_to",           limit: 24
+    t.integer  "parent_id",          limit: 4
     t.float    "x_coord",            limit: 24
     t.float    "y_coord",            limit: 24
     t.integer  "user_id",            limit: 4

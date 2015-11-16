@@ -61,6 +61,15 @@ class ProjectGigapansController < ApplicationController
     end
   end
 
+  def get_replies(parent_comments)
+   parent_comments.each do |comment|
+     yield(comment)
+      unless comment.comments.is_empty?
+         get_replies(comment.comments) {|x| yield x}
+      end
+   end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project_gigapan
