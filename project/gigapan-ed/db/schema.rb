@@ -14,8 +14,9 @@
 ActiveRecord::Schema.define(version: 20151108200524) do
 
   create_table "comments", force: :cascade do |t|
-    t.string   "com_type",           limit: 255
+    t.boolean  "reply",              limit: 1
     t.text     "content",            limit: 65535
+    t.float    "reply_to",           limit: 24
     t.float    "x_coord",            limit: 24
     t.float    "y_coord",            limit: 24
     t.integer  "user_id",            limit: 4
@@ -83,15 +84,10 @@ ActiveRecord::Schema.define(version: 20151108200524) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "user_roles", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "role_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "roles_users", id: false, force: :cascade do |t|
+    t.integer "role_id", limit: 4, null: false
+    t.integer "user_id", limit: 4, null: false
   end
-
-  add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
-  add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -117,6 +113,4 @@ ActiveRecord::Schema.define(version: 20151108200524) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
-  add_foreign_key "user_roles", "roles"
-  add_foreign_key "user_roles", "users"
 end

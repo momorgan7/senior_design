@@ -38,3 +38,7 @@ Students:<br>
        <%= link_to "Add students", add_students_path(project: @project)%><br> <br>
     <% end %>
 <% end %>
+
+<% @project.project_gigapans.each do |gigapan| %>
+    <%= link_to gigapan.name, gigapan %><br>
+<% end %>

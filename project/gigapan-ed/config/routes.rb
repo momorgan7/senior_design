@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :gigapans
   resources :organizations
+  resources :project_gigapans
   # as :user do
   #   get "/register", to: "registrations#new", as: "register"
   # end

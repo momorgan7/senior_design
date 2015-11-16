@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
     
     
 def distinct_org 
- organization.pluck('DISTINCT organization_id')
+ organizations.pluck('DISTINCT organization_id')
 end 
     
 end

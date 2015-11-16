@@ -1,0 +1,21 @@
+<h3><%=@project_gigapan.name%></h3>
+
+<h2><%=@project_gigapan.gigapan.name%></h2>
+
+
+<% @project_gigapan.comments.each do |comment| %>
+    
+    <h4><%= link_to comment.user.username, comment.user%>
+    <% if comment.reply %>
+        <% @comment = Comment.find(comment.reply_to) %>
+        's Reply to <%= link_to @comment.user.username, @comment.user%></h4>
+    <% else %>
+        </h4>
+    <% end %>
+    <p><%= comment.content %></p>
+    <!--to reply, an action has to be made that is tied to a button. -->
+    <!--When the user hits this button, a new comment is made, and the "reply" is set to true, -->
+    <!--and "reply_to" set to the id of the comment they are replying to.-->
+<% end %>
+
+

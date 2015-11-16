@@ -1,8 +1,9 @@
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
-      t.string :com_type
+      t.boolean :reply
       t.text :content
+      t.float :reply_to
       t.float :x_coord
       t.float :y_coord
       t.belongs_to :user 
