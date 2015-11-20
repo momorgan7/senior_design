@@ -10,6 +10,26 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: "Name" %>
+  </div>
+    <div class="field">
+    <%= f.label "Description" %>
+    <%= f.text_field :desc, placeholder: "Description" %>
+  </div>
+  <div class="field">
+    <%= f.label "Url" %>
+    <%= f.text_area :url, placeholder: "http://gigapan.com/gigapans/00000" %>
+    <%=hidden_field_tag :ext_id%>
+    <%=hidden_field_tag :authcode%>
+    <%=hidden_field_tag :width%>
+    <%=hidden_field_tag :height%>
+    <%=hidden_field_tag :private%>
+    <%=hidden_field_tag :project_id%>
+    
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>
