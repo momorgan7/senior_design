@@ -15,6 +15,7 @@ class ProjectGigapansController < ApplicationController
   # GET /project_gigapans/new
   def new
     @project_gigapan = ProjectGigapan.new
+    @project = Project.find(params[:project_id])
   end
 
   # GET /project_gigapans/1/edit
@@ -37,7 +38,6 @@ class ProjectGigapansController < ApplicationController
     end
     temp[:width] = hash["width"]
     temp[:height] = hash["height"]
-
     @project_gigapan = ProjectGigapan.new(temp)
 
     respond_to do |format|

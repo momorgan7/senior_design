@@ -6,7 +6,7 @@
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
     <%= link_to 'Edit Project', edit_project_path(@project) %> <br> <br>
-    <%= link_to 'Add GigaPans', new_project_gigapan_path %>
+    <%= link_to 'Add GigaPans', new_project_gigapan_path(:project_id => @project.id) %>
 <% end %>
 <p><%= @project.desc %></p>
 
@@ -67,4 +67,5 @@ Students:<br>
     
     <% @com_count = gigapan.comments.count %>
     <%= link_to "#{@com_count} comments",  project_gigapan_path(gigapan, anchor: "comments")%>
+    <br>
 <% end %>
