@@ -86,9 +86,14 @@
 
 <input id="snapshotToolButton" type="button" value="Show Snapshot Tool">
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5905907832157e122be7566f77329489aaebd3a5
 
+<a name="comments"></a>
 <% @project_gigapan.comments.each do |comment| %>
+
     <% if comment.parent_id.nil? %>
         <h4><%= comment.user.username %></h4>
         <p><%= comment.content %></p>

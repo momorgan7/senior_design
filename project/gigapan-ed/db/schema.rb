@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20151108200524) do
     t.string   "name",       limit: 255
     t.string   "ext_id",     limit: 255
     t.string   "authcode",   limit: 255
-    t.float    "height",     limit: 24
-    t.float    "width",      limit: 24
+    t.integer  "height",     limit: 4
+    t.integer  "width",      limit: 4
     t.boolean  "private",    limit: 1
     t.text     "desc",       limit: 65535
     t.datetime "created_at",               null: false
