@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+// Vendor Files
+//= require seadragon
+//= require seadragon-min.js
+//= require_self
 //= require_tree .

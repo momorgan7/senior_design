@@ -40,6 +40,16 @@
           <% end %>
         <% end %>
  
+  <% if current_user.projects.where("visible = 0").size != 0 %>
+          <h2>Draft Projects</h2>
+          <% current_user.projects.each do |project| %>
+            <% if project.active && !project.visible %>
+              <%= link_to  project.name, project %> <br>
+             <br>
+             <% end %>
+          <% end %>
+        <% end %>
+        
         <% if current_user.projects.where("active = 0").size != 0 %>
           <h2>Archived Projects</h2>
           <% current_user.projects.each do |project| %>

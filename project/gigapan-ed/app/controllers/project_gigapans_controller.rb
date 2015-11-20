@@ -24,7 +24,21 @@ class ProjectGigapansController < ApplicationController
   # POST /project_gigapans
   # POST /project_gigapans.json
   def create
-    @project_gigapan = ProjectGigapan.new(project_gigapan_params)
+    temp = project_gigapan_params
+    ident = temp[:url].split("/").last
+    hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
+    temp[:ext_id] = hash["id"]
+    if is_number?(ident)
+      temp[:authcode] = "null"
+      temp[:private] = false
+    else 
+      temp[:authcode] = ident
+      temp[:private] = true
+    end
+    temp[:width] = hash["width"]
+    temp[:height] = hash["height"]
+
+    @project_gigapan = ProjectGigapan.new(temp)
 
     respond_to do |format|
       if @project_gigapan.save
@@ -78,6 +92,11 @@ class ProjectGigapansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_gigapan_params
-      params[:project_gigapan]
+      params[:project_gigapan].permit(:name, :url, :ext_id, :authcode, :width, :height, :private, :desc, :project_id)
     end
+    
+    def is_number? string
+      true if Integer(string) rescue false
+    end
+
 end
