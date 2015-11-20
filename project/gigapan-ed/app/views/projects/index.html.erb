@@ -12,8 +12,21 @@
         <!--move to next project if not visible-->
         <% if project.visible %>
         
-          <!--Display project details-->
-          <h3 ><%= link_to  project.name, project %></h3>
+          <!--Display project title-->
+          <h3 ><%= link_to  project.name, project %>
+          <!--List a flag for each country involved in the project-->
+          <% @countries = [] %>
+          <% project.organizations.uniq.each do |org| %>
+            <% @countries << org.country %>
+          <% end %>
+          <% @countries.uniq.each do |country| %>
+              <div class="f16">
+                <img class="flag <%=country.iso_code.downcase%>"></img>
+              </div>
+          <% end %>
+          </h3>
+          
+          <!--Display project desciption-->
           <p><%= project.desc %></p>
         
           <% project.organizations.uniq.each do |org| %>
