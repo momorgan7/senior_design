@@ -8,8 +8,8 @@ class HeaderPagesControllerTest < ActionController::TestCase
   end
 
 
-  test "should get about" do
-    get :about
+  test "should get dash" do
+    get :dash
     assert_response :success
   end
 

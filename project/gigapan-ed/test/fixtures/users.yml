@@ -12,6 +12,9 @@ one:
   current_sign_in_ip: MyString
   last_sign_in_ip: MyString
   username: MyString
+  first_name: guy
+  organization: one
+  roles: admin
 
 two:
   email: example@example.com          
@@ -25,3 +28,6 @@ two:
   current_sign_in_ip: MyString
   last_sign_in_ip: MyString
   username: MyStrings
+  first_name: gal
+  organization: one
+  roles: teacher

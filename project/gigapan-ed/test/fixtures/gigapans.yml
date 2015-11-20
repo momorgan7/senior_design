@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  ext_id: 
-  authcode: 
+  ext_id: 111
+  authcode: 111
 
 two:
   name: MyString
-  ext_id: 
-  authcode: 
+  ext_id: 111
+  authcode: 111

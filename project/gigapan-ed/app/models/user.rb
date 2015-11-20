@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
          
         mount_uploader :avatar, AvatarUploader 
- has_many :user_roles, :dependent => :destroy
- has_many :roles, :through => :user_roles
+ has_and_belongs_to_many :roles
  has_and_belongs_to_many :projects
  has_many :project_gigapans, through: :projects
  has_many :comments
@@ -53,7 +52,6 @@ class User < ActiveRecord::Base
   
   
   #requires a username on creation of a user
-  validates_uniqueness_of    :username, :case_sensitive => false, :allow_blank => true, :if => :username_changed?
   validates :username,
   :presence => true,
   :uniqueness => { :case_sensitive => false}, # etc.

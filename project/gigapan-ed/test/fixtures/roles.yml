@@ -1,4 +1,6 @@
 admin:
   name: admin         
-user:
-  name: user
+teacher:
+  name: teacher
+student:
+  name: student

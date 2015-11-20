@@ -18,7 +18,7 @@ class GigapansControllerTest < ActionController::TestCase
 
   test "should create gigapan" do
     assert_difference('Gigapan.count') do
-      post :create, gigapan: {  }
+      post :create, gigapan: {name: 'test', ext_id: '1', authcode: '1' }
     end
 
     assert_redirected_to gigapan_path(assigns(:gigapan))

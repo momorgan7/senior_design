@@ -1,8 +1,8 @@
 class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
-      t.string :com_type
       t.text :content
+      t.integer :parent_id
       t.float :x_coord
       t.float :y_coord
       t.belongs_to :user 

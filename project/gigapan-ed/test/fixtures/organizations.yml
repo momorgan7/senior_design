@@ -4,12 +4,12 @@ one:
   name: MyString
   city: MyString
   state: MyString
-  country: MyString
+  country: one
   timezone: MyString
 
 two:
   name: MyString
   city: MyString
   state: MyString
-  country: MyString
+  country: one
   timezone: MyString
