@@ -15,7 +15,11 @@ Teachers:<br>
     <% if user.has_role?(:teacher) %>
           <tr>
               <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
-                <li><%= link_to @name, user %></li>
+                <li><%= link_to @name, user %>
+                <div class="f16">
+                    <img class="flag <%=user.organization.country.iso_code.downcase%>"></img>
+                </div>
+                </li>
           </tr>
     <% end %>
 <% end %>
@@ -30,7 +34,11 @@ Students:<br>
     <% if user.has_role?(:student) %>
           <tr>
             <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
-                <li><%= link_to @name, user %></li>
+            <li><%= link_to @name, user %>
+                <div class="f16">
+                    <img class="flag <%=user.organization.country.iso_code.downcase%>"></img>
+                </div>
+            </li>
           </tr>
     <% end %>
 <% end %>

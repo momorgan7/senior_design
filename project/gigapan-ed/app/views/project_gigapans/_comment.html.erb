@@ -1,7 +1,18 @@
-<h4><%= comment.user.username %></h4>
+<% @name = comment.user.first_name.to_s() + " " + comment.user.last_name.to_s() %>
+<h4><%= link_to @name, comment.user %>
+    <div class="f16">
+        <img class="flag <%=comment.user.organization.country.iso_code.downcase%>"></img>
+    </div>
+    says:
+</h4>
 <p><%= comment.content %></p>
+<%= time_ago_in_words(comment.created_at) %> ago from <%= link_to comment.user.organization.name, comment.user.organization %>
+<br>
+<b><%= button_to "Reply to  #{@name}", '#' %></b>
+<!--to reply, an action has to be made that is tied to a button. -->
+<!--When the user hits this button, a new comment is made and its parent is set to the comment replied to-->
 <% if comment.comments.count != 0 %>
     <% comment.comments.each do |comment| %>
         <%= render :partial => 'comment', :locals => {:comment => comment} %>
-    <% end %>       
+    <% end %>    
 <% end %>
