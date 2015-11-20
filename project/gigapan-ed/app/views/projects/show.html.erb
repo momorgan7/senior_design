@@ -41,4 +41,20 @@ Students:<br>
 
 <% @project.project_gigapans.each do |gigapan| %>
     <%= link_to gigapan.name, gigapan %><br>
+    
+    <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
+    <% if gigapan.private %>
+        <% @gig_id = gigapan.authcode %>
+    <% else %>
+        <% @gig_id = gigapan.ext_id %>
+    <% end %>
+    
+    <!--height is calculated dynamically to fit the width dimensions-->
+    <% @height = gigapan.height*274/gigapan.width %>
+    
+    <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
+    <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-274x#{@height}.jpg", height: "#{@height}", width: '274'), gigapan%><br>
+    
+    <% @com_count = gigapan.comments.count %>
+    <%= link_to "#{@com_count} comments",  project_gigapan_path(gigapan, anchor: "comments")%>
 <% end %>

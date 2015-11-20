@@ -1,9 +1,9 @@
 <h3><%=@project_gigapan.name%></h3>
 
-<h2><%=@project_gigapan.gigapan.name%></h2>
 
-
+<a name="comments"></a>
 <% @project_gigapan.comments.each do |comment| %>
+
     <% if comment.parent_id.nil? %>
         <h4><%= comment.user.username %></h4>
         <p><%= comment.content %></p>

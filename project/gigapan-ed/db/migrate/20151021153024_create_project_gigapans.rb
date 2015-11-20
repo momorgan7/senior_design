@@ -5,8 +5,8 @@ class CreateProjectGigapans < ActiveRecord::Migration
       t.string :name
       t.string :ext_id
       t.string :authcode
-      t.float :height
-      t.float :width
+      t.integer :height
+      t.integer :width
       t.boolean :private
       t.text :desc
       t.timestamps null: false
