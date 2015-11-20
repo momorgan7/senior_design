@@ -6,6 +6,7 @@
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
     <%= link_to 'Edit Project', edit_project_path(@project) %> <br> <br>
+    <%= link_to 'Add GigaPans', new_project_gigapan_path %>
 <% end %>
 <p><%= @project.desc %></p>
 
