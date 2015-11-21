@@ -3,11 +3,10 @@
 <h3><%=@project_gigapan.name%></h3>
 <p><%=@project_gigapan.desc%></p>
 
-
 <%= javascript_tag do %>
       var SNAPSHOT_TOOL_CONFIG = {
-         aspectRatio : 3 / 2,       // set this to null or undefined if you don't want to constrain the aspect ratio (default is null)
-         useMask : true             // whether the mask should be applied (default is false)
+         aspectRatio : 3 / 2,       
+         useMask : true         
       };
   var gigapan = {
          "id" : <%= @project_gigapan.ext_id%>,
@@ -23,6 +22,8 @@
     var snapshots = {<% @project_gigapan.comments.each do |comment| %>
      "<%= comment.id %>" : {"y" : <%= comment.y_coord%>, "x" : <%=comment.x_coord%>, "width" : <%=comment.width%>, "height" : <%=comment.height%>, "id" :  <%= comment.id %>}<%if @project_gigapan.comments.count > 1%>,<%end%><%end%>
     };
+    var highlighters = new Array();
+var isShowAllSnapshotsEnabled = false;
 
       var viewer = null;
 
@@ -30,7 +31,7 @@
 
          // configure Seadragon
          Seadragon.Config.imageLoaderLimit = 6;             // max number of concurrent image downloads
-         Seadragon.Config.autoHideControls = false;         //show Seadragon's controls
+         Seadragon.Config.autoHideControls = false;     
          Seadragon.Config.imagePath = "/assets/img/";
 
          // create and initialize the viewer
@@ -69,6 +70,18 @@
                $("#snapshotToolButton").val("Take a Snapshot");
             }
          });
+         $("#snapshotAllButton").click(function() {
+        if (isShowAllSnapshotsEnabled)
+      {
+      hideAllSnapshotRectangles();
+      $("#snapshotAllButton").val("Show All Snapshots");
+      }
+   else
+      {
+      showAllSnapshotRectangles();
+      $("#snapshotAllButton").val("Hide All Snapshots");
+      }
+   });
 
          // load the gigapan
          loadGigapan();
@@ -91,13 +104,84 @@
             viewer.openTileSource(tileSource);
          }, 1);
       }
+function rect_from_snapshot_id(id)
+{
+   var gigapan_width = gigapan.width;
+   var snapshot = snapshots[id];
+   return new Seadragon.Rect(snapshot.x / gigapan_width, snapshot.y / gigapan_width, snapshot.width / gigapan_width, snapshot.height / gigapan_width);
+}
+
+function view_snapshot(n)
+{
+   var rect = rect_from_snapshot_id(n);
+
+   // put some padding around where we are aiming the viewport
+   var border = new Seadragon.Point(rect.width / 10, rect.height / 10);
+   var aim_rect = new Seadragon.Rect(rect.x - border.x, rect.y - border.y, rect.width + 2 * border.x, rect.height + 2 * border.y);
+
+   viewer.viewport.fitBounds(aim_rect);
+   if (snapshot_tool.isVisible())
+      snapshot_tool.setToolBoundsInGigapanCoords(rect);
+}
+
+
+
+function highlight_snapshot(id)
+   {
+   if (!isShowAllSnapshotsEnabled)
+      {
+      // see if we need to create the highlight for this snapshot
+      if (!highlighters[id])
+         {
+         highlighters[id] = $('<div class="snapshot_highlight_box"></div>')[0];
+         }
+
+      viewer.drawer.addOverlay(highlighters[id], rect_from_snapshot_id(id));
+      viewer.drawer.update(); // update everything before showing the box
+      $(highlighters[id]).show();
+      }
+   }
+
+function unhighlight_snapshot(id)
+   {
+   if (highlighters[id] && !isShowAllSnapshotsEnabled)
+      {
+      $(highlighters[id]).hide();
+      viewer.drawer.removeOverlay(highlighters[id]);
+      }
+   }
+
+function hideAllSnapshotRectangles()
+   {
+   isShowAllSnapshotsEnabled = false;
+
+
+   $.each(highlighters,
+          function(id)
+             {
+             unhighlight_snapshot(id);
+             });
+   }
+
+function showAllSnapshotRectangles()
+   {
+
+
+   $.each(snapshots,
+          function(id, snapshot)
+             {
+             highlight_snapshot(id)
+             });
+
+   isShowAllSnapshotsEnabled = true;
+   }
 
 <% end %>
 
 <div id="gigapan_viewer"></div>
 
 <input id="snapshotToolButton" type="button" value="Show Snapshot Tool">
-
+<input id="snapshotAllButton" type="button" value="Show All Snapshots">
 
 <a name="comments"></a>
 <% @project_gigapan.comments.each do |comment| %>
