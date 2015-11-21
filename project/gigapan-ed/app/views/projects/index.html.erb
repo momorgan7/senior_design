@@ -20,9 +20,7 @@
             <% @countries << org.country %>
           <% end %>
           <% @countries.uniq.each do |country| %>
-              <div class="f16">
-                <img class="flag <%=country.iso_code.downcase%>"></img>
-              </div>
+                 <img class="flag <%=country.iso_code.downcase%>" src="/assets/blank.gif">
           <% end %>
           </h3>
           
@@ -44,9 +42,9 @@
             <!--don't want to display orgs which don't have any teachers or admins on the project-->
             <% if user_array.count != 0 %>
               <!--display flag and name-->
-              <div class="f16">
-                <img class="flag <%=org.country.iso_code.downcase%>"></img>
-              </div>
+              
+                <img class="flag <%=org.country.iso_code.downcase%>" src="/assets/blank.gif">
+              
               <%= link_to org.name, org %>:
               
               <!--display teachers for org-->

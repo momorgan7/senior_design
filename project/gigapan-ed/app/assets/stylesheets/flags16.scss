@@ -1,5 +1,4 @@
 $flags-images-path: "../assets" !default; //Override this variable in your .scss to use bower.
-.f16 {
 
     .flag{background:url(#{$flags-images-path}/flags16.png) no-repeat;}
 
@@ -255,4 +254,3 @@ $flags-images-path: "../assets" !default; //Override this variable in your .scss
     .ss{background-position:0 -3936px;}
     .nu{background-position:0 -3952px;}
 
-} // .f16

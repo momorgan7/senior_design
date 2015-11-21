@@ -57,8 +57,13 @@ height: 200px;
 
 
 
-	.f16 .flag, .f32 .flag { width: 16px; clear: right; height: 16px;}
-	.f16 .flag { padding-right: 44px; }
+.flag { width: 16px; 
+	clear: right; 
+	height: 16px;
+	  padding-right: 16px;
+	 
+	}
+
 	
 	
 	.usrform {
@@ -74,7 +79,7 @@ height: 200px;
 	  
 	}
 	
-		.prjform {
+.prjform {
 	  label {
 	    width: 100px;
 	    vertical-align: middle;
