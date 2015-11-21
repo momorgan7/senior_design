@@ -184,9 +184,31 @@ RailsAdmin.config do |config|
       
   
     end
-
+    config.model "Project_Gigapan" do
+    edit do
+      field :name
+      field :desc
+    end
+    show do
+      field :name
+      field :desc
+      field :project_id
+      field :ext_id
+      field :authcode
+      field :height
+      field :width
+      field :created_at
+    end
+    list do
+      field :name
+      field :project_id
+      field :ext_id
+      field :private
+      field :created_at
+    end
+  end
+  
 end
-  config.excluded_models << "UserRole"
   
   
   

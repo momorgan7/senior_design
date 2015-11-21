@@ -3,6 +3,7 @@
 <h3><%=@project_gigapan.name%></h3>
 <p><%=@project_gigapan.desc%></p>
 
+
 <%= javascript_tag do %>
       var SNAPSHOT_TOOL_CONFIG = {
          aspectRatio : 3 / 2,       // set this to null or undefined if you don't want to constrain the aspect ratio (default is null)
@@ -18,6 +19,10 @@
          "width" : <%=@project_gigapan.width%>,
          "height" : <%=@project_gigapan.height%>
       };
+      
+    var snapshots = {<% @project_gigapan.comments.each do |comment| %>
+     "<%= comment.id %>" : {"y" : <%= comment.y_coord%>, "x" : <%=comment.x_coord%>, "width" : <%=comment.width%>, "height" : <%=comment.height%>, "id" :  <%= comment.id %>}<%if @project_gigapan.comments.count > 1%>,<%end%><%end%>
+    };
 
       var viewer = null;
 
@@ -25,7 +30,7 @@
 
          // configure Seadragon
          Seadragon.Config.imageLoaderLimit = 6;             // max number of concurrent image downloads
-         Seadragon.Config.autoHideControls = true;         //show Seadragon's controls
+         Seadragon.Config.autoHideControls = false;         //show Seadragon's controls
          Seadragon.Config.imagePath = "/assets/img/";
 
          // create and initialize the viewer
@@ -86,6 +91,7 @@
             viewer.openTileSource(tileSource);
          }, 1);
       }
+
 <% end %>
 
 <div id="gigapan_viewer"></div>
@@ -99,9 +105,7 @@
     <% if comment.parent_id.nil? %>
         <% @name = comment.user.first_name.to_s() + " " + comment.user.last_name.to_s() %>
         <h4><%= link_to @name, comment.user %>
-            <div class="f16">
-                <img class="flag <%=comment.user.organization.country.iso_code.downcase%>"></img>
-            </div>
+                <img class="flag <%=comment.user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
             says:
         </h4>
         <p><%= comment.content %></p>
