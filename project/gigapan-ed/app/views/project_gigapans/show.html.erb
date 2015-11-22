@@ -37,10 +37,11 @@ var isShowAllSnapshotsEnabled = false;
 
          // create and initialize the viewer
          viewer = new Seadragon.Viewer("gigapan_viewer");
-         viewer.setDashboardEnabled(false);
+         viewer.setDashboardEnabled(true);
+
 
          // disable click to zoom
-         viewer.tracker.clickHandler = null;
+        viewer.tracker.clickHandler = null;
 
          // create the snapshot tool
          var snapshotTool = new org.gigapan.snapshot.SnapshotTool(viewer, SNAPSHOT_TOOL_CONFIG);
