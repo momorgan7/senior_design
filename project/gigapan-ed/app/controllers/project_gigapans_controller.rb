@@ -26,27 +26,37 @@ class ProjectGigapansController < ApplicationController
   # POST /project_gigapans.json
   def create
     temp = project_gigapan_params
-    ident = temp[:url].split("/").last
-    hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
-    temp[:ext_id] = hash["id"]
-    if is_number?(ident)
-      temp[:authcode] = "null"
-      temp[:private] = false
-    else 
-      temp[:authcode] = ident
-      temp[:private] = true
-    end
-    temp[:width] = hash["width"]
-    temp[:height] = hash["height"]
-    @project_gigapan = ProjectGigapan.new(temp)
-
-    respond_to do |format|
-      if @project_gigapan.save
-        format.html { redirect_to @project_gigapan, notice: 'Project gigapan was successfully created.' }
-        format.json { render :show, status: :created, location: @project_gigapan }
-      else
-        format.html { render :new }
-        format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
+    if(correct_url?(temp[:url]))
+      ident = temp[:url].split("/").last
+      hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
+      temp[:ext_id] = hash["id"]
+      if is_number?(ident)
+        temp[:authcode] = "null"
+        temp[:private] = false
+      else 
+        temp[:authcode] = ident
+        temp[:private] = true
+      end
+      temp[:width] = hash["width"]
+      temp[:height] = hash["height"]
+      @project_gigapan = ProjectGigapan.new(temp)
+  
+      respond_to do |format|
+        if @project_gigapan.save
+          format.html { redirect_to @project_gigapan, notice: 'Project gigapan was successfully created.' }
+          format.json { render :show, status: :created, location: @project_gigapan }
+        else
+          format.html { render :new }
+          format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      @project_gigapan = ProjectGigapan.new(temp)
+      respond_to do |format|
+         @project_gigapan.project_id = temp[:project_id]
+         format.html { render :new}
+         @project_gigapan.errors.add(:url,"is not in the correct format. Example: http://gigapan.com/gigapans/idnumber")
+         format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -90,6 +100,10 @@ class ProjectGigapansController < ApplicationController
       @project_gigapan = ProjectGigapan.find(params[:id])
     end
 
+    def correct_url? string
+     true if (string.starts_with?('http://gigapan.com/gigapans/')) rescue false
+    end
+   
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_gigapan_params
       params[:project_gigapan].permit(:name, :url, :ext_id, :authcode, :width, :height, :private, :desc, :project_id)

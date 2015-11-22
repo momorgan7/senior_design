@@ -2,7 +2,7 @@
 
 <h3><%=@project_gigapan.name%></h3>
 <p><%=@project_gigapan.desc%></p>
-
+<%= link_to 'Edit', edit_project_gigapan_path(@project_gigapan) %>
 <%= javascript_tag do %>
       var SNAPSHOT_TOOL_CONFIG = {
          aspectRatio : 3 / 2,       

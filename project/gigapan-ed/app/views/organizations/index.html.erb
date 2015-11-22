@@ -17,7 +17,10 @@
             <% organization.users.each do |user| %>
               <% if user.has_role?(:teacher) %>
               <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
-                <li><%= link_to @name, user %></li>
+                <li>
+                  <%= link_to @name, user %>
+                  <img class="flag <%=user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+                </li>
               <% end %>
             <% end %>
           <% end %>
