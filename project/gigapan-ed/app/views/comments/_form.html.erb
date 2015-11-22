@@ -1,16 +1,17 @@
-<%= form_for(@comment) do |f| %>
-  <div class="field">
-    <%= f.label "Comment" %>
-    <%= f.text_area :content, placeholder: "Comment" %>
-  </div>
-    <%= f.hidden_field :project_gigapan_id, :value => @project_gigapan.id %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :x_coord %>
-    <%= f.hidden_field :y_coord %>
-    <%= f.hidden_field :width %>
-    <%= f.hidden_field :height %>
+<%= form_for([@project_gigapan, @project_gigapan.comments.build], :html => {:id => "form_id"}) do |f| %>
+           <div class="field">
+             <%= f.label "Reply" %>
+             <%= f.text_area :content, placeholder: "Comment" %>
+           </div>
+             <%= f.hidden_field :project_gigapan_id, :value => @project_gigapan.id %>
+             <%= f.hidden_field :user_id, :value => current_user.id %>
+             <%= f.hidden_field :x_coord, :value =>0 %>
+             <%= f.hidden_field :y_coord, :value =>0%>
+             <%= f.hidden_field :width, :value =>0 %>
+             <%= f.hidden_field :height, :value =>0 %>
+             <%= f.hidden_field :parent_id, :value =>comment.id%>
 
   <div class="actions">
-    <%= f.submit %>
+     <%= f.submit "Reply to #{@name}" %>
   </div>
-<% end %>
+<%end%>

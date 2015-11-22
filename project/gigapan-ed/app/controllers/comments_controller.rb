@@ -71,6 +71,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params[:comment].permit(:project_gigapan_id, :user_id, :content, :x_coord, :y_coord, :width, :height)
+      params[:comment].permit(:project_gigapan_id, :user_id, :content, :x_coord, :y_coord, :width, :height, :parent_id)
     end
 end
