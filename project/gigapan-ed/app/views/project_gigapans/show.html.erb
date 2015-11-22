@@ -20,12 +20,13 @@
       };
       
     var snapshots = {<% @project_gigapan.comments.each do |comment| %>
-     "<%= comment.id %>" : {"y" : <%= comment.y_coord%>, "x" : <%=comment.x_coord%>, "width" : <%=comment.width%>, "height" : <%=comment.height%>, "id" :  <%= comment.id %>}<%if @project_gigapan.comments.count > 1%>,<%end%><%end%>
+     "<%= comment.id %>" : {"y" : <%= comment.y_coord%>, "x" : <%=comment.x_coord%>, "width" : <%=comment.width%>, "height" : <%=comment.height%>, "id" :  <%= comment.id %>}<%if comment == @project_gigapan.comments.last %><%else%>,<%end%><%end%>
     };
     var highlighters = new Array();
 var isShowAllSnapshotsEnabled = false;
 
       var viewer = null;
+      var coords;
 
       $(document).ready(function() {
 
@@ -46,30 +47,44 @@ var isShowAllSnapshotsEnabled = false;
          snapshotTool.setGigapanDimensions(gigapan.width, gigapan.height);
          snapshotTool.setVisible(false);
 
+$("#form_id").hide();
+
          $("#snapshotToolButton").click(function() {
             if (snapshotTool.isVisible()) {
 
-               // get the snapshot tool coordinates, and show the user
-               var gigapanCoordsRect = snapshotTool.getToolBoundsInGigapanCoords();
-               var seadragonCoordsRect = snapshotTool.getToolBoundsInSeadragonCoords();
-               alert("Gigapan Coordinates:" +
-                     "\n\n" +
-                     gigapanCoordsRect.toString() +
-                     "\n\n" +
-                     "Seadragon Coordinates" +
-                     "\n\n" +
-                     seadragonCoordsRect.toString());                        //this is where you would get the snapshot cords to save
-
                // hide the snapshot tool, and change the button back
-               snapshotTool.setVisible(false);
-               $("#snapshotToolButton").val("Show Snapshot Tool");
-            }
+              snapshotTool.setVisible(false);
+             $("#form_id").hide();
+               $("#snapshotToolButton").val("Start a Conversation");
+        }
             else {
-               // show the snapshot tool
+               // show the snapshot tool and form
                snapshotTool.setVisible(true);
-               $("#snapshotToolButton").val("Take a Snapshot");
+               $("#form_id").show();
+               $("#snapshotToolButton").val("Cancel");
             }
          });
+         
+         $(".submitButton").click(function() {
+            if (snapshotTool.isVisible()) {
+             coords = snapshotTool.getToolBoundsInGigapanCoords();
+             $('#comment_x_coord').val(coords.x);
+             $('#comment_y_coord').val(coords.y);
+             $('#comment_width').val(coords.width);
+             $('#comment_height').val(coords.height);
+               var valuesToSubmit = $('#form_id').serialize();
+                 console.log(valueToSubmit);
+  $.ajax({
+    url: $('#form_id').attr('action'), //sumbits it to the given url of the form
+    data: valuesToSubmit,
+    dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+  }).success(function(json){
+    //act on result.
+  });
+  return false;
+        }
+         });
+         
          $("#snapshotAllButton").click(function() {
         if (isShowAllSnapshotsEnabled)
       {
@@ -180,11 +195,29 @@ function showAllSnapshotRectangles()
 
 <div id="gigapan_viewer"></div>
 
-<input id="snapshotToolButton" type="button" value="Show Snapshot Tool">
+<input id="snapshotToolButton" type="button" value="Snapshot Tool">
 <input id="snapshotAllButton" type="button" value="Show All Snapshots">
 
+<%= form_for([@project_gigapan, @project_gigapan.comments.build], :html => {:id => "form_id"}) do |f| %>
+  <div class="field">
+    <%= f.label "Comment" %>
+    <%= f.text_area :content, placeholder: "Comment" %>
+  </div>
+    <%= f.hidden_field :project_gigapan_id, :value => @project_gigapan.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :x_coord, :value =>0 %>
+    <%= f.hidden_field :y_coord, :value =>0%>
+    <%= f.hidden_field :width, :value =>0 %>
+    <%= f.hidden_field :height, :value =>0 %>
+
+  <div class="actions">
+     <%= f.submit 'Submit', :class => "submitButton" %>
+  </div>
+  <%end%>
+
 <a name="comments"></a>
-<% @project_gigapan.comments.each do |comment| %>
+
+<% @commentlist.each do |comment| %>
 
     <% if comment.parent_id.nil? %>
         <% @name = comment.user.first_name.to_s() + " " + comment.user.last_name.to_s() %>
@@ -206,5 +239,14 @@ function showAllSnapshotRectangles()
         <% end %>
     <% end %>
 <% end %>
+
+
+
+
+
+
+
+
+
 
 

@@ -1,15 +1,14 @@
 <%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label "Comment" %>
+    <%= f.text_area :content, placeholder: "Comment" %>
+  </div>
+    <%= f.hidden_field :project_gigapan_id, :value => @project_gigapan.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :x_coord %>
+    <%= f.hidden_field :y_coord %>
+    <%= f.hidden_field :width %>
+    <%= f.hidden_field :height %>
 
   <div class="actions">
     <%= f.submit %>

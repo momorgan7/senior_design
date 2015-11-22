@@ -3,11 +3,12 @@ Rails.application.routes.draw do
    devise_for :users , :path => 'auth',
      controllers: {:registrations => "registrations"}
   resources :users
-  resources :comments
   resources :projects
   resources :gigapans
   resources :organizations
-  resources :project_gigapans
+  resources :project_gigapans do
+     resources :comments
+   end
   # as :user do
   #   get "/register", to: "registrations#new", as: "register"
   # end

@@ -10,6 +10,7 @@ class ProjectGigapansController < ApplicationController
   # GET /project_gigapans/1
   # GET /project_gigapans/1.json
   def show
+    @commentlist = @project_gigapan.comments.to_a
   end
 
   # GET /project_gigapans/new
@@ -26,7 +27,9 @@ class ProjectGigapansController < ApplicationController
   # POST /project_gigapans.json
   def create
     temp = project_gigapan_params
+    if(correct_url?(temp[:url]))
     ident = temp[:url].split("/").last
+    begin
     hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
     temp[:ext_id] = hash["id"]
     if is_number?(ident)
@@ -49,6 +52,20 @@ class ProjectGigapansController < ApplicationController
         format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
       end
     end
+    rescue OpenURI::HTTPError => e
+    flash[:errors] = 'GigaPan not found'
+   @project_gigapan = ProjectGigapan.new
+      redirect_to :action=> "new", :project_id =>temp[:project_id]
+    end 
+  else
+     @project_gigapan = ProjectGigapan.new(temp)
+     respond_to do |format|
+         @project_gigapan.project_id = temp[:project_id]
+         format.html { render :new}
+         @project_gigapan.errors.add(:url,"is not in the correct format. Example: http://gigapan.com/gigapans/idnumber")
+         format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
+     end
+  end
   end
 
   # PATCH/PUT /project_gigapans/1
@@ -98,5 +115,9 @@ class ProjectGigapansController < ApplicationController
     def is_number? string
       true if Integer(string) rescue false
     end
+    
+   def correct_url? string
+     true if (string.starts_with?('http://gigapan.com/gigapans/')) rescue false
+   end
 
 end
