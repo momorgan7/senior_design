@@ -1,17 +1,31 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for([@project_gigapan, @project_gigapan.comments.build], :html => {:id => "form_id"}) do |f| %>
+<%= javascript_tag do %>
+    $(document).ready(function(){
+    	$(".reply<%=comment.id%>").click(function(e) {
+        var $elem = $(e.target), 
+            $class = $('.<%=comment.id%>');
+        $class.stop().toggle("slow"); 
+        });
+    });
+<% end %>
+<input type="button" value="Reply" class="reply<%=comment.id%>" />
+<div class="<%=comment.id%>" style= "display:none">
+           <div class="field">
+             <%= f.label "Reply to this comment" %><br>
+             <%= f.text_area :content, placeholder: "Comment" %>
+           </div>
+             <%= f.hidden_field :project_gigapan_id, :value => @project_gigapan.id %>
+             <%= f.hidden_field :user_id, :value => current_user.id %>
+             <%= f.hidden_field :x_coord, :value =>0 %>
+             <%= f.hidden_field :y_coord, :value =>0%>
+             <%= f.hidden_field :width, :value =>0 %>
+             <%= f.hidden_field :height, :value =>0 %>
+             <%= f.hidden_field :parent_id, :value =>comment.id%>
 
   <div class="actions">
-    <%= f.submit %>
+     <%= f.submit "Submit reply to #{@name}" %>
   </div>
-<% end %>
+</div>
+<%end%>
+
+

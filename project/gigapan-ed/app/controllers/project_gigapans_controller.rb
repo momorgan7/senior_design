@@ -10,6 +10,7 @@ class ProjectGigapansController < ApplicationController
   # GET /project_gigapans/1
   # GET /project_gigapans/1.json
   def show
+    @commentlist = @project_gigapan.comments.to_a
   end
 
   # GET /project_gigapans/new
@@ -28,28 +29,34 @@ class ProjectGigapansController < ApplicationController
     temp = project_gigapan_params
     if(correct_url?(temp[:url]))
       ident = temp[:url].split("/").last
-      hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
-      temp[:ext_id] = hash["id"]
-      if is_number?(ident)
-        temp[:authcode] = "null"
-        temp[:private] = false
-      else 
-        temp[:authcode] = ident
-        temp[:private] = true
-      end
-      temp[:width] = hash["width"]
-      temp[:height] = hash["height"]
-      @project_gigapan = ProjectGigapan.new(temp)
-  
-      respond_to do |format|
-        if @project_gigapan.save
-          format.html { redirect_to @project_gigapan, notice: 'Project gigapan was successfully created.' }
-          format.json { render :show, status: :created, location: @project_gigapan }
-        else
-          format.html { render :new }
-          format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
+      begin
+        hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
+        temp[:ext_id] = hash["id"]
+        if is_number?(ident)
+          temp[:authcode] = "null"
+          temp[:private] = false
+        else 
+          temp[:authcode] = ident
+          temp[:private] = true
         end
-      end
+        temp[:width] = hash["width"]
+        temp[:height] = hash["height"]
+        @project_gigapan = ProjectGigapan.new(temp)
+    
+        respond_to do |format|
+          if @project_gigapan.save
+            format.html { redirect_to @project_gigapan, notice: 'Project gigapan was successfully created.' }
+            format.json { render :show, status: :created, location: @project_gigapan }
+          else
+            format.html { render :new }
+            format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
+          end
+        end
+      rescue OpenURI::HTTPError => e
+        flash[:errors] = 'GigaPan not found'
+        @project_gigapan = ProjectGigapan.new
+        redirect_to :action=> "new", :project_id =>temp[:project_id]
+      end 
     else
       @project_gigapan = ProjectGigapan.new(temp)
       respond_to do |format|
@@ -112,5 +119,9 @@ class ProjectGigapansController < ApplicationController
     def is_number? string
       true if Integer(string) rescue false
     end
+    
+   def correct_url? string
+     true if (string.starts_with?('http://gigapan.com/gigapans/')) rescue false
+   end
 
 end
