@@ -1,4 +1,53 @@
+<%= javascript_tag do %>
+  var gigapan = {
+         "id" : 158876 ,
+         "authKey" : null,
+         "width" : 13308,
+         "height": 4028 
+      };
+
+      var viewer = null;
+
+      $(document).ready(function() {
+
+         // configure Seadragon
+         Seadragon.Config.imageLoaderLimit = 6;             // max number of concurrent image downloads
+         Seadragon.Config.autoHideControls = false;     
+         Seadragon.Config.imagePath = "/assets/img/";
+
+         // create and initialize the viewer
+         viewer = new Seadragon.Viewer("gigapan_viewer");
+         viewer.setDashboardEnabled(false);
+
+         // disable click to zoom
+         viewer.tracker.clickHandler = null;
+
+
+         // load the gigapan
+         loadGigapan();
+      });
+
+      function loadGigapan() {
+         // clear the viewer
+         viewer.close();
+
+         window.setTimeout(function() {
+
+            // create the tile source
+            var tileSource = new org.gigapan.seadragon.GigapanTileSource(
+                  org.gigapan.GigapanUtils.createTileSourceUrlPrefixForGigapan(gigapan['id'], gigapan['authKey']),
+                  gigapan['width'],
+                  gigapan['height']
+            );
+
+            // tell the viewer to open the tile source
+            viewer.openTileSource(tileSource);
+         }, 1);
+      }
+
+<% end %>
   <h1>Welcome</h1>
+  <div id="gigapan_viewer"></div>
 <div class="main">
   <p>The GigaPan Youth Exchange project combines cultural inquiry, NASA imaging technology, 
   and social media to let secondary-school students experience something of the life of their 
