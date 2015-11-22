@@ -116,5 +116,10 @@ height: 200px;
    background-image: url("/assets/blank.gif"); /* Fixes IE's inability to capture mouse events on clear divs -- props to http://www.webmasterworld.com/forum91/2131.htm */
 }
 
+.comment:hover {
+ cursor:pointer;
+}
+
+
 
 

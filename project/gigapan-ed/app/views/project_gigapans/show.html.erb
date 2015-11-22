@@ -5,7 +5,7 @@
 <%= link_to 'Edit', edit_project_gigapan_path(@project_gigapan) %>
 <%= javascript_tag do %>
       var SNAPSHOT_TOOL_CONFIG = {
-         aspectRatio : 3 / 2,       
+         aspectRatio : 4 / 3,       
          useMask : true         
       };
   var gigapan = {
@@ -97,8 +97,7 @@ $("#form_id").hide();
       $("#snapshotAllButton").val("Hide All Snapshots");
       }
    });
-
-         // load the gigapan
+      // load the gigapan
          loadGigapan();
       });
 
@@ -220,6 +219,7 @@ function showAllSnapshotRectangles()
 <% @commentlist.each do |comment| %>
 
     <% if comment.parent_id.nil? %>
+   <div class="comment" onmouseover="highlight_snapshot(<%=comment.id%>)" onmouseout="unhighlight_snapshot(<%=comment.id%>)" onclick="view_snapshot(<%=comment.id%>)">
         <% @name = comment.user.first_name.to_s() + " " + comment.user.last_name.to_s() %>
         
         <h4>
@@ -234,7 +234,7 @@ function showAllSnapshotRectangles()
         <p><%= comment.content %></p>
         <%= time_ago_in_words(comment.created_at) %> ago from <%= link_to comment.user.organization.name, comment.user.organization %>
         
-        <br>
+        </div>
 <%= render :partial => 'comments/form', :locals => {:comment => comment} %>
         
         <% if comment.comments.count != 0 %>
