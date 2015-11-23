@@ -192,12 +192,29 @@ function showAllSnapshotRectangles()
    }
 
 <% end %>
+<%= javascript_tag do %>
+$(window).scroll(function(e){ 
+    var clientHeight = document.getElementById('gigapan_snapshots').style.height;
+  var $el = $('.fixedElement'); 
+  var isPositionFixed = ($el.css('position') == 'fixed');
+  if ($(this).scrollTop() > $('#sticky-anchor').offset().top && !isPositionFixed){ 
+    $('.fixedElement').css({'position': 'fixed', 'top': '0px'}); 
+    $('.hiddenElement').css({display: 'block', height: '336'});
+  }
+  if ($(this).scrollTop() < $('#sticky-anchor').offset().top && isPositionFixed)
+  {
+    $('.fixedElement').css({'position': 'static', 'top': '0px'}); 
+    $('.hiddenElement').css({display: 'none'});
+  } 
+});
+<% end %>
 
+<div id="sticky-anchor"></div>
+<div id="replacement" class = "hiddenElement"></div>
+<div id="gigapan_snapshots" class = "fixedElement">
 <div id="gigapan_viewer"></div>
-
 <input id="snapshotToolButton" type="button" value="Snapshot Tool">
 <input id="snapshotAllButton" type="button" value="Show All Snapshots">
-
 <%= form_for([@project_gigapan, @project_gigapan.comments.build], :html => {:id => "form_id"}) do |f| %>
   <div class="field">
     <%= f.label "Comment" %>
@@ -214,6 +231,9 @@ function showAllSnapshotRectangles()
      <%= f.submit 'Submit', :class => "submitButton" %>
   </div>
   <%end%>
+</div>
+
+
 
 <a name="comments"></a>
 
