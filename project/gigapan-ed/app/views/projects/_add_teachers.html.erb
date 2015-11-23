@@ -13,10 +13,10 @@
     </div>
   <% end %>
   
-  <%= f.label :visible %>:
+  <%= f.label "Teachers" %>:
   <div class="field">
     <% @teachers = User.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
-    <%= f.collection_select :user_ids, @teachers, :id, :username, {}, :multiple => true %>
+    <%= f.collection_check_boxes :user_ids, @teachers, :id, :username, {}, :multiple => true %>
     <% @students = User.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
     <%= f.collection_select :user_ids, @students, :id, :username, {}, :multiple => true, :style => "display: none;" %>
 

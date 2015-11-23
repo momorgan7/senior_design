@@ -1,6 +1,6 @@
 class ProjectGigapan < ActiveRecord::Base
     belongs_to :project
-    has_many :comments
+    has_many :comments, :dependent => :destroy
     attr_accessor :url
 
   def url

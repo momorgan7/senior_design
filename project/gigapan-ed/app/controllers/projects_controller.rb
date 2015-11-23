@@ -74,6 +74,12 @@ class ProjectsController < ApplicationController
     render 'edit'
   end
   
+  def delete_project_gigapans
+    @project = Project.find(params[:project])
+    @type = "gigapans"
+    render 'edit'
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project

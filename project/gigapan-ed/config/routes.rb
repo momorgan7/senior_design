@@ -33,6 +33,7 @@ Rails.application.routes.draw do
  
   match '/add_students', to: 'projects#add_students', via:  'get'
   match '/add_teachers', to: 'projects#add_teachers', via:  'get'
+  match '/delete_project_gigapans', to: 'projects#delete_project_gigapans', via:  'get'
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   

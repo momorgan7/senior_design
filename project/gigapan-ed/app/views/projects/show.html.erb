@@ -4,7 +4,8 @@
 
 <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
     <%= link_to 'Edit Project', edit_project_path(@project) %> <br> <br>
-    <%= link_to 'Add GigaPans', new_project_gigapan_path(:project_id => @project.id) %>
+    <%= link_to 'Add GigaPans', new_project_gigapan_path(:project_id => @project.id) %> <br>
+    <%= link_to 'Remove GigaPans', delete_project_gigapans_path(project: @project)%>  <br> <br>
 <% end %>
 <p><%= @project.desc %></p>
 

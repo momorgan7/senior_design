@@ -1,0 +1,25 @@
+<h3>Editing Project Gigapan List</h3>
+
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  Select only the gigapans that you want to keep<br>
+  <%= f.label "Project Gigapans" %>:
+  <div class="field">
+    <% @project_gigapans = ProjectGigapan.where('project_id = ?', @project.id) %>
+    <%= f.collection_check_boxes :project_gigapan_ids,@project_gigapans, :id, :name, {}, :multiple => true %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit "Update Project Gigapan List", class: "btn btn-primary"%>
+  </div>
+<% end %>

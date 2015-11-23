@@ -2,7 +2,7 @@ class Comment < ActiveRecord::Base
     belongs_to :project_gigapan
     belongs_to :user
     belongs_to :parent, :class_name => "Comment"
-    has_many :comments, :foreign_key => "parent_id"
+    has_many :comments, :foreign_key => "parent_id", :dependent => :destroy
     
     validates :content,
     :presence => true

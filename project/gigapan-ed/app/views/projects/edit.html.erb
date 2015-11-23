@@ -3,6 +3,8 @@
 <%= render 'add_students' %>
 <% elsif @type == "teachers" %>
 <%= render 'add_teachers' %>
+<% elsif @type == "gigapans" %>
+<%= render 'delete_project_gigapans' %>
 <% else %>
 <h1>Editing Project</h1>
 <%= render 'form' %>
