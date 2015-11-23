@@ -63,9 +63,31 @@ height: 200px;
 	  padding-right: 16px;
 	 
 	}
+input:not([type]){
+  width: 0;
+  height: 0;
+  position: relative;
+  bottom: -15px;
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  border-color: transparent transparent transparent #748fab;
+  -webkit-backface-visibility:hidden;
+    -webkit-transition: all 0.2s ease-in-out;
+       -moz-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+  
 
+}
 	
-	
+  .rotate{
+     -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+     -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+  }
+  
 	.usrform {
 	  label {
 	    width: 170px;
