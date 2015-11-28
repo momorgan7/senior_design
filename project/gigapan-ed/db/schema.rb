@@ -97,6 +97,8 @@ ActiveRecord::Schema.define(version: 20151121154539) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
+    t.integer  "failed_attempts",        limit: 4,   default: 0,  null: false
+    t.datetime "locked_at"
     t.string   "avatar",                 limit: 255
     t.integer  "organization_id",        limit: 4
     t.string   "first_name",             limit: 255

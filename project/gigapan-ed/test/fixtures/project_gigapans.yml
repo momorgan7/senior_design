@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  gigapan: one
+  name: MyTitle
+  ext_id: 104810
+  authcode: 104810
+  height: 123123
+  width: 123123
   project: one
+  private: true
   desc: MyText
 
 two:
-  gigapan: one
+  name: MyTitle2
+  ext_id: 104812
+  authcode: 104123
+  height: 123123
+  width: 123123
   project: one
+  private: false
   desc: MyText

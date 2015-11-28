@@ -58,6 +58,8 @@ RailsAdmin.config do |config|
       field :organization
       field :roles
       field :avatar
+      field :locked_at
+      field :failed_attempts
     end
     show do
 
@@ -73,6 +75,8 @@ RailsAdmin.config do |config|
       field :roles
       field :organization
       field :avatar
+      field :locked_at
+      field :failed_attempts
     end
     list do
       field :username
@@ -86,6 +90,8 @@ RailsAdmin.config do |config|
       field :sign_in_count
       field :organization
       field :roles
+      field :locked_at
+      field :failed_attempts
     end
   end
   

@@ -3,7 +3,7 @@ require 'test_helper'
 class CommentTest < ActiveSupport::TestCase
   
   def setup
-    @comment = Comment.new(reply:"true",content:"x",x_coord:"1",y_coord:"1",user_id: "1", project_gigapan_id: "1")
+    @comment = Comment.new(content:"x",parent_id:"1",x_coord:"1",width:"1",height:"1",y_coord:"1",user_id: "1", project_gigapan_id: "1")
   end
 
   test "should be valid" do
@@ -25,11 +25,11 @@ class CommentTest < ActiveSupport::TestCase
     assert_not @comment.valid?
   end
   
-  # need to work on this one a bit more
-  # test "reply should target user" do
-  #   @comment.reply = true
-  #   @comment.reply_to = ""
-  #   assert_not @comment.valid?
-  # end
+  
+  # not sure if this one is working correctly
+  test "reply should target another comment" do
+    @comment.save
+    assert_not_equal @comment.id, @comment.parent_id
+  end
   
 end
