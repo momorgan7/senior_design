@@ -22,7 +22,7 @@ class OrganizationsControllerTest < ActionController::TestCase
 
   test "should create organization" do
     assert_difference('Organization.count') do
-      post :create, organization: { name: 'test', city: 'test', state: 'test', country: @country , users: @user}
+      post :create, organization: { name: 'test', city: 'test', state: 'test', country: @country, timezone: 'test'}
     end
 
     assert_redirected_to organization_path(assigns(:organization))
