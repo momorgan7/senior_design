@@ -21,10 +21,7 @@ class ProjectGigapansControllerTest < ActionController::TestCase
 
   test "should create project_gigapan" do
     assert_difference('ProjectGigapan.count') do
-      post :create, project_gigapan: {  name: 'TEST',
-                                        url: 'http://gigapan.com/gigapans/10468',
-                                        project: @project,
-                                        desc: 'MyText' }
+      post :create, project_gigapan: {  name: 'TEST', url: 'http://gigapan.com/gigapans/10468', ext_id: '10468', private: 'false', height: '18000', width: '18000', project_id: @project.id, desc: 'MyText' }
     end
 
     assert_redirected_to project_gigapan_path(assigns(:project_gigapan))
