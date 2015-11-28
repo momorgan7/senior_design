@@ -9,10 +9,12 @@ html {
   min-height: 100%;
 }
 body { padding-bottom: 200px; }
+
 .main{
  
   padding-left: 50px;
   padding-top: 30px;
+  padding-right: 50px;
  
 }
 
@@ -127,8 +129,8 @@ input:not([type]){
 	
 	     #gigapan_viewer {
          border: 1px solid black;
-         width: 960px;
-         height: 310px;
+         width: 1040px;
+         height: 374px;
          background-color: black;
       }
 
@@ -147,4 +149,8 @@ input:not([type]){
 }
 
 
-
+#frontpage { padding-top: 20px;
+p {font-size: 14pt;
+  text-align: center;
+  line-height: 16pt;
+}}
