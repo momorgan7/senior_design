@@ -1,20 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reply: false
   content: MyText
+  parent: null
   project_gigapan: one
   user: one
   x_coord: 1.5
   y_coord: 1.5
+  width: 1
+  height: 1
 
 
 two:
-  reply: true
-  reply_to: 1
   content: MyText
+  parent: one
   project_gigapan: one
   user: one
   x_coord: 1.5
   y_coord: 1.5
+  width: 1
+  height: 1
 

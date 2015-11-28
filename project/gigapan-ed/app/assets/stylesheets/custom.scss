@@ -146,5 +146,7 @@ input:not([type]){
    background: white;
 }
 
-
+.checkbox_container input {
+  display: block;
+}
 

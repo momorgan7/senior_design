@@ -7,11 +7,10 @@ Minitest::Reporters.use!
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical
   # order.
-  fixtures :all
+  include Devise::TestHelpers
+  fixtures :comments, :countries, :organizations, :project_gigapans, :projects, :roles, :users
 
 
   # Add more helper methods to be used by all tests here...
 end
-class ActionController::TestCase
-  include Devise::TestHelpers
-end
+

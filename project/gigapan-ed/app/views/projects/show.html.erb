@@ -22,7 +22,7 @@ Teachers:<br>
     <% end %>
 <% end %>
     <% if @project.active %>
-    <% if current_user.has_role?(:admin)%>
+    <% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
         <%= link_to  'Add teachers', add_teachers_path(project: @project)%><br> <br>
     <% end %>
 <% end %>

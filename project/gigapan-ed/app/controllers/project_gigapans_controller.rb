@@ -11,13 +11,14 @@ class ProjectGigapansController < ApplicationController
   # GET /project_gigapans/1
   # GET /project_gigapans/1.json
   def show
+    @project_gigapan = ProjectGigapan.find(params[:id])
     @commentlist = @project_gigapan.comments.to_a
   end
 
   # GET /project_gigapans/new
   def new
     @project_gigapan = ProjectGigapan.new
-    @project = Project.find(params[:project_id])
+    @project_id = params[:project_id]
   end
 
   # GET /project_gigapans/1/edit
@@ -56,13 +57,14 @@ class ProjectGigapansController < ApplicationController
       rescue OpenURI::HTTPError => e
         flash[:errors] = 'GigaPan not found'
         @project_gigapan = ProjectGigapan.new
-        redirect_to :action=> "new", :project_id =>temp[:project_id]
+        @project_id = temp[:project_id]
+        redirect_to :action=> "new"
       end 
     else
       @project_gigapan = ProjectGigapan.new(temp)
       respond_to do |format|
-         @project_gigapan.project_id = temp[:project_id]
-         format.html { render :new}
+         @project_id = temp[:project_id]
+         format.html { render :new, :project_id =>temp[:project_id]}
          @project_gigapan.errors.add(:url,"is not in the correct format. Example: http://gigapan.com/gigapans/idnumber")
          format.json { render json: @project_gigapan.errors, status: :unprocessable_entity }
       end

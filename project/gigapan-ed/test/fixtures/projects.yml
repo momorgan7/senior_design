@@ -3,12 +3,12 @@
 one:
   name: MyString
   desc: MyText
-  active: false
-  visible: false
+  active: true
+  visible: true
   users: one, two
 
 two:
-  name: MyString
+  name: MyString2
   desc: MyText
   active: false
   visible: false

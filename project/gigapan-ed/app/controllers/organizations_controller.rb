@@ -11,17 +11,16 @@ class OrganizationsController < ApplicationController
   # GET /organizations/1
   # GET /organizations/1.json
   def show
+    @organization = Organization.find(params[:id])
   end
 
   # GET /organizations/new
   def new
-  
     @organization = Organization.new
   end
 
   # GET /organizations/1/edit
   def edit
-
     @organization = Organization.find(params[:id])
   end
 
@@ -73,6 +72,6 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name,:city,:state,:country_id, :timezone,:user_ids)
+      params.require(:organization).permit(:name,:city,:state,:country_id, :timezone, user_ids: [])
     end
 end
