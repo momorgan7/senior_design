@@ -2,11 +2,11 @@ class ProjectGigapansController < ApplicationController
    before_filter :authenticate_user!
   before_action :set_project_gigapan, only: [:show, :edit, :update, :destroy]
 
-  # GET /project_gigapans
-  # GET /project_gigapans.json
-  def index
-    @project_gigapans = ProjectGigapan.all
-  end
+  # # GET /project_gigapans
+  # # GET /project_gigapans.json
+  # def index
+  #   @project_gigapans = ProjectGigapan.all
+  # end
 
   # GET /project_gigapans/1
   # GET /project_gigapans/1.json
@@ -96,7 +96,7 @@ class ProjectGigapansController < ApplicationController
   end
 
   def get_replies(parent_comments)
-   parent_comments.each do |comment|
+   parent_comments.find_each do |comment|
      yield(comment)
       unless comment.comments.is_empty?
          get_replies(comment.comments) {|x| yield x}

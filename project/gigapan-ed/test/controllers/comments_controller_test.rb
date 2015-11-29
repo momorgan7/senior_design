@@ -3,6 +3,7 @@ require 'test_helper'
 class CommentsControllerTest < ActionController::TestCase
   setup do
     @comment = comments(:one)
+    @project_gigapan = project_gigapans(:one)
   end
 
   # test "should get index" do
@@ -18,7 +19,14 @@ class CommentsControllerTest < ActionController::TestCase
 
   # test "should create comment" do
   #   assert_difference('Comment.count') do
-  #     post :create, comment: {  }
+  #     post :create, comment: {  content: @comment.content,
+  #                               parent: @comment.parent,
+  #                               project_gigapan: @comment.project_gigapan,
+  #                               user: @comment.user,
+  #                               x_coord: @comment.x_coord,
+  #                               y_coord: @comment.y_coord,
+  #                               width: @comment.width,
+  #                               height: @comment.height  }
   #   end
 
   #   assert_redirected_to comment_path(assigns(:comment))
