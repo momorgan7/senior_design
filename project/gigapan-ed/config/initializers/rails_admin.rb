@@ -26,9 +26,11 @@ RailsAdmin.config do |config|
     bulk_delete do
       except ["Role", "Organization", "Country"]
     end
-    show
-    edit do
+    show do
       except ["Country"]
+    end
+    edit do
+      except ["Country", "Comments"]
     end
     delete do
       except ["Role", "Organization", "Country"]
@@ -126,7 +128,7 @@ RailsAdmin.config do |config|
   config.model "Organization" do
     
   edit do
-          field :name 
+      field :name 
       field :city
       field :state
       field :country
@@ -210,6 +212,25 @@ RailsAdmin.config do |config|
       field :project_id
       field :ext_id
       field :private
+      field :created_at
+    end
+  end
+     config.model "Comments" do
+    show do
+      field :content
+      field :parent_id
+      field :x_coord
+      field :y_coord
+      field :user
+      field :project_gigapan
+      field :comments
+      field :created_at
+    end
+    list do
+      field :user
+      field :project_gigapan
+      field :content
+      field :comments
       field :created_at
     end
   end

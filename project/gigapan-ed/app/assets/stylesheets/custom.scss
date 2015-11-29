@@ -53,11 +53,6 @@ body { padding-bottom: 200px; }
 .hidden { display: none; }
 
 
-.topbar{
-height: 200px;
-}
-
-
 
 .flag { width: 16px; 
 	clear: right; 
@@ -117,15 +112,9 @@ input:not([type]){
 	    vertical-align: middle;
 	  }
 
-.button{
-  padding-top: 25px;
-}
 	  
 	}
-	
-	#dash{
-	  padding-top: 20px;
-	}
+
 	
 	     #gigapan_viewer {
          border: 1px solid black;
@@ -157,4 +146,12 @@ p {font-size: 14pt;
 .checkbox_container input {
   display: block;
 }
-
+h3 {
+  font-size: 14pt;
+}
+#dash{
+  padding-top: 20px;
+}
+.dash-gig{
+  padding-top: 20px;
+}

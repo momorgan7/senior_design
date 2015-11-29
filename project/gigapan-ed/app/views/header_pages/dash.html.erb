@@ -6,12 +6,6 @@
       image_tag current_user.avatar.url.to_s
       else image_tag "default_avatar.jpg"
       end%>
-      <div id="dash">
-      <p><%= link_to 'Edit Profile', edit_user_path(current_user) %> </p>
-      <% if !current_user.has_role?(:student)%>
-      <p><%=link_to 'Create Project', new_project_path%></p>
-      <p><%=link_to 'Create New Student', new_user_path%></p>
-      <%end%></div>
   </div>
   <div class="col-md-7"> 
     <div class="topbar">
@@ -25,18 +19,33 @@
     <p>Content Area: <%= current_user.cont_area%></p>
     <%end%>
       <%end%>
+    </div>
   </div>
-      <div class="projects">
-        
-        <h2>Current Projects</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div id="dash">
+      <p><%= link_to 'Edit Profile', edit_user_path(current_user) %> </p>
+      <% if !current_user.has_role?(:student)%>
+      <p><%=link_to 'Create Project', new_project_path%></p>
+      <p><%=link_to 'Create New Student', new_user_path%></p>
+      <%end%></div>
+    </div>
+    <div class="col-md-7">
+      <div class="row">
+      <h2>Current Projects</h2>
         <% if current_user.projects.where("active = 1").size == 0 %>
           No projects
         <% else%>
           <% current_user.projects.each do |project| %>
             <% if project.active && project.visible %>
-              <%= link_to  project.name, project %> <br>
+        <div class="col-sm-7">
+          <h3><%= link_to  project.name, project %> </h3>
               <p><%= project.desc %></p>
-              <% @thumbwidth = 176 %>
+        </div>
+        <div class="col-sm-3">
+          <div class="dash-gig">
+          <% @thumbwidth = 176 %>
               <% project.project_gigapans.take(3).each do |gigapan| %>
       
                   <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
@@ -48,22 +57,27 @@
                   
                   <!--height is calculated dynamically to fit the width dimensions-->
                   <% @height = gigapan.height*@thumbwidth/gigapan.width %>
-                  
                   <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
                   <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
-                  <br>
-              <% end %>
-             <br>
+                <% end %>
+                </div>
+        </div>
              <% end %>
           <% end %>
         <% end %>
-
-  <% if current_user.projects.where("visible = 0").size != 0 %>
-          <h2>Draft Projects</h2>
-          <% current_user.projects.each do |project| %>
+      </div>
+      <div class="row">
+        <% if current_user.projects.where("visible = 0").size != 0 %>
+        <h2>Draft Projects</h2>
+         <% current_user.projects.each do |project| %>
             <% if project.active && !project.visible %>
-              <%= link_to  project.name, project %> <br>
-              <% @thumbwidth = 176 %>
+        <div class="col-sm-7">
+           <h3><%= link_to  project.name, project %> </h3>
+          <p><%= project.desc %></p>
+        </div>
+        <div class="col-sm-3">
+          <div class="dash-gig">
+          <% @thumbwidth = 176 %>
               <% project.project_gigapans.take(3).each do |gigapan| %>
       
                   <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
@@ -75,27 +89,30 @@
                   
                   <!--height is calculated dynamically to fit the width dimensions-->
                   <% @height = gigapan.height*@thumbwidth/gigapan.width %>
-                  
                   <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
                   <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
-                  <br>
-              <% end %>
-             <br>
+                <% end %>
+                </div>
+        </div>
              <% end %>
           <% end %>
         <% end %>
-        
+      </div>
+      <div class="row">
         <% if current_user.projects.where("active = 0").size != 0 %>
           <h2>Archived Projects</h2>
           <% current_user.projects.each do |project| %>
-            <% if !project.active || !project.visible %>
-              <%= link_to  project.name, project %> <br>
-             <br>
+            <% if !project.active && project.visible %>
+        <div class="col-sm-7">
+           <h3><%= link_to  project.name, project %> </h3>
+              <p><%= project.desc %></p>
+        </div>
              <% end %>
           <% end %>
         <% end %>
       </div>
       
+      
+    </div>
   </div>
-</div>
 </div>
