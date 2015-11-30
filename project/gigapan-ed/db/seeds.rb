@@ -264,3 +264,4 @@ Organization.create(name:"Gigapan Administrators",city:"Portage",state:"MI", cou
 User.create(username:"batman", first_name: "bat", last_name: "man", password:"password",password_confirmation:"password",email:"batman@gothamcity.net", organization_id: "1", roles: [Role.first]) 
 User.create(username:"robin", first_name: "robin",password:"password",password_confirmation:"password",email:"robin@gothamcity.net", organization_id: "1", roles: [Role.second]) 
 User.create(username:"bruce", first_name: "bruce",password:"password",password_confirmation:"password",email:"bruce@gothamcity.net", organization_id: "1", roles: [Role.third]) 
+User.create(username:"default", first_name: "default", last_name: "user",password:"password",password_confirmation:"password",email:"default@default.net", organization_id: "1", roles: [Role.third]) 
