@@ -250,11 +250,17 @@ $(window).scroll(function(e){
   </div>
   <%end%>
 </div>
-
+<div class="all_comments">
 <% @commentlist.each do |comment| %>
 
     <% if comment.parent_id.nil? %>
    <div class="comment" onmouseover="highlight_snapshot(<%=comment.id%>)" onmouseout="unhighlight_snapshot(<%=comment.id%>)" onclick="view_snapshot(<%=comment.id%>)">
+     <% if comment.user.has_role?(:admin) || comment.user.has_role?(:teacher) %>
+     <div class="com_teacher">
+    <% else%>
+         <div class="com_student">
+    <%end%>
+ 
         <% @name = comment.user.first_name.to_s() + " " + comment.user.last_name.to_s() %>
         
         <h4>
@@ -266,19 +272,26 @@ $(window).scroll(function(e){
                 <img class="flag <%=comment.user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
             says:
         </h4>
+        <div class="content">
         <p><%= comment.content %></p>
         <%= time_ago_in_words(comment.created_at) %> ago from <%= link_to comment.user.organization.name, comment.user.organization %>
-        
         </div>
+
+        </div>
+        </div> 
+        <div class="com_form">
 <%= render :partial => 'comments/form', :locals => {:comment => comment} %>
-        
+        </div>
         <% if comment.comments.count != 0 %>
             <% comment.comments.each do |comment| %>
+            <div class="reply">
                 <%= render :partial => 'comment', :locals => {:comment => comment} %>
+            </div>
             <% end %>    
         <% end %>
     <% end %>
 <% end %>
+</div>
 </div>
 
 

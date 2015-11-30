@@ -7,10 +7,11 @@
       else image_tag "default_avatar.jpg"
       end%>
   </div>
-  <div class="col-md-7"> 
+  <div class="col-md-8"> 
     <div class="topbar">
       <% if current_user.has_role?(:student) %>
-      <h2> <%= current_user.first_name%> <%=current_user.last_name%> a student from place, location</h2>
+      <h2> <%= current_user.first_name%>, a student from <%= link_to current_user.organization.name, current_user.organization %>, <%=current_user.organization.city%>, 
+    <%=current_user.organization.state%>, <%=current_user.organization.country.name%></h2>
       <%else%>
     <h2> <%= current_user.first_name%> <%=current_user.last_name%> from 
     <%= link_to current_user.organization.name, current_user.organization %>, <%=current_user.organization.city%>, 

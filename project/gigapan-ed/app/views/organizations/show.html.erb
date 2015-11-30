@@ -1,54 +1,64 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'Back', organizations_path %>
 <h2><%= @organization.name %></h2>
-<%= @organization.city %>, <%= @organization.state %>, <%= @organization.country.name %><br>
-<br>
-<% @students = @organization.users.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
-<% @teachers = @organization.users.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
-<%= @students.count %> Students, 
-<%= @teachers.count %> Teachers<br>
-<br>
-<b>Teachers:</b>
-<% @teachers.order(:first_name).each do |teacher| %>
-<% @name = teacher.first_name.to_s() +" "+ teacher.last_name.to_s() %>
-<li>
-    <%= link_to @name, teacher %>
-    <img class="flag <%=teacher.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
-</li>
-<% end %>
-<br>
-<b>Students:</b>
-<% @students.order(:first_name).each do |student| %>
-<% @name = student.first_name.to_s() +" "+ student.last_name.to_s() %>
-<li>
-    <%= link_to @name, student %>
-    <img class="flag <%=student.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
-</li>
-<% end %>
-<br>
-<h3>Projects:</h3>
-<% @organization.projects.uniq.each do |project| %>
-    <% if project.visible %>
-    <h4><%= link_to project.name, project %></h4>
-    <p><%= project.desc %></p>
-    <% @thumbwidth = 176 %>
-        <% project.project_gigapans.take(3).each do |gigapan| %>
-
-            <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
-            <% if gigapan.private %>
-                <% @gig_id = gigapan.authcode %>
-            <% else %>
-                <% @gig_id = gigapan.ext_id %>
+<div class="main">
+    <h4><%= @organization.city %>, <%= @organization.state %>, <%= @organization.country.name %></h4>
+    <% @students = @organization.users.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
+    <% @teachers = @organization.users.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
+    <%= @students.count %> Students, 
+    <%= @teachers.count %> Teachers
+    <div class="row">
+        <div class="col-md-3">
+            <div id="o_users">
+            <b>Teachers:</b>
+            <% @teachers.order(:first_name).each do |teacher| %>
+            <% @name = teacher.first_name.to_s() +" "+ teacher.last_name.to_s() %>
+            <li>
+                <%= link_to @name, teacher %>
+                <img class="flag <%=teacher.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+            </li>
             <% end %>
-            
-            <!--height is calculated dynamically to fit the width dimensions-->
-            <% @height = gigapan.height*@thumbwidth/gigapan.width %>
-            
-            <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
-            <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
             <br>
-        <% end %>
-    <% end %>
-<% end %>
-
-<!--<%= link_to 'Edit', edit_organization_path(@organization) %> |-->
+            <b>Students:</b>
+            <% @students.order(:first_name).each do |student| %>
+            <% @name = student.first_name.to_s() +" "+ student.last_name.to_s() %>
+            <li>
+                <%= link_to @name, student %>
+                <img class="flag <%=student.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+            </li>
+            <% end %>
+            <br>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h3>Projects:</h3>
+                <div class="row">
+                    <% @organization.projects.uniq.each do |project| %>
+                    <% if project.visible %>
+                        <div class="col-sm-7">
+                          <h3><%= link_to  project.name, project %> </h3>
+                          <p><%= project.desc %></p>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="dash-gig">
+                            <% @thumbwidth = 176 %>
+                            <% project.project_gigapans.take(3).each do |gigapan| %>
+      
+                              <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
+                              <% if gigapan.private %>
+                                  <% @gig_id = gigapan.authcode %>
+                              <% else %>
+                                  <% @gig_id = gigapan.ext_id %>
+                              <% end %>
+                  
+                              <!--height is calculated dynamically to fit the width dimensions-->
+                              <% @height = gigapan.height*@thumbwidth/gigapan.width %>
+                              <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
+                              <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
+                            <% end %>
+                          </div>
+                       </div>
+                    <% end %>
+                    <% end %>
+                </div>
+        </div>
+    </div>
+</div>
