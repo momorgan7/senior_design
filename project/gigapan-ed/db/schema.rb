@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121154539) do
+ActiveRecord::Schema.define(version: 20151129210527) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content",            limit: 65535
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20151121154539) do
     t.text     "desc",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.boolean  "featured",   limit: 1
   end
 
   add_index "project_gigapans", ["project_id"], name: "index_project_gigapans_on_project_id", using: :btree

@@ -1,10 +1,15 @@
+
 <%= javascript_tag do %>
-  var gigapan = {
-         "id" : 158876 ,
-         "authKey" : null,
-         "width" : 13308,
-         "height": 4028 
-      };
+
+    var gigapan_ids = [<% @featured_gigapans.each do |featured_gigapan| %>
+    "<%= featured_gigapan.id%>"<%if featured_gigapan == @featured_gigapans.last %><%else%>,<%end%><%end%>];
+    
+     var gigapans = {<% @featured_gigapans.each do |featured_gigapan| %>
+    "<%= featured_gigapan.id %>" : {"description" : "<%= featured_gigapan.desc%>", "authKey" : <%=featured_gigapan.authcode%>, "width" : <%=featured_gigapan.width%>, "height" : <%=featured_gigapan.height%>, "id" :  <%= featured_gigapan.ext_id %>, "name" : "<%= featured_gigapan.name%>"}<%if featured_gigapan == @featured_gigapans.last %><%else%>,<%end%><%end%>
+    };
+   
+
+        
 
       var viewer = null;
 
@@ -21,29 +26,52 @@
 
          // disable click to zoom
          viewer.tracker.clickHandler = null;
+  });
 
+ $(document).ready(function () {
+         loadGigapan(gigapans[gigapan_ids[0]]);
 
-         // load the gigapan
-         loadGigapan();
+         // create the slideshow control
+         var slideshowControl = new SlideshowControl(
+               $,
+               gigapan_ids,
+               gigapan_ids[0],
+               "/assets/dl_slider_item_off.png",
+               "/assets/dl_slider_item_on.png",
+               function(id)
+                  {
+                  loadGigapan(gigapans[id]);
+                  },
+               "slideshow_button"
+               );
+         var slideshowControlElement = slideshowControl.getElement();
+         slideshowControlElement.id = "slideshow_control";
+         slideshowControlElement.className = "slideshow_control";
+
+         // add the slideshow control to the viewer
+         viewer.addControl(slideshowControlElement, Seadragon.ControlAnchor.BOTTOM_LEFT);
+
       });
 
-      function loadGigapan() {
+      function loadGigapan(gigapan) {
          // clear the viewer
          viewer.close();
+  $("#gigapan_name").html(gigapan['name']);
+         $("#gigapan_desc").html(gigapan['description']);
 
          window.setTimeout(function() {
 
             // create the tile source
             var tileSource = new org.gigapan.seadragon.GigapanTileSource(
-                  org.gigapan.GigapanUtils.createTileSourceUrlPrefixForGigapan(gigapan['id'], gigapan['authKey']),
-                  gigapan['width'],
-                  gigapan['height']
+                  org.gigapan.GigapanUtils.createTileSourceUrlPrefixForGigapan(gigapan.id, gigapan.authKey),
+                  gigapan.width,
+                  gigapan.height
             );
-
             // tell the viewer to open the tile source
             viewer.openTileSource(tileSource);
          }, 1);
       }
+
 
 <% end %>
   <h1>Welcome</h1>
@@ -51,13 +79,22 @@
 <div class ="main">
   
    <div id="gigapan_viewer"></div>
+   <div id="pano_info">
+       <h3>Featured Gigapans</h3>
+       <div id="details">
+       <h4 id="gigapan_name"></h4>
+       <p id="gigapan_desc"></p>
+       </div>
+   </div>
   <div id="frontpage">
+      <div class="jumbotron">
   <p>The GigaPan Youth Exchange project combines cultural inquiry, NASA imaging technology, 
   and social media to let secondary-school students experience something of the life of their 
   peers around the world. Using the GigaPan robotic camera and image exploration platform, 
   the group of students are growing into a community of technologically aware young people 
   who are knowledgeable about their own environment and understand and care about the problems 
   their contemporaries face. Welcome to this glimpse into their journey!</p></div></div>
+  </div>
 
 
 

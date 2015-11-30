@@ -33,7 +33,7 @@
     </div>
     <div class="col-md-7">
       <div class="row">
-      <h2>Current Projects</h2>
+        <h2>Current Projects</h2>
         <% if current_user.projects.where("active = 1").size == 0 %>
           No projects
         <% else%>
@@ -41,11 +41,11 @@
             <% if project.active && project.visible %>
         <div class="col-sm-7">
           <h3><%= link_to  project.name, project %> </h3>
-              <p><%= project.desc %></p>
+          <p><%= project.desc %></p>
         </div>
         <div class="col-sm-3">
           <div class="dash-gig">
-          <% @thumbwidth = 176 %>
+            <% @thumbwidth = 176 %>
               <% project.project_gigapans.take(3).each do |gigapan| %>
       
                   <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
@@ -60,11 +60,11 @@
                   <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
                   <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
                 <% end %>
-                </div>
-        </div>
-             <% end %>
+          </div>
+                       <% end %>
           <% end %>
         <% end %>
+        </div>
       </div>
       <div class="row">
         <% if current_user.projects.where("visible = 0").size != 0 %>

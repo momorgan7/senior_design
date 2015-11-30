@@ -1,5 +1,5 @@
 <h2>Adding Teachers</h2>
-
+<div class="main">
 <%= form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
@@ -13,17 +13,25 @@
     </div>
   <% end %>
   
-  <%= f.label "Teachers" %>:
+  <h4><%= f.label "Teachers" %>:</h4>
   <div class="field">
     <% @teachers = User.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
     <%= f.collection_check_boxes( :user_ids, @teachers, :id, :username, {}, :multiple => true) do |b| %>
-      <%= b.label class:"label-checkbox" do%>
+  <div class="row">
+    <%= b.label(class: "check_box") do %>
+      <div class="col-xs-3">
+        <%= b.check_box(class: "check_box") %>
+      </div>
+
+      <div class="col-xs-9">
         <% @user = User.find(b.value) %>
-        <%=b.check_box + b.text%>
+         <%= b.object.username %>
         <img class="flag <%=@user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
-      <%end%>
-      <br>
+      </div>       
     <% end %>
+  </div>
+<% end %>
+
     <% @students = User.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
     <%= f.collection_select :user_ids, @students, :id, :username, {}, :multiple => true, :style => "display: none;" %>
 
@@ -32,3 +40,4 @@
     <%= f.submit class: "btn btn-primary"%>
   </div>
 <% end %>
+</div>

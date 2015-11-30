@@ -190,12 +190,13 @@ RailsAdmin.config do |config|
         label "Description"
       end
       
-  
+  end
     end
-    config.model "Project_Gigapan" do
+    config.model "Project_Gigapans" do
     edit do
       field :name
       field :desc
+      field :featured
     end
     show do
       field :name
@@ -206,6 +207,7 @@ RailsAdmin.config do |config|
       field :height
       field :width
       field :created_at
+      field :featured
     end
     list do
       field :name
@@ -238,5 +240,3 @@ RailsAdmin.config do |config|
 end
   
   
-  
-end
