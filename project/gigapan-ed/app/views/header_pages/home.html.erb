@@ -7,6 +7,14 @@
      var gigapans = {<% @featured_gigapans.each do |featured_gigapan| %>
     "<%= featured_gigapan.id %>" : {"description" : "<%= featured_gigapan.desc%>", "authKey" : <%=featured_gigapan.authcode%>, "width" : <%=featured_gigapan.width%>, "height" : <%=featured_gigapan.height%>, "id" :  <%= featured_gigapan.ext_id %>, "name" : "<%= featured_gigapan.name%>"}<%if featured_gigapan == @featured_gigapans.last %><%else%>,<%end%><%end%>
     };
+    var gigapan = {
+         "id" :  4778,
+         "authKey" : null,
+         "width" : 45476,
+         "height": 15367,
+         "name" : "The Deer Head at Carrie Furnace",
+         "description" : "Every Sunday for a year and a half, starting in October 1997, a group of Pittsburgh metal artists sneaked into the abandoned Carrie Furnace site, along with their tools and equipment. They used materials found on site to create a 45' tall deer head.\r\n\r\nThe group - Industrial Arts Collective - is currently working on a large scale sculpture on the former Jones and Laughlin and LTV mill sites, on the South Side of Pittsburgh."
+      };
    
 
         
@@ -29,8 +37,11 @@
   });
 
  $(document).ready(function () {
+ <%if @featured_gigapans.blank?%>
+ loadGigapan(gigapan);
+ <%else%>
          loadGigapan(gigapans[gigapan_ids[0]]);
-
+<%end%>
          // create the slideshow control
          var slideshowControl = new SlideshowControl(
                $,

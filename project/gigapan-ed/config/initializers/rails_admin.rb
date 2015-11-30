@@ -20,7 +20,7 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new do
-      except ["Role", "Country"]
+      except ["Role", "Country", "projectgigapan", "comment"]
     end
     export
     bulk_delete do
@@ -50,13 +50,13 @@ RailsAdmin.config do |config|
       field :email
       field :password do
         required false
-      end
+        end
       field :password_confirmation do
         required false
-      end
+        end
       field :cont_area do
         label "Content Area"
-      end
+        end
       field :organization
       field :roles
       field :avatar
@@ -64,7 +64,6 @@ RailsAdmin.config do |config|
       field :failed_attempts
     end
     show do
-
       field :username
       field :first_name
       field :last_name
@@ -126,7 +125,6 @@ RailsAdmin.config do |config|
   end
   
   config.model "Organization" do
-    
   edit do
       field :name 
       field :city
@@ -150,11 +148,9 @@ RailsAdmin.config do |config|
       field :timezone
       field :users
     end
-    
   end
   
   config.model "Project" do
-
    edit do
       field :name 
       field :desc do
@@ -189,10 +185,9 @@ RailsAdmin.config do |config|
       field :desc do
         label "Description"
       end
-      
-  end
     end
-    config.model "Project_Gigapans" do
+  end
+    config.model "ProjectGigapan" do
     edit do
       field :name
       field :desc
@@ -202,7 +197,9 @@ RailsAdmin.config do |config|
       field :name
       field :desc
       field :project_id
-      field :ext_id
+      field :ext_id do
+        label "External ID"
+      end
       field :authcode
       field :height
       field :width
@@ -212,12 +209,14 @@ RailsAdmin.config do |config|
     list do
       field :name
       field :project_id
-      field :ext_id
+      field :ext_id do
+        label "External ID"
+      end
       field :private
       field :created_at
     end
   end
-     config.model "Comments" do
+     config.model "Comment" do
     show do
       field :content
       field :parent_id
@@ -225,15 +224,24 @@ RailsAdmin.config do |config|
       field :y_coord
       field :user
       field :project_gigapan
-      field :comments
+      field :comments do
+        label "Child Comment"
+      end
       field :created_at
     end
     list do
       field :user
       field :project_gigapan
       field :content
-      field :comments
+      field :comments do
+        label "Child Comment"
+      end
       field :created_at
+    end
+    edit do
+      field :content
+      field :user
+      field :project_gigapan
     end
   end
   
