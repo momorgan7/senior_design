@@ -2,9 +2,8 @@ Rails.application.routes.draw do
 
    devise_for :users , :path => 'auth',
      controllers: {:registrations => "registrations"}
-  resources :users
+  resources :users, except: [:index]
   resources :projects
-  resources :gigapans
   resources :organizations
   resources :project_gigapans,  only: [:new, :create, :show, :destroy, :edit, :update] do
      resources :comments, only: [:new, :create]
