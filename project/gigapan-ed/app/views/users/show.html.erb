@@ -6,7 +6,7 @@
       image_tag @user.avatar.url.to_s
       else image_tag 'default_avatar.jpg'
       end%></div>
-  <div class="col-md-7"> 
+  <div class="col-md-9"> 
   <div class="topbar">
   <% if @user.has_role?(:student) %>
   <h2> <%= @user.first_name%> <%=@user.last_name%> a student from <%=@user.organization.name%>, <%=@user.organization.city%>, <%=@user.organization.state%>, <%=@user.organization.country.name%></h2>
@@ -26,7 +26,7 @@
   <div class="row">
   <div class="col-md-3">
     </div>
-    <div class="col-md-7">
+    <div class="col-md-9">
 <div class="row">
         <h2>Current Projects</h2>
         <% if @user.projects.where("active = 1").size == 0 %>
@@ -34,11 +34,11 @@
         <% else%>
           <% @user.projects.each do |project| %>
             <% if project.active && project.visible %>
-        <div class="col-sm-7">
+        <div class="col-sm-8">
           <h3><%= link_to  project.name, project %> </h3>
           <p><%= project.desc %></p>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="dash-gig">
             <% @thumbwidth = 176 %>
               <% project.project_gigapans.take(3).each do |gigapan| %>
@@ -56,10 +56,11 @@
                   <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
                 <% end %>
           </div>
-                       <% end %>
+          </div>
+              <% end %>
           <% end %>
         <% end %>
-        </div>
+        
       </div>
   </div>
  

@@ -7,7 +7,7 @@
       else image_tag "default_avatar.jpg"
       end%>
   </div>
-  <div class="col-md-8"> 
+  <div class="col-md-9"> 
     <div class="topbar">
       <% if current_user.has_role?(:student) %>
       <h2> <%= current_user.first_name%>, a student from <%= link_to current_user.organization.name, current_user.organization %>, <%=current_user.organization.city%>, 
@@ -32,7 +32,7 @@
       <p><%=link_to 'Create New Student', new_user_path%></p>
       <%end%></div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-9">
       <div class="row">
         <h2>Current Projects</h2>
         <% if current_user.projects.where("active = 1").size == 0 %>
@@ -40,11 +40,11 @@
         <% else%>
           <% current_user.projects.each do |project| %>
             <% if project.active && project.visible %>
-        <div class="col-sm-7">
+        <div class="col-sm-8">
           <h3><%= link_to  project.name, project %> </h3>
           <p><%= project.desc %></p>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="dash-gig">
             <% @thumbwidth = 176 %>
               <% project.project_gigapans.take(3).each do |gigapan| %>
@@ -62,21 +62,22 @@
                   <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
                 <% end %>
           </div>
-                       <% end %>
+        </div>
+            <% end %>
           <% end %>
         <% end %>
-        </div>
+        
       </div>
       <div class="row">
         <% if current_user.projects.where("visible = 0").size != 0 %>
         <h2>Draft Projects</h2>
          <% current_user.projects.each do |project| %>
             <% if project.active && !project.visible %>
-        <div class="col-sm-7">
+        <div class="col-sm-8">
            <h3><%= link_to  project.name, project %> </h3>
           <p><%= project.desc %></p>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <div class="dash-gig">
           <% @thumbwidth = 176 %>
               <% project.project_gigapans.take(3).each do |gigapan| %>
@@ -104,9 +105,12 @@
           <h2>Archived Projects</h2>
           <% current_user.projects.each do |project| %>
             <% if !project.active && project.visible %>
-        <div class="col-sm-7">
+        <div class="col-sm-8">
            <h3><%= link_to  project.name, project %> </h3>
               <p><%= project.desc %></p>
+        </div>
+        <div class="col-sm-4">
+          
         </div>
              <% end %>
           <% end %>
