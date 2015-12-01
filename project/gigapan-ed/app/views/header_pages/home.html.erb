@@ -1,10 +1,10 @@
 
 <%= javascript_tag do %>
 
-    var gigapan_ids = [<% @featured_gigapans.each do |featured_gigapan| %>
+    var gigapan_ids = [<% @featured_gigapans.find_each do |featured_gigapan| %>
     "<%= featured_gigapan.id%>"<%if featured_gigapan == @featured_gigapans.last %><%else%>,<%end%><%end%>];
     
-     var gigapans = {<% @featured_gigapans.each do |featured_gigapan| %>
+     var gigapans = {<% @featured_gigapans.find_each do |featured_gigapan| %>
     "<%= featured_gigapan.id %>" : {"description" : "<%= featured_gigapan.desc%>", "authKey" : <%=featured_gigapan.authcode%>, "width" : <%=featured_gigapan.width%>, "height" : <%=featured_gigapan.height%>, "id" :  <%= featured_gigapan.ext_id %>, "name" : "<%= featured_gigapan.name%>"}<%if featured_gigapan == @featured_gigapans.last %><%else%>,<%end%><%end%>
     };
     var gigapan = {

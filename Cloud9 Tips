@@ -101,9 +101,3 @@ def modelname_params
   lockout configs found in config>initializers>devise.rb
   devise error messages located in config>locales>devise.en.yml
   Unlock a user by cleaning locked_at and failed_attempts or by waiting a set period of time defined in the lockout configs
-  
-  @default = User.where(["name = ?", "default"])
-  User.where(["last_sign_in_at < ?", 6.months.ago]).each do |user|
-  @default.commments << user.comments
-  user.destroy
-  end

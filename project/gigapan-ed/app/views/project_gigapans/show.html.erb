@@ -36,7 +36,7 @@
          "height" : <%=@project_gigapan.height%>
       };
       
-    var snapshots = {<% @project_gigapan.comments.each do |comment| %>
+    var snapshots = {<% @project_gigapan.comments.find_each do |comment| %>
      "<%= comment.id %>" : {"y" : <%= comment.y_coord%>, "x" : <%=comment.x_coord%>, "width" : <%=comment.width%>, "height" : <%=comment.height%>, "id" :  <%= comment.id %>}<%if comment == @project_gigapan.comments.last %><%else%>,<%end%><%end%>
     };
     var highlighters = new Array();
@@ -283,7 +283,7 @@ $(window).scroll(function(e){
 <%= render :partial => 'comments/form', :locals => {:comment => comment} %>
         </div>
         <% if comment.comments.count != 0 %>
-            <% comment.comments.each do |comment| %>
+            <% comment.comments.find_each do |comment| %>
             <div class="reply">
                 <%= render :partial => 'comment', :locals => {:comment => comment} %>
             </div>

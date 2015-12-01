@@ -4,7 +4,7 @@
       <h2><%= pluralize(@project_gigapan.errors.count, "error") %> prohibited this project_gigapan from being saved:</h2>
 
       <ul>
-      <% @project_gigapan.errors.full_messages.each do |message| %>
+      <% @project_gigapan.errors.full_messages.find_each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

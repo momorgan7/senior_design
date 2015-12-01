@@ -10,7 +10,7 @@
             <% end %>
             <div id="people">
             Teachers:<br>
-            <% @project.users.each do |user| %>
+            <% @project.users.find_each do |user| %>
                 <% if user.has_role?(:teacher) %>
                   <tr>
                     <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
@@ -27,7 +27,7 @@
                 <% end %>
             <% end %>
             Students:<br>
-            <% @project.users.each do |user| %>
+            <% @project.users.find_each do |user| %>
                 <% if user.has_role?(:student) %>
                   <tr>
                     <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
@@ -50,7 +50,7 @@
         </div>
         <div class ="col-md-3">
             <% @thumbwidth = 274 %>
-            <% @project.project_gigapans.each do |gigapan| %>
+            <% @project.project_gigapans.find_each do |gigapan| %>
             <div id="gigthumb">
             <%= link_to gigapan.name, gigapan %><br>
             

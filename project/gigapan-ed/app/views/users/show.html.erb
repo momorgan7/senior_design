@@ -32,7 +32,7 @@
         <% if @user.projects.where("active = 1").size == 0 %>
           No projects
         <% else%>
-          <% @user.projects.each do |project| %>
+          <% @user.projects.find_each do |project| %>
             <% if project.active && project.visible %>
         <div class="col-sm-8">
           <h3><%= link_to  project.name, project %> </h3>

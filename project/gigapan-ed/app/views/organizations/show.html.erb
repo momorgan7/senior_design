@@ -9,7 +9,7 @@
         <div class="col-md-3">
             <div id="o_users">
             <b>Teachers:</b>
-            <% @teachers.order(:first_name).each do |teacher| %>
+            <% @teachers.order(:first_name).find_each do |teacher| %>
             <% @name = teacher.first_name.to_s() +" "+ teacher.last_name.to_s() %>
             <li>
                 <%= link_to @name, teacher %>
@@ -18,7 +18,7 @@
             <% end %>
             <br>
             <b>Students:</b>
-            <% @students.order(:first_name).each do |student| %>
+            <% @students.order(:first_name).find_each do |student| %>
             <% @name = student.first_name.to_s() +" "+ student.last_name.to_s() %>
             <li>
                 <%= link_to @name, student %>

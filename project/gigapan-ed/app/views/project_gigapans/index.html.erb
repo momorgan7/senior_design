@@ -10,7 +10,7 @@
   </thead>
 
   <tbody>
-    <% @project_gigapans.each do |project_gigapan| %>
+    <% @project_gigapans.find_each do |project_gigapan| %>
       <tr>
         <td><%= link_to 'Show', project_gigapan %></td>
         <td><%= link_to 'Edit', edit_project_gigapan_path(project_gigapan) %></td>

@@ -38,7 +38,7 @@
         <% if current_user.projects.where("active = 1").size == 0 %>
           No projects
         <% else%>
-          <% current_user.projects.each do |project| %>
+          <% current_user.projects.find_each do |project| %>
             <% if project.active && project.visible %>
         <div class="col-sm-8">
           <h3><%= link_to  project.name, project %> </h3>
@@ -71,7 +71,7 @@
       <div class="row">
         <% if current_user.projects.where("visible = 0").size != 0 %>
         <h2>Draft Projects</h2>
-         <% current_user.projects.each do |project| %>
+         <% current_user.projects.find_each do |project| %>
             <% if project.active && !project.visible %>
         <div class="col-sm-8">
            <h3><%= link_to  project.name, project %> </h3>
@@ -103,7 +103,7 @@
       <div class="row">
         <% if current_user.projects.where("active = 0").size != 0 %>
           <h2>Archived Projects</h2>
-          <% current_user.projects.each do |project| %>
+          <% current_user.projects.find_each do |project| %>
             <% if !project.active && project.visible %>
         <div class="col-sm-8">
            <h3><%= link_to  project.name, project %> </h3>

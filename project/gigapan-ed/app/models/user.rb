@@ -45,10 +45,10 @@ class User < ActiveRecord::Base
   #custom devise validations to replace validateable because of the issues with using multiple of the same email
   validates_presence_of    :email, :on=>:create
   validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
-  validates_presence_of    :password, :on=>:create
-  validates_presence_of :password_confirmation, :on=>:create
-  validates_confirmation_of    :password, :on=>:create
-  validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
+  # validates_presence_of    :password, :on=>:create
+  # validates_presence_of :password_confirmation, :on=>:create
+  # validates_confirmation_of    :password, :on=>:create
+  # validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
   
   
   #requires a username on creation of a user
