@@ -2,7 +2,7 @@
 
 one:
   email: string@place.com         
-  encrypted_password: MyString
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   reset_password_token: MyString
   reset_password_sent_at: 2015-04-12 8:00:00
   remember_created_at: 2015-04-12 8:00:00
@@ -18,7 +18,7 @@ one:
 
 two:
   email: example@example.com          
-  encrypted_password: MyString
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
   reset_password_token: MyStringness
   reset_password_sent_at: 2015-04-12 8:00:00
   remember_created_at: 2015-04-12 8:00:00
