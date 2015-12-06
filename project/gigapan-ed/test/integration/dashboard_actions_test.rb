@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProfileActionsTest < ActionDispatch::IntegrationTest
+class DashboardActionsTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

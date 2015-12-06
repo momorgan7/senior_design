@@ -3,11 +3,22 @@
     <h4><%= @organization.city %>, <%= @organization.state %>, <%= @organization.country.name %></h4>
     <% @students = @organization.users.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
     <% @teachers = @organization.users.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
+    <% @admins = @organization.users.includes(:roles).where('roles.name = ?', 'admin').references(:roles) %>
     <%= @students.count %> Students, 
-    <%= @teachers.count %> Teachers
+    <%= @teachers.count %> Teachers,
+    <%= @admins.count %> Admins
     <div class="row">
         <div class="col-md-3">
             <div id="o_users">
+            <b>Admins:</b>
+            <% @admins.order(:first_name).find_each do |admin| %>
+            <% @name = admin.first_name.to_s() +" "+ admin.last_name.to_s() %>
+            <li>
+                <%= link_to @name, admin %>
+                <img class="flag <%=admin.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+            </li>
+            <% end %>
+            <br>
             <b>Teachers:</b>
             <% @teachers.order(:first_name).find_each do |teacher| %>
             <% @name = teacher.first_name.to_s() +" "+ teacher.last_name.to_s() %>

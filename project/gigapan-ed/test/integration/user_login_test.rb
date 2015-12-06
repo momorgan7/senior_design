@@ -15,10 +15,27 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   
   test "login with valid info" do
     get login_path
+    assert_select "a[href=?]", root_path
+    assert_select "a[href=?]", contact_path
+    assert_select "a[href=?]", help_path
     assert_template 'sessions/new'
     post_via_redirect user_session_path, 'user[username]' => @user.username, 'user[password]' =>  'password'
     assert_equal '/dashboard', path
     assert_equal 'Signed in successfully.', flash[:notice]
+    assert_select "a[href=?]", login_path, count: 0
+    assert_select "a[href=?]", logout_path
+    assert_select "a[href=?]", user_path(@user)
+    assert_select "a[href=?]", organization_path(@user.organization)
+    assert_select "a[href=?]", edit_user_path(@user)
+    assert_select "a[href=?]", new_user_path
+    assert_select "a[href=?]", new_project_path
+    assert_select "a[href=?]", projects_path
+    assert_select "a[href=?]", organizations_path
+    assert_select "a[href=?]", dashboard_path
+    assert_select "a[href=?]", root_path
+    assert_select "a[href=?]", contact_path
+    assert_select "a[href=?]", help_path
+    assert_select 'h1', text: 'My Dashboard'
   end
   
   test "login with valid username, invalid password" do

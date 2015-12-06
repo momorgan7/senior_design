@@ -11,7 +11,7 @@
             <div id="people">
             Teachers:<br>
             <% @project.users.find_each do |user| %>
-                <% if user.has_role?(:teacher) || current_user.has_role?(:admin) %>
+                <% if user.has_role?(:teacher) || user.has_role?(:admin) %>
                   <tr>
                     <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
                     <li>

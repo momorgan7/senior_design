@@ -39,7 +39,7 @@ class UserTest < ActiveSupport::TestCase
   test "email should accept valid" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
-    valid_addresses.find_each do |valid_address|
+    valid_addresses.each do |valid_address|
       @user.email = valid_address
       assert @user.valid?, "#{valid_address.inspect} should be valid"
     end
@@ -47,7 +47,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "email should reject invalid" do
     invalid_addresses = %w[contact@example,com contact_at_foo.org contact.name@example.]
-    invalid_addresses.find_each do |invalid_address|
+    invalid_addresses.each do |invalid_address|
       @user.email = invalid_address
       assert_not @user.valid?, "#{invalid_address.inspect} should be invalid"
     end
