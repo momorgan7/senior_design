@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
    devise_for :users , :path => 'auth',
      controllers: {:registrations => "registrations"}
   resources :users, except: [:index]

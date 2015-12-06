@@ -44,7 +44,6 @@ class ProjectGigapansController < ApplicationController
         temp[:width] = hash["width"]
         temp[:height] = hash["height"]
         @project_gigapan = ProjectGigapan.new(temp)
-    
         respond_to do |format|
           if @project_gigapan.save
             format.html { redirect_to @project_gigapan, notice: 'Project gigapan was successfully created.' }
@@ -55,7 +54,7 @@ class ProjectGigapansController < ApplicationController
           end
         end
       rescue OpenURI::HTTPError => e
-        flash[:errors] = 'GigaPan not found'
+        flash[:notice] = 'GigaPan not found'
         @project_gigapan = ProjectGigapan.new
         @project_id = temp[:project_id]
         redirect_to :action=> "new"

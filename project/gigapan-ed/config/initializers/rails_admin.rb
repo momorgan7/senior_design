@@ -20,7 +20,7 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new do
-      except ["Role", "Country", "ProjectGigapan", "comment"]
+      except ["Role", "Country", "ProjectGigapan", "Comment"]
     end
     export
     bulk_delete do
