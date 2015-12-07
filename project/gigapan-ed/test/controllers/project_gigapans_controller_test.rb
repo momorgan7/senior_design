@@ -3,7 +3,7 @@ include Devise::TestHelpers
 
 class ProjectGigapansControllerTest < ActionController::TestCase
   setup do
-    sign_in User.first
+    sign_in User.last
     @project_gigapan = project_gigapans(:one)
     @project = projects(:one)
   end

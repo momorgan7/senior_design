@@ -19,4 +19,13 @@ class ProjectGigapanActionsTest < ActionDispatch::IntegrationTest
     assert_select "img.flag", count: @gigapan.comments.count
     assert_select 'h3', text: @gigapan.name
   end
+  
+  test "edit gigapan" do
+    get login_path
+    post_via_redirect user_session_path, 'user[username]' => @user.username, 'user[password]' =>  'password'
+    get edit_project_gigapan_path(@gigapan)
+   patch_via_redirect project_gigapan_path(@gigapan), 'project_gigapan[name]' => 'new name', 'project_gigapan[desc]' => 'new description'
+    assert_template 'project_gigapans/show'
+  end
+  
 end

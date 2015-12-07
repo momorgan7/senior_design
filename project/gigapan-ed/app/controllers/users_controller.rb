@@ -30,9 +30,7 @@ class UsersController < ApplicationController
 
  def create
     @user = User.new(user_params)
-  #  @user.update_attribute(:organization_id, current_user.organization.1)
     @user.roles << Role.where(name: "student")
-#    @user.email = current_user.email
     if @user.save
       flash[:success] = "Created a new student:"+@user.first_name+" "+@user.last_name
       redirect_to dashboard_path

@@ -5,7 +5,7 @@ one:
   desc: MyText
   active: true
   visible: true
-  users: one, two
+  users: one, two, three
 
 two:
   name: MyString2

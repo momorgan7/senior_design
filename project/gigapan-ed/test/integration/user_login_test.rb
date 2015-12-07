@@ -4,6 +4,8 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   
   def setup
     @user = users(:two)
+    @user2 = users(:one)
+    @student = users(:three)
   end
   
   test "login with no info" do
@@ -36,6 +38,20 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", contact_path
     assert_select "a[href=?]", help_path
     assert_select 'h1', text: 'My Dashboard'
+  end
+  test "login with valid info as admin" do
+    get login_path
+    assert_template 'sessions/new'
+    post_via_redirect user_session_path, 'user[username]' => @user2.username, 'user[password]' =>  'password'
+    assert_equal '/dashboard', path
+    assert_equal 'Signed in successfully.', flash[:notice]
+  end
+  test "login with valid info as student" do
+    get login_path
+    assert_template 'sessions/new'
+    post_via_redirect user_session_path, 'user[username]' => @student.username, 'user[password]' =>  'password'
+    assert_equal '/dashboard', path
+    assert_equal 'Signed in successfully.', flash[:notice]
   end
   
   test "login with valid username, invalid password" do
