@@ -28,4 +28,11 @@ class ProjectGigapanActionsTest < ActionDispatch::IntegrationTest
     assert_template 'project_gigapans/show'
   end
   
+  test "create gigapan" do
+    get login_path
+    post_via_redirect user_session_path, 'user[username]' => @user.username, 'user[password]' =>  'password'
+    get new_project_gigapan_path(:project_id => @project.id)
+    post_via_redirect project_gigapans_path, 'project_gigapan[name]' => 'new name', 'project_gigapan[desc]' => 'new description', 'project_gigapan[url]' => 'http://gigapan.com/gigapans/1048', 'project_gigapan[project_id]' => @project.id
+    assert_template 'project_gigapans/show'
+  end
 end

@@ -28,24 +28,23 @@ class ProjectGigapansController < ApplicationController
   # POST /project_gigapans
   # POST /project_gigapans.json
   def create
-    temp = project_gigapan_params
-    if(correct_url?(temp[:url]))
-      ident = temp[:url].split("/").last
+    @project_gigapan = ProjectGigapan.new(project_gigapan_params)
+    if(correct_url?(@project_gigapan.url))
+      ident = @project_gigapan.url.split("/").last
       begin
         hash = JSON.load(open("http://api.gigapan.org/beta/gigapans/"+ident+".json"))
-        temp[:ext_id] = hash["id"]
+        @project_gigapan.ext_id = hash["id"]
         if is_number?(ident)
-          temp[:authcode] = "null"
-          temp[:private] = false
+          @project_gigapan.authcode = "null"
+          @project_gigapan.private = false
         else 
-          temp[:authcode] = ident
-          temp[:private] = true
+          @project_gigapan.authcode = ident
+          @project_gigapan.private = true
         end
-        temp[:width] = hash["width"]
-        temp[:height] = hash["height"]
-        @project_gigapan = ProjectGigapan.new(temp)
+        @project_gigapan.width = hash["width"]
+        @project_gigapan.height = hash["height"]
         respond_to do |format|
-          if @project_gigapan.save
+          if @project_gigapan.save!
             format.html { redirect_to @project_gigapan, notice: 'Project gigapan was successfully created.' }
             format.json { render :show, status: :created, location: @project_gigapan }
           else
