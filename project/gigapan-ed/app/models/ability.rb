@@ -6,7 +6,7 @@ class Ability
     
     alias_action :create, :update, :destroy, :to => :alter
     
-    # What permissions do we want teacher and student to have?
+   
     if user.id  
       if user.has_role?(:admin)
         can :access, :rails_admin

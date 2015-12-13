@@ -48,31 +48,37 @@ class ProjectActionsTest < ActionDispatch::IntegrationTest
     assert_template 'projects/show'
   end
   
-  test "get project add teachers" do
+  test "project add teachers" do
     get login_path
     assert_template 'sessions/new'
     post_via_redirect user_session_path, 'user[username]' => @user.username, 'user[password]' =>  'password'
     get add_teachers_path(project: @project1)
     assert_template 'projects/_add_teachers'
     assert_select 'h1', text: 'Adding Teachers'
+    patch_via_redirect project_path(@project1), 'project[users]'=> '[one,two]'
+    assert_template 'projects/show'
   end
   
-  test "get project add students" do
+  test "project add students" do
     get login_path
     assert_template 'sessions/new'
     post_via_redirect user_session_path, 'user[username]' => @user.username, 'user[password]' =>  'password'
     get add_students_path(project: @project1)
     assert_template 'projects/_add_students'
     assert_select 'h1', text: 'Adding Students'
+    patch_via_redirect project_path(@project1), 'project[users]'=> '[one,two]'
+    assert_template 'projects/show'
   end
   
-  test "get project remove gigapans" do
+  test "project remove gigapans" do
     get login_path
     assert_template 'sessions/new'
     post_via_redirect user_session_path, 'user[username]' => @user.username, 'user[password]' =>  'password'
     get delete_project_gigapans_path(project: @project1)
     assert_template 'projects/_delete_project_gigapans'
     assert_select 'h1', text: 'Editing Project Gigapan List'
+    patch_via_redirect project_path(@project1), 'project[project_gigapans]'=> '[one]'
+    assert_template 'projects/show'
   end
   
   test "create project" do
