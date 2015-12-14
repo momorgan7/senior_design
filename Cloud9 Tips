@@ -1,3 +1,10 @@
+All the rails commands you'll ever need to know:
+
+http://www.pragtob.info/rails-beginner-cheatsheet/
+
+
+
+
 For databse.yml>
 development:
   adapter: mysql2
@@ -11,7 +18,7 @@ development:
    sudo service mysql start
   
   rails server -b $IP -p $PORT
-  
+
    rails generate devise:install
    rails g devise User
    
@@ -43,3 +50,54 @@ development:
    follow with:
    
    rake db:migrate
+   
+This will push all your branches to the remote, and set-upstream tracking correctly for you:
+
+git push --all -u
+
+To reset from schema:
+rake db:reset
+To reset from migrations:
+rake db:drop db:create db:migrate db:seed
+
+migration command to chage a table:
+change_table(:tablename) do |t|
+
+
+Instead of attr_accessible use this:
+
+def modelname_params
+    params.require(:person).permit(:name, :age, pets_attributes: [:name, :category])
+  end
+  
+  
+  Organization.create({
+  :name => 'apple pie',
+  :city => 'just apple pie',
+  :users_attributes => [
+    { :name => 'apples' },
+    { :name => 'sugar' },
+    { :name => 'pie crust' }
+  ]
+})
+
+  Organization.create({:name => 'apple pie',:city => 'just apple pie',:users => [ User.first]})
+  
+  Add a new Org to an existing User:
+  User.first.update_attribute(:organization, Organization.first)
+  
+  Add a new user to an existing org:
+  Organization.first.users << User.new(username:"b",password:"password",password_confirmation:"password",email:"bruce@go.net") 
+  
+  <% @posts.group_by(&:week).each do |week, posts| %>
+  <div id="week">
+    <h2>Week < %= week %></h2>
+    < %= render :partial => 'post', :collection => @posts %>
+  </div>
+<% end %>
+  
+  Model.all.group_by(&:attribute)
+  
+  lockout configs found in config>initializers>devise.rb
+  devise error messages located in config>locales>devise.en.yml
+  Unlock a user by cleaning locked_at and failed_attempts or by waiting a set period of time defined in the lockout configs

@@ -1,0 +1,2 @@
+module ProjectGigapansHelper
+end

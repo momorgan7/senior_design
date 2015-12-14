@@ -1,0 +1,89 @@
+<h1>Project List</h1>
+
+<!--<% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>-->
+<!--<%= link_to 'New Project', new_project_path %><br> <br>-->
+<!--<%end%>-->
+
+<div class="main">
+  <div class="row">
+    <div class="col-md-5">
+      <% @projects.order(:name).find_each do |project| %>
+        <%= javascript_tag do %>
+            $(document).ready(function(){
+            	$(".show<%=project.id%>").click(function(e) {
+                var $elem = $(e.target), 
+                    $class = $('.<%=project.id%>');
+                $class.stop().toggle("fast"); 
+                $('#arrow<%=project.id%>').toggleClass("rotate");
+                  });
+            });
+        <% end %>
+        
+        <!--move to next project if not visible and active-->
+        <% if project.visible && project.active%>
+        
+        
+          <!--Display project title-->
+          
+          <h3 >
+            <input id="arrow<%=project.id%>" class="show<%=project.id%>"/>
+            <%= link_to  project.name, project %>
+            <!--List a flag for each country involved in the project-->
+            <% @countries = [] %>
+            <% project.organizations.uniq.each do |org| %>
+              <% @countries << org.country %>
+            <% end %>
+            <% @countries.uniq.each do |country| %>
+                   <img class="flag <%=country.iso_code.downcase%>" src="/assets/blank.gif">
+            <% end %>
+          </h3>
+          
+          <div class="<%=project.id%>" style= "display:none">
+            <!--Display project desciption-->
+            <p><%= project.desc %></p>
+          
+            <% project.organizations.uniq.each do |org| %>
+            
+              <!--fill the array of teachers/admins-->
+              <% user_array = [] %>
+              <% project.users.find_each do |user| %>
+                <% if user.has_role?(:admin) || user.has_role?(:teacher) %>
+                  <% if user.organization_id == org.id %>
+                    <% user_array << user %>
+                  <% end %>
+                <% end %>
+              <% end %>
+              
+              <!--don't want to display orgs which don't have any teachers or admins on the project-->
+              <% if user_array.count != 0 %>
+                <!--display flag and name-->
+                
+                  <img class="flag <%=org.country.iso_code.downcase%>" src="/assets/blank.gif">
+                
+                <%= link_to org.name, org %>:
+                
+                <!--display teachers for org-->
+                <% user_array.each do |user| %>
+                  <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                  <% if user == user_array.last %>
+                    <%= link_to @name, user %>
+                  <% else %>
+                      <%= link_to @name, user %>, 
+                  <% end %>
+                <% end %>
+                
+              <% end %>
+              
+              <!--break for next org-->
+              <br>
+            <% end %>
+            <!--end of actions for a visible project-->
+          </div>
+        <% end %>
+        <!--next project-->
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,43 @@
+<h1>Adding Teachers</h1>
+<div class="main">
+<%= form_for(@project) do |f| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% @project.errors.full_messages.find_each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <h4><%= f.label "Teachers" %>:</h4>
+  <div class="field">
+    <% @teachers = User.includes(:roles).where('roles.name = ?', 'teacher').references(:roles) %>
+    <%= f.collection_check_boxes( :user_ids, @teachers, :id, :username, {}, :multiple => true) do |b| %>
+  <div class="row">
+    <%= b.label(class: "check_box") do %>
+      <div class="col-xs-3">
+        <%= b.check_box(class: "check_box") %>
+      </div>
+
+      <div class="col-xs-9">
+        <% @user = User.find(b.value) %>
+         <%= b.object.username %>
+        <img class="flag <%=@user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+      </div>       
+    <% end %>
+  </div>
+<% end %>
+
+    <% @students = User.includes(:roles).where('roles.name = ?', 'student').references(:roles) %>
+    <%= f.collection_select :user_ids, @students, :id, :username, {}, :multiple => true, :style => "display: none;" %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-primary"%>
+  </div>
+<% end %>
+</div>

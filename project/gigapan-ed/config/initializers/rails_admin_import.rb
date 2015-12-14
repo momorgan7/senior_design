@@ -5,7 +5,7 @@ RailsAdmin.config do |config|
   config.actions do
     all
     import do
-      except "Role"
+      except ["Role", "Country"]
     end
   end
 

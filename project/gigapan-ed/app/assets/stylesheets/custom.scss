@@ -8,9 +8,14 @@ html {
   position: relative;
   min-height: 100%;
 }
+body { padding-bottom: 200px; }
 
-body {
-  padding-bottom: 60px;
+.main{
+ 
+  padding-left: 50px;
+  padding-top: 30px;
+  padding-right: 50px;
+ 
 }
 
 
@@ -23,7 +28,12 @@ body {
 }
 
 #login{
-    float:right;
+    float: right;
+    padding-bottom: 20px;
+    input{width: 100px;
+      height: 20px;
+    }
+    
 }
 #logo:hover {
   color:#080;
@@ -35,24 +45,182 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 130px;
-    #logos{margin-left: auto;
-    margin-right:auto;
-    width: 656px;}
+  height: 80px;
+
     p{text-align: center;}
 }
 
 .hidden { display: none; }
 
-#contact{width: 500px; 
-  padding-left: 50px;
-  input,  select {
-    border: 1px solid #bbb;
-    width: 100%;
-    margin-bottom: 15px;}
-  textarea{height: 125px;
-  width: 100%;}
+
+
+.flag { width: 16px; 
+	clear: right; 
+	height: 16px;
+	  padding-right: 16px;
+	 
+	}
+input:not([type]){
+  width: 0;
+  height: 0;
+  position: relative;
+  bottom: -15px;
+  border-style: solid;
+  border-width: 4px 0 4px 7px;
+  border-color: transparent transparent transparent #748fab;
+  -webkit-backface-visibility:hidden;
+    -webkit-transition: all 0.2s ease-in-out;
+       -moz-transition: all 0.2s ease-in-out;
+         -o-transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease-in-out;
+  
+
+}
+	
+  .rotate{
+     -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+     -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+  }
+  
+	.usrform {
+	  label {
+	    width: 170px;
+	  }
+	  input {
+	    width: 250px;
+	  }
+.button{
+  padding-top: 25px;
+}
+	  
+	}
+	
+.prjform {
+	  label {
+	    width: 100px;
+	    vertical-align: middle;
+	  }
+	  input {
+	    width: 250px;
+
+	  }	    	  textarea {
+	    min-height: 100px;
+	    min-width: 250px;
+	    vertical-align: middle;
+	  }
+
+	  
+	}
+
+	
+	     #gigapan_viewer {
+         border: 1px solid black;
+         width: 1040px;
+         height: 374px;
+         background-color: black;
+      }
+
+.snapshot_highlight_box {
+   border: 1px solid white;
+   font-size:0;   /* So stupid IE 6 renders it with the correct dimensions */
+   background-image: url("/assets/blank.gif"); /* Fixes IE's inability to capture mouse events on clear divs -- props to http://www.webmasterworld.com/forum91/2131.htm */
+}
+
+.comment:hover {
+ cursor:pointer;
+}
+
+#gigapan_snapshots {
+   background: white;
 }
 
 
+#frontpage { padding-top: 20px;
+p {font-size: 14pt;
+  text-align: center;
+  line-height: 16pt;
+}}
+.checkbox_container input {
+  display: block;
+}
+h3 {
+  font-size: 14pt;
+}
+#dash{
+  padding-top: 20px;
+}
+.dash-gig{
+  padding-top: 20px;
+}
+#people {
+  padding-top: 15px;
+}
+.slideshow_control {
+   margin-left: 20px;
+   margin-bottom: 20px;
+}
 
+.slideshow_button {
+   margin: 0 2px 0 2px;
+   width: 11px;
+   height: 11px;
+   cursor: pointer;
+}
+h4{
+  font-size: 12pt;
+}
+#details{
+  padding-left: 10px;
+}
+#gig_action{
+  float: left;
+}
+.orgs {
+  padding-left: 15px;
+}
+.org_users{
+  padding-left: 15px;
+}
+.content{
+  padding-left: 30px;
+}
+.reply {
+  padding-left: 50px;
+}
+.com_form {
+  padding-bottom: 15px;
+}
+.com_teacher {
+  margin-bottom: 10px;
+  background: #d6e9ef;
+  width: 750px;
+    padding: 7px;
+  h4{
+    margin: 0;
+  }
+}
+.com_student {
+  margin-bottom: 10px;
+  background: #ccc;
+  width: 750px;
+    padding: 7px;
+  h4{
+    margin: 0;
+  }
+  
+}
+.all_comments{
+  margin-left: 20px;
+}
+#o_users{
+  margin-top: 20px;
+}
+p {
+    word-wrap: break-word;
+}
+.gig-thumb{
+  margin-bottom: 10px;
+}

@@ -1,4 +1,5 @@
 require 'test_helper'
+include Devise::TestHelpers
 
 class HeaderPagesControllerTest < ActionController::TestCase
 
@@ -8,8 +9,9 @@ class HeaderPagesControllerTest < ActionController::TestCase
   end
 
 
-  test "should get about" do
-    get :about
+  test "should get dash when logged in" do
+    sign_in User.first
+    get :dash
     assert_response :success
   end
 

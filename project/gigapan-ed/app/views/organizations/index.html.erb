@@ -1,0 +1,34 @@
+<h1>Schools and Teachers</h1>
+<div class="main">
+
+    <% @organizations.group_by(&:country).sort.each do |country, organizations| %>
+      <div id="country">
+        <h2><%= country.name %></h2>
+        <div class="orgs">
+          <% for organization in organizations %>
+            <h4><%= link_to organization.name, organization %>
+              <img class="flag <%=organization.country.iso_code.downcase%>" src="/assets/blank.gif"><br></h4>
+              <% user_array = [] %>
+              <% organization.users.find_each do |user| %>
+                <% if user.has_role?(:admin) || user.has_role?(:teacher) %>
+                    <% user_array << user %>
+                <% end %>
+              <% end %>
+            <div class="org_users">
+              Teachers:
+              <% user_array.each do |user| %>
+                  <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                  <% if user == user_array.last %>
+                    <%= link_to @name, user %>
+                  <% else %>
+                      <%= link_to @name, user %>, 
+                  <% end %>
+                <% end %>
+                </div>
+                <%end %>
+          </div>
+      </div>
+    <% end %>
+</div>
+
+<!--<%= link_to 'New Organization', new_organization_path %>-->

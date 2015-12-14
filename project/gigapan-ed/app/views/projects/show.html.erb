@@ -1,0 +1,79 @@
+<h1><%= @project.name %></h1>
+<div class="main">
+    <div class="row">
+        <div class="col-md-2">
+            Actions:<br>
+            <% if current_user && current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+            <%= link_to 'Edit Project', edit_project_path(@project) %> <br>
+            <%= link_to 'Add GigaPans', new_project_gigapan_path(:project_id => @project.id) %> <br>
+            <%= link_to 'Remove GigaPans', delete_project_gigapans_path(project: @project)%> <br>
+            <% end %>
+            <div id="people">
+            Teachers:<br>
+            <% @project.users.find_each do |user| %>
+                <% if user.has_role?(:teacher) || user.has_role?(:admin) %>
+                  <tr>
+                    <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                    <li>
+                    <%= link_to @name, user %>
+                    <img class="flag <%=user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+                    </li>
+                  </tr>
+                <% end %>
+            <% end %>
+            <% if @project.active %>
+                <% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+                <%= link_to  'Add teachers', add_teachers_path(project: @project)%><br> <br>
+                <% end %>
+            <% end %>
+            Students:<br>
+            <% @project.users.find_each do |user| %>
+                <% if user.has_role?(:student) %>
+                  <tr>
+                    <% @name = user.first_name.to_s() +" "+ user.last_name.to_s() %>
+                    <li>
+                    <%= link_to @name, user %>
+                    <img class="flag <%=user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+                    </li>
+                  </tr>
+                <% end %>
+            <% end %>
+            <% if @project.active %>
+                <% if current_user.has_role?(:teacher) || current_user.has_role?(:admin)%>
+                   <%= link_to "Add students", add_students_path(project: @project)%><br> <br>
+                <% end %>
+            <% end %>
+            </div>
+        </div>
+        <div class="col-md-6">
+           <p><%= @project.desc %></p> 
+        </div>
+        <div class ="col-md-3">
+            <% @thumbwidth = 274 %>
+            <% @project.project_gigapans.find_each do |gigapan| %>
+            <div class="gig-thumb">
+            <%= link_to gigapan.name, gigapan %><br>
+            
+    <!--Depending on whether or not the gigapan is private, the code used to access it is different.-->
+            <% if gigapan.private %>
+                <% @gig_id = gigapan.authcode %>
+            <% else %>
+                <% @gig_id = gigapan.ext_id %>
+            <% end %>
+    
+    <!--height is calculated dynamically to fit the width dimensions-->
+            <% @height = gigapan.height*@thumbwidth/gigapan.width %>
+    
+    <!--grabs the gigapan thumbnail from gigapan.com based on the gigpan's information-->
+            <%= link_to image_tag("http://api.gigapan.org/beta/gigapans/#{@gig_id}-#{@thumbwidth}x#{@height}.jpg", height: "#{@height}", width: "#{@thumbwidth}"), gigapan%><br>
+    
+            <% @com_count = gigapan.comments.count %>
+            <%= link_to "#{@com_count} comments",  project_gigapan_path(gigapan, anchor: "comments")%>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+

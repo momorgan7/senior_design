@@ -2,11 +2,15 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :lockable
          
         mount_uploader :avatar, AvatarUploader 
- has_many :user_roles, :dependent => :destroy
- has_many :roles, :through => :user_roles
+ has_and_belongs_to_many :roles
+ has_and_belongs_to_many :projects
+ has_many :project_gigapans, through: :projects
+ has_many :comments
+ belongs_to :organization#, inverse_of: :organization
+ 
  
  RailsAdmin.config {|c| c.label_methods << :username}
   
@@ -24,41 +28,52 @@ class User < ActiveRecord::Base
     @login = login
   end
 
-#defines that login will accept a username or email for authentication
-  def login
-    @login || self.username || self.email
-  end
+#defines that login will accept a username for authentication
+  # def login
+  #   @login || self.username
+  # end
   
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-      if login = conditions.delete(:login)
-        where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-      else
-        where(conditions.to_h).first
-      end
-  end
-    
-    #requires a username on creation of a user
+  # def self.find_for_database_authentication(warden_conditions)
+  #   conditions = warden_conditions.dup
+  #     if login = conditions.delete(:login)
+  #       where(conditions.to_hash).where(["lower(username) = :value", { :value => login.downcase }]).first
+  #     else
+  #       where(conditions.to_hash).first
+  #     end
+  # end
+  
+  #custom devise validations to replace validateable because of the issues with using multiple of the same email
+  validates_presence_of    :email, :on=>:create
+  validates_format_of    :email,    :with  => Devise.email_regexp, :allow_blank => true, :if => :email_changed?
+  # validates_presence_of    :password, :on=>:create
+  # validates_presence_of :password_confirmation, :on=>:create
+  # validates_confirmation_of    :password, :on=>:create
+  # validates_length_of    :password, :within => Devise.password_length, :allow_blank => true
+  
+  
+  #requires a username on creation of a user
   validates :username,
   :presence => true,
   :uniqueness => { :case_sensitive => false},
   length: { maximum: 50 }
   
+  validates :roles,
+  :presence => true
+  
+  validates :first_name,
+  :presence => true
+  
   validates :password,
   :presence => true,
-  length: { minimum: 6 },
-  :if => :password
+  length: { minimum: 6 }, allow_nil: true
   
   validates :password_confirmation,
   :presence => true,
-  length: { minimum: 6 },
-  :if => :password_confirmation
+  length: { minimum: 6 }, allow_nil: true
   
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX }
-                    
-                
+  validates :organization_id,
+  :presence => true
+  
   
 end
 

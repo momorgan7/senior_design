@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Gigapans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_gigapans.find_each do |project_gigapan| %>
+      <tr>
+        <td><%= link_to 'Show', project_gigapan %></td>
+        <td><%= link_to 'Edit', edit_project_gigapan_path(project_gigapan) %></td>
+        <td><%= link_to 'Destroy', project_gigapan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project gigapan', new_project_gigapan_path %>

@@ -1,0 +1,28 @@
+     <% if comment.user.has_role?(:admin) || comment.user.has_role?(:teacher) %>
+     <div class="com_teacher">
+    <% else%>
+         <div class="com_student">
+    <%end%>
+<% @name = comment.user.first_name.to_s() + " " + comment.user.last_name.to_s() %>
+<h4>
+    <%= if comment.user.avatar? 
+    image_tag comment.user.avatar.url.to_s, size: "25"
+    else image_tag 'default_avatar.jpg', size: "25"
+     end%>
+    <%= link_to @name, comment.user %>
+        <img class="flag <%=comment.user.organization.country.iso_code.downcase%>" src="/assets/blank.gif">
+    says:
+</h4>
+<div class="content">
+<p><%= comment.content %></p>
+<%= time_ago_in_words(comment.created_at) %> ago from <%= link_to comment.user.organization.name, comment.user.organization %>
+</div>
+</div>
+<div class="com_form">
+<%= render :partial => 'comments/form', :locals => {:comment => comment} %>
+</div>
+<% if comment.comments.count != 0 %>
+    <% comment.comments.find_each do |comment| %>
+        <%= render :partial => 'comment', :locals => {:comment => comment} %>
+    <% end %>    
+<% end %>
