@@ -21,7 +21,7 @@
 
 
 <%= javascript_tag do %>
-      var SNAPSHOT_TOOL_CONFIG = {
+     var SNAPSHOT_TOOL_CONFIG = {
          aspectRatio : 4 / 3,       
          useMask : true         
       };
@@ -152,8 +152,8 @@ function view_snapshot(n)
    var aim_rect = new Seadragon.Rect(rect.x - border.x, rect.y - border.y, rect.width + 2 * border.x, rect.height + 2 * border.y);
 
    viewer.viewport.fitBounds(aim_rect);
-   if (snapshot_tool.isVisible())
-      snapshot_tool.setToolBoundsInGigapanCoords(rect);
+   if (snapshotTool.isVisible())
+      snapshotTool.setToolBoundsInGigapanCoords(rect);
 }
 
 

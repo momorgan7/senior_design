@@ -2,6 +2,7 @@
 <%= javascript_tag do %>
     $(document).ready(function(){
     	$(".reply<%=comment.id%>").click(function(e) {
+    	$(".reply<%=comment.id%>").hide()
         var $elem = $(e.target), 
             $class = $('.<%=comment.id%>');
         $class.stop().toggle("slow"); 

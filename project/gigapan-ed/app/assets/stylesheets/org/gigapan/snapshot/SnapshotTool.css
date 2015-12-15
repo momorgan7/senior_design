@@ -96,3 +96,9 @@
    background-color: red;
    font-size: 0; /* So stupid IE 6 renders it with the correct dimensions */
 }
+
+.snapshot_highlight_box {
+   border: 1px solid white;
+   font-size:0;   /* So stupid IE 6 renders it with the correct dimensions */
+   background-image: url("/assets/blank.gif"); /* Fixes IE's inability to capture mouse events on clear divs -- props to http://www.webmasterworld.com/forum91/2131.htm */
+}

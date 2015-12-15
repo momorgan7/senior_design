@@ -84,7 +84,7 @@ if (!window.org.gigapan.seadragon.SeadragonUtils) {
    var jQuery = window.$;
    var SeadragonUtils = org.gigapan.seadragon.SeadragonUtils;
 
-   var DEFAULT_ASPECT_RATIO = null;    // Aspect ratio of the snapshot. If null or undefined, then no constraint is used.
+   var DEFAULT_ASPECT_RATIO = 4/3;    // Aspect ratio of the snapshot. If null or undefined, then no constraint is used.
    var DEFAULT_USE_MASK = false;       // whether the mask should be applied
 
    var gigapanWidth = null;
